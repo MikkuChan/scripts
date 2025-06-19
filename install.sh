@@ -5,10 +5,13 @@
 # Author: FadzDigital
 # License: MIT
 # =============================================================================
+
 set -euo pipefail
+
 # =============================================================================
 # GLOBAL CONFIGURATIONS
 # =============================================================================
+
 # Color definitions
 declare -r RED='\033[0;31m'
 declare -r GREEN='\033[0;32m'
@@ -20,6 +23,7 @@ declare -r WHITE='\033[1;37m'
 declare -r BOLD='\033[1m'
 declare -r DIM='\033[2m'
 declare -r NC='\033[0m'
+
 # Application configuration
 declare -r SCRIPT_VERSION="2.0"
 declare -r REPO="MikkuChan/scripts"
@@ -32,13 +36,16 @@ declare -r SERVICE_NAME="vpn-api"
 declare -r LOG_FILE="/var/log/vpn-api-install.log"
 declare -r PID_FILE="/var/run/$SERVICE_NAME.pid"
 declare -r BACKUP_DIR="/opt/vpn-api-backup"
+
 # System requirements
 declare -r MIN_MEMORY_GB=1
 declare -r MIN_DISK_GB=2
 declare -r REQUIRED_PORTS=(80 443 5888)
+
 # =============================================================================
 # UTILITY FUNCTIONS
 # =============================================================================
+
 # Enhanced banner with animation
 print_banner() {
     clear
@@ -46,15 +53,12 @@ print_banner() {
     
     # Animated banner appearance
     local banner_lines=(
-        "   ___            __            "
-        " /'___\\          /\\ \\           "
-        "/\\ \\__/   __     \\_\\ \\  ____    "
-        "\\ \\ ,__\\/'__\\\`\\   /'_\\\` \\/\\_ ,\\\`\\  "
-        " \\ \\ \\_/\\ \\L\\.\\_/\\ \\L\\ \\/_/  /_ "
-        "  \\ \\_\\\\\\ \\__/.\\_\\ \\___,_\\/\\____\\\\"
-        "   \\/_/ \\/__/\\/_/\\/__,_ \\/\\/____/"
-        "                                "
-        "                                "
+        " ███████╗ █████╗ ██████╗ ███████╗██████╗ ██╗ ██████╗ ██╗████████╗ █████╗ ██╗     "
+        " ██╔════╝██╔══██╗██╔══██╗╚══███╔╝██╔══██╗██║██╔════╝ ██║╚══██╔══╝██╔══██╗██║     "
+        " █████╗  ███████║██║  ██║  ███╔╝ ██║  ██║██║██║  ███╗██║   ██║   ███████║██║     "
+        " ██╔══╝  ██╔══██║██║  ██║ ███╔╝  ██║  ██║██║██║   ██║██║   ██║   ██╔══██║██║     "
+        " ██║     ██║  ██║██████╔╝███████╗██████╔╝██║╚██████╔╝██║   ██║   ██║  ██║███████╗"
+        " ╚═╝     ╚═╝  ╚═╝╚═════╝ ╚══════╝╚═════╝ ╚═╝ ╚═════╝ ╚═╝   ╚═╝   ╚═╝  ╚═╝╚══════╝"
     )
     
     for line in "${banner_lines[@]}"; do
