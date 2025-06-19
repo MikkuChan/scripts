@@ -1,9 +1,723 @@
 #!/bin/bash
 # =============================================================================
-# VPN API Installation Script - FadzDigital
-# Versi: 2.0
+# VPN API Installation Script - FadzDigital Enhanced
+# Versi: 2.0 
+# Dibuat dengan ❤️ oleh FadzDigital
 # =============================================================================
 
-z="
-";oPz='ue ]';nBz='conf';RVz='ilak';nhz='y-pa';vVz='led ';Hqz='n 5 ';NNz=' -v ';LZz='ulas';bhz='},';ohz='rser';lhz='8.5"';WMz='}%s$';YOz='sk t';jTz='stat';Bnz='IG_P';ojz='"ena';Cyz='han!';Hrz='rdaf';xrz='}📝 ';woz='. (%';NPz='nnec';Tvz=': [0';sMz='pt i';Egz='utka';Lpz='w $S';Ooz='emd ';Tdz='iled';lOz='$((r';Fpz='ted"';tsz='te)';WSz='-uni';Wnz='vile';pfz='#fai';goz='ungg';qbz='try ';nNz='ebia';dTz='dite';Yvz='-f2)';glz='ine.';SJz='UN]$';Hmz='=$IN';Bgz='  • ';UCz='OSE=';lz='HITE';qDz='ER V';Xsz='rest';FCz='ACKU';VKz='{3:-';HXz='luka';Dcz='e 60';nTz='st_i';VTz='atus';Vrz=' ⚠ N';JRz='[ -d';WOz='Spac';gQz='t 0 ';yaz='${di';Adz='terh';oWz='var/';wSz='irek';fTz='tatu';wsz='i VP';qPz='k ad';XABz='}Pen';Znz='ectS';JOz='dala';SGz='l fr';naz='"$IN';jez=' in ';TBBz='ut d';RTz='_NAM';giz='modu';SLz='STAR';flz='-onl';JCz='vpn-';xEz='mest';UQz='kan$';HLz='IME:';wCz='██╗';Ynz='Prot';enz='Read';dCBz=' dal';pqz='son"';uPz='tern';tcz='.git';kQz='s ma';trz='te_h';iQz='muka';Okz='a-zA';KRz=' "$I';AQz='inga';Laz='n 2>';KKz=' di:';xoz='d/%d';JPz='e.co';bZz='l no';qKz='al))';uvz='nt -';Ivz='*"'\'' ';bSz=' gre';OGz='2"';spz='rnal';vUz='1)';cuz='i:${';nFz='N") ';owz='tama';Ugz='ED}I';gFz='OR]$';QEz='TE}S';wPz=' kon';rrz='si b';tdz='ts?r';Ssz='nghe';GMz=' ${W';vdz='BRAN';Ciz='regi';vBBz='SI V';nRz='run ';vMz=' dij';hgz=' def';fyz='or"';UDz='╔╝  ';Vvz=''\'' "$';iMz='rat ';iaz='ekto';Nez=''\''"na';PBBz=' oto';cz='34m'\''';vcz='com"';noz='_wai';Wtz='te}"';Snz='fier';Zuz='ngka';Uaz='NPM ';lKz='urre';nIz='%ds)';pDz='TALL';jnz='/log';twz='per:';WQz='ervi';OCBz='if v';PGz='l de';mJz='} &';CCz='stal';Mkz='tr -';MABz='p)';eKz='* 10';kwz='g:${';Bqz='nalc';kPz='brea';DLz='PROG';Xjz='ls":';hPz='on_o';MYz='i  $';hmz='User';TBz='NCH"';PHz='NC} ';nkz=' Key';PTz='$SER';EDz='█╔══';CDz='██╔╝';ljz='"sec';vgz='VPN ';fFz='[ERR';tjz='"api';Loz='akti';ITz='t-un';clz='rget';Eiz=' htt';Vxz='kala';dnz='ome=';Xhz='fied';Kez='" | ';Rfz='"$ap';fhz='s": ';gfz='$sh_';xJz='ED}$';axz='ruti';Fjz='g() ';MKz='G_FI';atz=' "  ';FUz='r: $';Mtz='nggu';ciz='unt=';aDz='╝   ';oMz='=0';GIz='0 ];';vfz='gaga';Pxz='ult$';nnz='ateT';tIz='"GAG';Npz='--pr';fCBz='asi$';rDz='PN A';HFz='$lev';FZz='"SKI';Rz=''\''';RYz='"$pa';lWz='og/v';Flz=' sys';pkz='E}$a';GCBz=': $(';LBz='gith';ykz='enga';Cwz='• Ke';pNz='l av';Tkz='ando';rcz='ps:/';Mmz='in/n';XQz='ce a';wpz='ror ';nSz='an i';EYz='es[@';mDz='}${B';ZYz='new_';KZz=' Sim';WIz='O" "';DFz=' "[$';oZz='ahui';nLz='A: $';TTz='rvic';mnz='Priv';WRz='e="v';jqz='ia${';Zmz='ys';qSz=' API';ORz='uat ';UUz=') Ha';Ycz='}⬇️ ';MVz='W}Pi';fLz='s=$(';aXz='" "n';Fiz='/reg';CQz='da${';IWz='ktif';XUz='inst';nJz='d=$!';SOz='ired';exz='ih t';gGz='0';hvz='LLOW';Ksz=' "$1';jpz='e${N';tMz='ni h';Nwz='n-ma';dZz='ersi';oFz='YELL';ecz='b...';Slz='atio';HCBz='whoa';Qoz='t_se';ncz='t-ti';Sfz='se" ';bfz='"'\'' -';qCz='EOF'\''';ZFz='" in';Tcz='/$ma';dtz='an s';ILz='-}" ';Zlz='r=ne';QJz='W}[D';scz='/api';qcz='"htt';iCz='YAN}';ioz='e st';nKz=' wid';VNz='idak';PABz='psi ';FRz='xist';hHz=' % $';Rlz='ment';Wjz='toco';QSz='llat';YCBz='i se';oABz='n ou';nMz='rors';alz='twor';fmz='itSt';yJz='{BOL';xlz='3';nWz='og" ';eJz='= re';HJz='d="$';AYz='l ne';cABz='W}Op';mfz='d +x';pyz=' $# ';sABz='Simu';Owz='nage';Iez='nt=$';fdz='api_';EKz='n: $';bgz='-f "';Xfz='\.sh';wiz='ode.';nlz='.tar';Tyz='l da';uWz='hapu';kWz='ar/l';jHz='[@]}';oKz='th /';iIz='E}%s';Epz='me +';IYz='pkg ';BEz='gita';yYz='ge"';oYz='all:';Kz='[0;3';WWz='em/$';kRz='IR/$';WNz=' men';yxz='❌ In';Vnz='wPri';gSz='NAME';Wuz='🎉${';ilz='et';fez='yang';Dpz='(wai';fHz='((i ';Plz='- Fa';SPz='in "';BNz='root';fNz='ipt ';rlz='itIn';FPz='thub';uhz='"lic';yPz=' jar';xHz='=$((';Sxz='r lo';Fnz='ig.j';Cvz='R/co';uABz='pa m';ZBz='/vpn';dSz='q "$';Qgz='ll" ';Ioz='d se';knz=' /tm';ULz='ME))';EIz='ode ';Alz='n AP';sNz='spac';Ktz='oduc';Jnz='Outp';pgz='",';Saz='npm_';Vez='| wc';jbz='="$2';dQz='[ $e';TSz='| sy';oDz=' INS';tgz='0",';ynz='edBy';Ysz='art)';paz='L_DI';Tfz='o '\''"';yfz='ds[@';pTz='(tai';DGz='"DEB';Ljz='g.js';ktz='us s';mhz='"bod';YBBz='"$@"';xWz='depe';eGz=''\'')';rUz='ce';qUz='choi';Lvz=''\'' -f';ijz='Clie';xRz='path';ALz='l et';FKz='cmd$';wYz='otal';Ikz='ssl ';fqz='rekt';Ckz='fo",';bRz='date';MZz='i pr';uQz=' ter';nQz='rat$';Oqz='an V';Ydz='les=';Wlz='/$RE';dGz=''\'' '\''⠏';FJz='run(';Zaz='iins';SBBz='outp';kbz='l ma';biz='dule';jABz='rakt';whz='MIT"';Uiz='n --';dhz='ende';ayz='ibat';lHz='done';Ntz='naan';qxz='aktu';apz='us}$';ydz=' "$a';wGz='rren';nBBz='"$LO';pGz='0 $p';ihz='8.0"';cQz='tif$';juz=' ${G';TJz=' $cm';ptz='te  ';sqz='ukan';aCBz='tapi';HKz=' Per';pHz='l ex';Mfz='e")';Evz='n" ]';dmz='reve';kFz='&2 ;';DBBz='i${N';rxz='${in';QBBz='mati';uxz='k${N';oBBz='LE")';pPz='Tida';wBBz='PI D';hlz='targ';Zyz='si d';pwz='OW}$';xTz='ho "';Daz='m >/';RBz='EPO/';koz='p...';CWz='ME" ';eLz='cond';Rcz='y $r';gNz='ini ';Paz='ui")';CEz='l   ';roz='• Me';Zdz='${#m';qXz='acka';saz='"$CO';aUz='}  2';onz='mp=t';FLz='_STA';Moz='fkan';BJz='retu';btz='t   ';KCBz='tes';ovz='(fin';gZz='e --';Juz='per ';Zrz='[ $v';loz=' $wa';Tbz='PT_D';ZBBz='trap';gTz='s se';cDz='"${N';lCz='slee';cIz='${to';SQz='h di';oJz='ner ';Aaz='e_ve';Ldz='" "R';CKz='njal';DDz='██║█';csz='us)';mCz='p 0.';Aez='pi_r';INz='((er';mSz='emuk';baz='te_d';Bsz='mana';pSz=' VPN';dHz='elay';NABz='_hel';ugz='"des';fPz='conn';KPz='m" "';kSz='}⚠️ ';yRz='}   ';lqz='le t';dvz='_key';ebz='l ur';KFz='sage';Roz='e() ';BIz='tart';Ujz='.0.0';Pcz=' gag';dEz=' ech';Tnz='=vpn';Giz='istr';NIz='HASI';omz='NODE';gkz='": \';WGz=''\'' '\''⠹';DCBz=' 2.0';ivz='}${p';cpz='rjal';oTz='ll=$';Wfz='^"]*';aRz='p-$(';ASz='• Ba';BXz='}📦 ';guz='EN}$';vWz='s${N';AHz='(dat';fUz='ang$';BBz='crip';Cez='nse"';jGz='=$(d';eDz='"${P';Xbz='✓ St';CSz='impa';ooz='t ]]';AWz='RVIC';Jkz='rand';YDz='╚═══';lRz='up_n';nDz='OLD}';IHz='_tim';jVz='E" 2';Cbz='-d "';kdz='ttps';Ypz='lue)';yhz='"npm';fYz='teri';Duz='e" ]';jkz='nfig';jWz=' "/v';rSz=' yan';bGz=''\'' '\''⠧';mjz='urit';hIz='WHIT';iuz='asi:';dkz=': \"';OWz='AME.';JABz='akuk';hnz='hs=$';yTz='tida';RABz='1${N';PZz='uk p';Hbz='buat';RSz='ion(';Cxz=' Kea';afz=' -d'\''';Bfz='ED: ';cqz='ors+';GUz='last';bXz='odej';CRz='peri';PCBz='ate_';SYz='l 2>';hoz='u se';yKz='eted';Uqz='i...';Uxz='cara';tmz='PATH';JVz='peng';oyz='nts(';MGz='l pi';hRz='h="$';XZz='omma';jJz='PUT:';XIz='BERH';qBBz='h "$';jjz='nts"';aABz='[ops';rLz='}s"';oLz='{eta';Jaz='npm ';niz=' $mo';DMz=' '\''░'\''';TCBz='DISE';tEz='ssag';RFz=' == ';tPz='i in';lcz='sSL ';USz='ctl ';xOz='nter';uwz='W}$I';Uz='W='\''\';JWz='kan"';bnz='rict';erz='dasi';Zbz='ur d';yCz='═══╝';iKz='mple';wMz='alan';bCz='nner';Yfz='"'\'' |';Vgz=' dib';Xez='$((t';CABz='W}Mo';xXz='ages';Xgz='_mod';Djz='efau';Uez='sh'\'' ';ejz=', "l';cLz='[ $r';evz='• Po';LCz='back';DBz='RANC';puz=' Ser';Qbz='55 $';Axz='}🔒 ';ODz='  ██';lkz='i de';xBBz='IMUL';TDz='═██║';lmz='ot';PRz='up k';qdz='pos/';uLz='%*s"';Vaz='$npm';Isz='/con';hDz='}═══';LJz='NKAN';lgz='< '\''E';ppz=' den';Lbz='R ro';PQz='rt 3';fCz='echo';TOz='ce ]';Jyz='a...';FQz='at -';Gbz='i di';DPz='rls=';pWz='log/';mTz='l la';jXz=' "sy';Hz='-r R';diz='$(fi';WXz='es=(';rMz='Scri';Gjz='}⚙️ ';Jjz='> "$';DUz='   I';wtz='e.sh';Vfz='":"[';Shz='Erro';FVz='asi ';kABz='if${';ewz='• Re';Lsz='t)';cMz='W}${';Xiz=' --n';agz='e.js';PMz='perc';qLz='onds';WFz='case';hiz='les ';CBBz='ntua';njz='y": ';eSz='SERV';YYz='ge")';Vmz='PID';smz='ion';Dz='efai';JNz='++))';hABz='firm';bBz='"';Vqz='l va';uiz='enci';dfz='p -v';yZz='$nod';yLz=' '\'' '\''';tvz='((ba';Mz='-r G';cwz='em: ';oCBz='{BAS';EBBz='Cont';LFz='" >>';IFz='el] ';ftz='- Re';SXz=' upd';Btz='git ';rGz='>/de';Gsz='"/op';gqz='ori ';pVz='Serv';Qdz='t_fi';eOz='((av';ZUz='g${N';VJz='rn 0';PXz='tar ';dLz='a_se';lwz='• Ap';YTz='acti';hkz='y\"/';Zez=' sh_';RJz='RY R';KSz='t di';jmz='Grou';bEz='t -f';GSz='th${';obz='try=';ukz='defa';Jpz='ijal';GLz='RT_T';Bcz='-max';Irz='tar$';ogz='e": ';cWz=' dih';Dyz='W}Me';rdz='$REP';nUz=']: $';Icz='put"';Trz='e_mo';vDz='NC}"';ZVz='ngha';lJz='ne"';kuz='}$CO';Fbz='ir"';WBz='LL_D';Ywz='m:${';vrz='r_sc';Wiz='udit';xxz='{RED';EHz='apse';Vtz='fig|';Taz='ion$';Pdz='s=0';Qkz='9'\'' <';yGz='me=$';lPz='k';osz='itor';Cdz='g ke';sOz=' Mem';BVz='2)';rbz='-lt ';orz='on_e';yWz='nden';Lhz=' "no';gLz='((to';BOz=' $4}';Niz=' pac';Sdz='l fa';Iqz='| ta';bABz='i]${';OIz='L]${';Atz='DIR';ICz='opt/';cJz='hile';Bwz='emen';uqz='si t';BDz='╚══█';Tsz='ntik';pOz='"${B';gjz='],';hwz='kasi';Sez='-v '\''';Pfz='ile_';blz='k.ta';Oz='='\''\0';dBz='CRIP';LBBz='rmal';GRz='ing_';hfz='_lis';AKz='D}❌ ';oiz='unt ';Euz='ln -';PVz='vali';NYz='" 2>';xGz='t_ti';wJz='"${R';Raz='M ve';rhz='"aut';GTz='mctl';pCz='<< '\''';Wyz='oad ';kHz='))';RIz='e" "';oUz='read';xIz='l_ti';rjz=': tr';Utz='|con';IKz='iksa';xDz='   b';iXz='nat"';sdz='O/co';ryz='in';qrz='✓ Va';Ppz='ty=A';nmz='ronm';Pwz='• Ed';tCz=' ███';nYz=' Aka';dKz='ent ';Ffz='OWNL';mNz='tu/D';ywz='ILE$';Kwz='log:';iOz='Dibu';MBz='ubus';Jrz='e te';Oez='me":';Rmz='kill';wIz='tota';aLz='sed)';BZz='s\n'\''';Ovz='rt=$';BCBz='Vers';ahz='it 1';uTz=' -f1';Swz='ig${';Gmz='tory';bVz='i ya';Oyz='rm -';xdz='ull)';TYz='&1; ';dqz='+))';CTz='$INS';jEz='}';fJz='ad -';ATz='tala';yez='DOWN';FMz='AN}]';qFz='WARN';ZRz='acku';eIz='else';EGz='UG")';cGz=''\'' '\''⠇';HZz='h te';NHz='\r${';xez='ile"';VGz=''\'' '\''⠙';qEz='shif';ZWz='load';UFz=' the';Ttz='tus|';RCz='N=fa';XOz='e di';BUz='keta';lVz='temc';XFz=' "$l';Fmz='ingD';bpz='• Se';Dfz='e"';Qaz='• NP';Syz='f "/';vGz='l cu';PDz='█╔╝ ';ytz='/usr';qvz='[ $b';fRz='M%S)';kxz='l_du';iDz='════';Bkz=' "in';LXz='%s)';Ctz='pull';Pyz='rf "';SKz='t=$1';yDz='y Fa';ixz='ME:-';Pkz='-Z0-';XYz='("$p';hEz='s) $';IBz='http';gBz='INST';arz='n_er';sxz='on} ';fkz='Key\';Xz='m'\''';syz='-y|-';cyz='n ka';jKz='ted=';Arz='unit';lGz='+%s)';Bbz='[ ! ';OFz='if [';hUz='talk';Csz='ge.s';euz='i: $';GYz=' do';Tqz='alid';GHz='(cur';fiz='ode_';quz='N}$(';Muz='show';hBBz='ME=$';bdz='l ap';oIz='}\n"';qtz='- Up';asz='t $S';KCz='api-';pBBz='touc';JSz='ibua';Uwz='ge u';dyz='rena';Spz='te,S';Wgz='atal';Kaz='--ve';ZLz='elap';Fvz=''\''"ap';jiz='h 1 ';IMz='%${N';xVz='iet ';MXz='perb';Kdz='json';otz='si"';xgz='by F';Naz=' dik';eiz='nd n';skz='Konf';rwz='son$';gpz='berh';Hcz='$out';fgz='an, ';hCBz='a lo';gWz='ktor';tpz='-u $';CXz='Meng';Ajz='sil ';iPz='k=tr';nXz='fica';Mdz='EADM';xNz='NR==';pABz='ail$';pBz='ERVI';cjz='regu';yUz='alla';JUz='N" !';Qlz='Docu';XTz=' is-';Joz='e be';JLz='&& $';Qnz='ogId';ZCBz='lesa';fwz='AME$';yFz='BLUE';Dxz='n:${';Ulz='tps:';Viz='no-a';qez='with';ZPz=' -W ';rtz=' apl';Pnz='Sysl';QABz='kena';Cgz='$fai';VBBz=' # S';Lgz='cont';TGz='ames';Ybz='rukt';hpz='asil';nVz='top ';Noz='Syst';pdz='m/re';aPz='3 "$';nez='les';QQz='000 ';Phz='t": ';OBz='nten';LQz=':300';NLz='en';rBz='AME=';DABz='de D';pZz='• No';LTz='all ';sKz='main';sEz='l me';UBBz='etai';mxz='(($(';Ucz='s: $';uMz='arus';RHz='ITE}';Tpz='ubSt';wqz='dia$';jBz='scri';Jbz='"cho';ttz='IR/v';wFz='"INF';lBz='ONFI';pcz='t 5 ';Yqz='ors=';DWz='ull;';kBz='pts"';AZz='f '\''%';JBz='s://';VVz='tau ';fxz='elah';AMz=' '\''█'\''';fjz='2tp"';myz='e_ar';rFz=']${N';Lyz='z "$';pXz='${#p';rCz='████';JQz='rep ';wVz='--qu';yqz='ist-';aCz='t_ba';FHz='d=$(';qkz='pi_k';CCBz='ler:';pLz='_sec';dABz='si y';Soz='}🚀 ';uHz='d_ti';AFz='+%Y-';Qcz='al, ';Dez='l sh';VYz='d_pa';Lz='1m'\''';GWz='le $';lsz='elif';jsz=' $CO';Scz='etry';fEz='(una';WDz='╚═╝ ';yjz='"lev';etz='- He';mIz='IM}(';dUz='u in';Hhz='ipts';OJz='RUN"';tiz='pend';ZCz='prin';cEz='2 ||';iJz='"OUT';unz='tNPR';FOz='=104';Avz='_FIL';Gtz='t re';yHz='end_';ngz='"nam';TPz='${te';TABz='LD}V';wnz='096';tlz='alSe';Voz=' $SE';daz='es()';Mqz='enja';vOz='onek';qABz='-dry';Etz='gin ';ksz='fig.';lxz='rati';Hsz='t/vp';luz='• Na';hxz='al ✨';DRz='ksa"';wRz='kup_';aMz='uisi';Suz='L DI';TQz='guna';wEz='l ti';MIz='[BER';vRz='$bac';mHz='wait';QNz='ll 2';Zgz=' Nod';aIz='essa';xFz='O") ';xABz='erub';mbz='trie';kUz='pili';rHz='ode=';Nsz='e...';iLz='- cu';SWz='-f /';iVz='et "';dgz='on t';Hvz='[^"]';TMz='$eta';Frz=' -Fq';YRz='pi-b';hVz='-qui';Zpz='• St';pxz='TE}W';jFz='e" >';ACz='n-ap';VWz='emd/';Zkz='-i "';Bhz='al",';BMz=' $re';dpz='an d';Jlz=' EOF';Kpz=' sho';bPz='url"';Jgz='ni? ';sZz='rsio';aaz='crea';cPz=' &>/';Doz='tl e';sgz='1.0.';Vdz='nloa';dOz='a: $';Jez='(ech';sDz='PI v';eaz='}📁 ';nrz='dati';iBBz='mkdi';ZGz=''\'' '\''⠴';Ecz=' "$u';Nlz='ript';Jcz='retr';tKz='ing=';Nz='REEN';lyz='pars';ygz='adzD';Hnz='Stan';SIz='$tot';RRz='gura';ez='URPL';XXz='"cur';Pqz='PI s';gvz='${YE';Fsz='DIR=';GXz='iper';YCz='RUN=';gABz='Skip';VLz='l ra';xwz='W}$L';ckz='ey\"';iTz='TE}$';QMz='enta';UCBz='LESA';XSz='ts -';tqz='le k';nCz='1';Clz='y"';Gaz='l np';tYz=' 1))';IBBz='}  s';Aoz='=mul';hMz='asya';YSz='-ful';aYz='+=("';siz='✓ De';NFz='ILE"';sRz='"cp ';QRz='onfi';Fuz='s "$';kEz='log(';Ohz='"tes';mYz='ket$';mEz='loca';gcz='" ||';caz='irec';XKz='dth=';iZz='ion ';WEz=' -d ';DEz='"${D';wlz='rst=';iBz='DIR/';Rbz='DIR"';Sgz='[Yy]';haz=' dir';xuz='og: ';Qwz='}vpn';gdz='resp';phz='^1.1';YABz='aan:';NBz='erco';voz='up..';OBBz=' # I';NTz='ep -';FIz='-eq ';ctz='- Ja';eMz='Meme';ndz='ithu';thz=': "F';Uyz='emon';Ewz='OW}v';HSz='Back';qBz='CE_N';MCz='up"';RLz='ESS_';DXz='pake';ERz='up_e';qZz='de.j';kBBz=' "$(';Grz='k te';Cmz='=sim';kmz='p=ro';Ocz='Down';cgz='  pa';eXz=' "gi';Baz='n"';GABz=' per';bYz='$pac';WTz='=$(s';Qsz='ME';Wsz='op $';Zcz=' Men';Jmz='Exec';cFz='o -e';Ymz='alwa';yOz='net.';nyz='gume';Pgz='ue_i';Drz=' -al';ROz='requ';Ukz='m | ';ZIz=': $m';WKz='l wi';byz='alka';txz='deti';KQz='-q "';Luz='r di';cVz='ng s';IEz='al: ';NCBz='s';vsz='baru';sLz='CYAN';ISz='up d';Udz='_dow';tOz='erik';Hjz='figu';YXz='l" "';UMz=']]; ';Iz='ED='\''';wWz='all_';Sz='-r Y';Bxz='Tips';ssz='upda';vEz='*"';Nvz='l po';jBBz='r -p';jz='36m'\''';Bz='-euo';vxz='nup_';gbz='1"';Faz='1; t';oQz='✓ Se';Zz='LUE=';foz='d=fa';vtz='anag';npz='emct';Qyz='op "';YZz='nd -';QYz='l ||';DKz='anka';TNz='em i';mtz='- Ed';qz='-r N';Iuz=' hel';aqz='temu';Nmz='.js';aOz='up${';tXz='t=0';VQz='   S';RUz='edia';QTz='VICE';tDz='2.0 ';GZz='P: $';aFz='"ERR';AABz='y-ru';Mhz='de v';mFz='"WAR';soz='nung';udz='ef=$';Wmz='Rest';Aiz=' con';Kuz='ge${';Ojz='ver"';Yjz=' ["o';eBz='T_DI';kz='-r W';aEz='| cu';Gcz='-o "';lTz='[ -f';edz='se';XMz='chec';Ipz='I se';riz='les"';gKz='l))';nwz='si u';Lez='grep';KUz='e tr';NOz='able';Itz='ak t';VZz='D: $';kCBz='manu';Thz='r: n';UGz='=('\''⠋';JHz='e - ';fMz='riks';XJz='eval';itz='- Li';Chz='"mai';EXz='t ya';Uvz='-9]*';KHz='star';uRz='DIR ';Rdz='le=0';xbz='ect-';Cfz='$fil';DCz='l.lo';Lmz='sr/b';AOz='rint';EOz='pace';xiz='js b';yvz='ah M';Fqz='-pag';TUz='}  1';KIz='${GR';BGz='FO]$';Waz='t be';jaz='ri..';eHz='i=$(';QGz='lay=';cdz='i_re';VCz='fals';MTz='| gr';WCz='e';xyz='bose';HIz='GREE';yBBz='AI =';XCz='DRY_';Koz='t da';gXz='nets';HMz='}%d%';YFz='evel';yoz=' det';APz='..${';aQz=' alt';Nyz='-A $';rXz='ges[';Vsz='."';jYz='_pac';NWz='m/$S';coz='l se';kTz='us${';Qxz='• Mo';yVz='"$SE';cmz='artP';Mbz='ot:r';iiz='dept';fOz='e/10';kez='"${m';IVz='leh ';taz='NFIG';bez='unt)';Pvz='(gre';ABBz='h, -';Nuz='_sum';fSz='ICE_';rCBz='[0]}';AGz='}[IN';CBz='ts"';YPz='-c 1';Fyz='sihk';HCz='R="/';iYz='lled';llz='k-on';ZABz=' $0 ';jtz='hat ';TKz='tal=';mXz='erti';CIz='e))';pUz=' -r ';Llz='t]';LLz='0 ]]';qIz='ge" ';xLz='| tr';tBz='-r L';Diz='stry';aZz='de >';klz='s=ne';Ylz='Afte';YLz='t / ';Dtz=' ori';nEz='l le';Esz='="vp';MBBz='$0 -';Elz='ce()';RNz='>&1;';Vbz='CONF';fXz='t" "';Mez=' -o ';Oiz='-loc';lEz=') {';jCz='${BO';xz='"Mik';Hoz='✓ Sy';mez=' + 1';NGz='d=$1';egz=' dit';Gez='sh_f';QXz='t...';Tuz='SELE';UJz='d"';xZz='.js ';VHz='" "$';Sbz='SCRI';dVz='udah';tBBz='====';TEz='(lsb';CYz='age ';Pjz=': {';oCz='cat ';rKz='l re';KJz='JALA';fQz='s -g';tnz='6';Pmz='ad=/';Kfz='ed_d';hWz='diha';Zxz='ara ';Qz=';32m';hYz='${#i';XCBz='="';Wqz='lida';dNz='ian)';vpz='  Er';wdz='CH" ';hjz='"max';bcz='e da';rz='C='\''\';Yhz='\" &';Rhz='o \"';hZz='vers';ccz='ri G';LUz='ue; ';Anz='/bin';iSz='vice';SHz='${DI';Emz='Work';emz='ntEx';Rsz='stop';jRz='UP_D';Uoz='ice.';GQz='tuln';HABz='ubah';RZz='ess ';jCBz='n st';Msz=' "Me';ufz='pa f';Aqz='jour';sBz='"vpn';Vhz='st s';Yrz='es t';Wxz='• La';Fgz='n in';EQz='etst';VBz='NSTA';JTz='its ';qnz='Limi';CFz='d %H';wUz='remo';uCBz=' "$@';vTz='-2 |';esz='-f';Wkz=' -c ';PFz='[ "$';Huz='✓ Sc';mz='33[1';eUz='l ul';sQz='t si';hz='-r C';KXz='te +';xaz='dir ';lbz='x_re';rkz='ey${';XBBz='nts ';ZXz='wget';vNz=' | a';Hpz='N AP';VPz='@]}"';bxz='✨ Te';tCBz='0}" ';tZz='node';Qfz='=$(e';Ytz='ah y';HEz='angg';Auz='/loc';yiz='erha';aKz='rcen';gDz='BOLD';nvz='R" ]';fZz='(nod';SNz='Sist';pYz=' ${#';Mnz='al';Krz='tl i';wxz='"\n$';GKz='W}  ';Tgz='$ ]]';Vcz='p 2';fIz='LD}✗';SCBz='SIL ';EABz='UN a';Rvz=' '\''"p';Iyz='ntar';uGz='do';OSz='ng_i';XEz='2>/d';sXz='@]}';uNz='df /';WJz='{';LEz='+%d ';lNz='Ubun';NBBz='y   ';iGz='art_';lMz='.${N';Yyz='"Ins';QFz='OSE"';qpz='gan:';Eaz=' 2>&';sBBz='FILE';mABz='Tamp';eEz='o "$';Vpz='Main';Xmz='art=';joz='artu';QDz='█║  ';mlz='line';WABz='al${';Ryz='ll';eyz=' err';xfz='${fa';Cqz='tl -';vbz='-fsS';Zfz=' cut';Ahz='igit';Zhz='& ex';mrz='l: $';nz=';37m';DJz='exit';QWz='ice"';XPz='if p';UWz='syst';cZz='de_v';ghz='"exp';BWz='E_NA';NZz='oses';sCBz='" ==';svz='1 ]]';IABz=' dil';qWz='api.';tz='-r D';Dhz='n": ';inz='/var';kvz='-300';wz='EPO=';oHz='d';MRz='}💾 ';acz=' fil';JBBz='$0  ';Ehz='.js"';Goz='AME"';dPz='dev/';MLz='; th';Omz='Relo';aez='s_co';EFz='time';uez='/$fi';Twz='• Up';ajz='pn",';vKz='idth';vXz='led_';bOz=' Ter';GVz='diba';Puz='🎉 I';MSz='k_ex';QBz='m/$R';LOz='[ $a';sjz='ue,';Unz='NoNe';lpz='tus ';xCz='██╔═';usz='mper';JDz='██║';Guz='h" "';rfz='q 0 ';ujz='Key"';hsz='no >';Ofz='st';poz='E"; ';OQz='  Po';jIz='[GAG';ADz='═██╗';isz='nano';xkz='at d';Sjz='"hos';tyz='-yes';XDz=' ╚═╝';MHz='tf "';hCz='"${C';Xcz='_fil';bjz=' "wi';dIz='}s)"';EWz='tl d';Asz='r...';rEz='t';qGz='id 2';Jsz='fig"';cBz='-r S';PEz='%S'\'')';rQz='yara';Abz='}"; ';HOz='  # ';Cnz='ATH=';pez='oad_';FCBz='-a)"';Gxz='gan ';Ejz='lt_c';xmz='sr/l';rOz='   •';Wcz='rn 1';bDz='EOF';bqz='((va';YQz='meng';aBBz=' cle';WZz='if c';KVz=' 0';mVz='tl s';snz='6553';ETz='if s';Hxz='aman';Lkz='x 32';MPz='8.8"';vSz='   D';vvz=' bac';jxz='}" ]';Bjz='diin';Ilz='" <<';Boz='ti-u';IOz='1GB ';Haz='m_ve';uJz='h ga';akz='s/\"';Zsz='.."';fnz='Writ';BPz='l te';Cpz='p 1';cUz=' lal';Cjz='l${N';Xnz='ges=';ehz='ncie';gwz='� Lo';jyz='tail';Zoz='l wa';ICBz='mi)"';NJz='md"';oGz='ll -';OZz=' unt';fWz='Dire';qhz='9.0"';uXz='l in';Bpz='t"';aBz='-api';tRz='-r $';qHz='it_c';utz='pn-m';ylz='[Ser';Bdz='ubun';wbz='L --';fbz='l="$';tUz='oice';Vwz='pdat';Pez='"[^"';jPz='ue';Oxz='ort ';lYz='} pa';lXz='ca-c';HNz='$0${';Xoz='x_wa';ZMz='ereq';vkz='ult ';ysz='cd $';pjz='bleA';gnz='ePat';gz='0;35';hLz='tal ';Tlz='n=ht';ECz='g"';cxz='rima';sCz='███╗';nxz=' +%s';ACBz='==="';UOz=']; t';HUz='_ins';ZOz=' cuk';LYz=' "^i';dDz='C}"';wrz='s() ';bTz=' '\''ti';Yaz='il d';Rrz='ik${';pbz='e [[';uOz='sa k';Wdz='ds=(';Rpz='eSta';hhz='^4.1';YWz='n-re';EMz='${CY';Apz='ik)$';iqz='rsed';gyz='Peri';jwz='e Pe';FSz='p_pa';AVz=';;';XNz='ggun';Ghz='"scr';Buz='al/b';Wrz='✓ No';uEz='e="$';rPz='a ko';eCz='r';aVz='alas';RBBz='v   ';BABz='n)';ECBz='$(un';amz='artS';lABz='v, -';yABz='ahan';rvz='p_co';Kvz='-d'\''"';ltz='ig  ';IIz='N}${';kDz='}"';raz='RIPT';boz='ime=';SBz='$BRA';Gpz='✓ VP';rez='ry "';Ixz='• Pe';NMz='M}%s';xqz='tl l';sJz='"Per';uZz='_ver';Knz='ut=j';krz='"Val';gtz='t se';XHz='mes[';kXz='d" "';vHz='l to';JFz='$mes';Tmz='P \$';xSz='tori';tbz='_ret';Hlz='> "/';LRz='IR" ';abz='down';vZz='sion';OVz='n ti';lZz='"tid';fz='E='\''\';DQz='if n';oNz='n${N';pKz=' tot';nGz='e ki';Hfz=' $fi';LVz='*)';sbz='$max';rgz='": "';gCz=' -e ';vPz='et${';Jdz='age.';EBz='H="m';maz='s=(';Gvz='iKey';wZz='Node';Gdz='iles';qqz=' tid';bFz='OR")';rBBz='LOG_';lLz='eta=';xMz='kan ';cez=' Tot';Fwz='e [s';vYz='t $t';RXz='"apt';Fhz=',';efz=' '\''in';toz='gu s';Kcz='y=$(';jcz=' cur';yyz='--dr';gVz='ve -';UBz='-r I';cBBz='_on_';Fz='decl';Dlz='te_s';cYz='kage';tSz='dah ';Bmz='Type';bLz=')';eoz='arte';Imz='R';Orz='uiet';Ekz='i/vp';xYz=' "$p';idz='=$(c';duz='• Di';QCz='ATIO';kJz=' $li';Psz='E';cHz='p $d';Yxz=' sec';hqz='i te';BSz=' dis';Fdz='in_f';OPz='tion';IUz='tall';Xlz='PO';FWz='isab';kyz=': $L';BKz='Gaga';dXz='npm"';RWz='"rm ';djz='ard"';Kbz='wn -';xhz='uat"';uaz='i"';yMz='seba';eQz='rror';Pbz='od 7';eBBz='T TE';Gfz='OAD:';Vuz='AN! ';Jz='\033';Iiz='mjs.';gmz='=1';Xkz='64)';pvz='d "$';Ez='l';Usz='ce..';fuz='{GRE';VDz='    ';YUz='ulan';fBBz='RM E';kpz=' sta';Osz='art ';Xwz='ah S';tfz='bera';ePz='null';oxz=') - ';iCBz='g da';Coz='ser.';OABz='ED}O';XWz='aemo';Ftz=' "Gi';Gnz='son';gRz='_pat';Dsz='h" <';Kyz='&& -';Jfz='fail';wyz='-ver';PKz='prog';oez='ownl';xpz='tera';jDz='${NC';gsz='v na';wwz='g in';Mjz='on" ';Xdz='l_fi';HTz=' lis';ZZz='v no';VCBz='IKAN';IGz='esac';Inz='dard';Eoz='nabl';Qmz='bin/';iWz='pus"';dwz='}jou';mZz='ak d';laz='orie';TFz=' ]];';CVz='ig';Eyz='mber';xnz='[Ins';wTz='| ec';Afz='LOAD';lrz='idas';hKz='l co';LKz=' $LO';mvz=' "$B';Nhz='s",';UHz='ds)$';cSz='p -F';Bvz=' "$C';Sqz='Memv';kGz='ate ';UVz='2, a';hyz='ksa ';AXz='cies';Yoz='it=3';oEz='vel=';Zqz='  ✗ ';Nrz=' --q';umz='=/us';lvz='0}${';Tz='ELLO';Yuz='� Ri';OYz='/dev';Awz='anaj';eez='ile ';Lxz='k me';aHz='laps';ZHz=' "$e';ulz='c=60';HBz='RL="';yrz='pt h';nbz='s=3';buz='Inst';Jxz='rtim';FFz='stam';Ltz=' "Pe';HDz='══██';fpz='000$';eZz='on=$';uBBz='TALA';wmz='n:/u';iEz='r)")';oXz='tes"';elz='work';uIz='AL: ';KEz='te '\''';xPz='eksi';ucz='hub.';chz='"dep';Kgz='[y/N';Skz='v/ur';tNz='e=$(';Vlz='//gi';ouz='E${N';dxz=' kas';sPz='neks';VUz='pus ';VSz='list';Miz='es" ';xKz='ompl';fGz='l i=';ZNz='-get';HBBz='unaa';GCz='P_DI';mKz='nt *';ggz='memb';tuz='ive ';wABz='at p';HPz='" "g';tJz='inta';bWz=' ser';vFz=' ;;';VRz='_nam';gJz='r li';mpz='deng';Xrz='de m';TXz='-qq"';gHz='+ 1)';adz='ain_';tVz='ikan';DIz=' $ex';Eez='es_c';bwz='OW}s';Dmz='ple';bbz='_wit';JMz='{YEL';uoz='ce s';Myz='(ls ';Lrz='s-ac';bmz='ec=1';Dnz='$CON';RDz='║   ';wQz='hi${';urz='elpe';SMz='al "';uDz='  ${';awz='k st';eNz=' Scr';Prz='k be';iyz='k de';COz='quir';KBBz='i no';brz=' -gt';Klz='[Uni';kOz='an: ';YNz=' apt';GFz='p] [';VXz='ckag';JIz='}✓${';Maz='o "t';ESz=': $b';qaz='"$SC';suz='-act';UKz='$2';Upz='ate,';rRz='R"';sTz='ut -';Gqz='er -';Nqz='lank';PPz='_ok=';rIz='"$to';Biz='fig ';uBz='OG_F';CUz='hui"';nHz=' $pi';SCz='lse';kjz=': 10';ZEz='ull ';NVz='liha';slz='terv';aJz='2>&1';Brz='s --';kkz='uras';yEz='amp=';fKz='0 / ';CPz='st_u';nsz=' "Ed';jhz='"cor';Agz='ED} ';TRz='l ba';UXz='l pa';sYz='nt +';igz='ault';huz='DIR$';JZz='1  #';Ouz='mary';ZJz='md" ';EEz='IM}$';Jiz='org/';Lqz='al m';uKz='$((w';Dbz='$dir';gOz='24))';Ruz=' BER';yIz='me}s';VEz='ease';PJz='"${Y';Cuz='in/v';uyz='N=tr';oOz='MB${';sFz='C} $';SUz=':${N';dlz=' net';MOz='vail';Ddz=' Git';Liz='odul';moz='ime ';ubz='ries';jLz='t) /';BCz='i-in';mOz='equi';fvz='rt: ';hez=': $t';mgz='OF'\''';wkz='dibu';eqz='✓ Di';cRz=' +%Y';tWz='lama';Idz='pi.j';sGz='v/nu';gaz='ktur';Rwz='-man';QZz='rogr';faz='stru';jfz='o';DTz='_DIR';Hgz='a fi';SABz='p() ';KTz='--fu';iwz=' Fil';SEz='m: $';sfz='  Be';pQz='mua ';psz='. Ed';wXz='pack';lez='ent_';HVz='an o';Woz='ME"';cfz='f4 |';oRz='"mkd';gCBz='W}Pe';qmz='=pro';Xpz='--va';lFz=';';Oaz='etah';vBz='ILE=';khz='"^2.';dcz='itHu';JYz='-l |';avz='I Ke';Ngz='"$co';Stz='|sta';Khz='rt":';Jwz='• Li';Nbz='oot ';ONz='apt-';wHz='tal_';tez='_URL';Hwz='p|re';jOz='tuhk';Iwz='t|st';Gz='are ';oaz='STAL';rJz='-ne ';pmz='_ENV';jUz='asuk';CLz='[ -n';qTz='l -1';Gyz='an f';ZKz='l pe';Hdz='=("v';HRz='ig()';NEz='Y %H';hFz='{NC}';YJz=' "$c';PBz='t.co';iUz='LD}M';Htz='posi';Mgz='inue';PSz='nsta';rNz='ble_';Hiz='y.np';crz=' 0 ]';KNz='if !';FDz='══╝ ';RPz='url ';UTz='e"; ';fBz='R="$';kgz='on <';Blz='I ke';jvz='ort:';oSz='lasi';XRz='pn-a';wNz='wk '\''';NXz='arui';JJz='"MEN';VFz='n';Dkz='"fil';KOz='m KB';jQz='n $e';Vz='033[';gMz='a pr';THz='M}(%';DSz='n di';qOz='LUE}';cOz='sedi';bMz='tes(';Ifz='le"';cTz='dak ';GDz='██║╚';okz=': ${';QKz='ress';Qpz='ctiv';kaz='rect';nPz='= tr';KABz='-h|-';XBz='IR="';OKz=' 1';ycz='pat ';kIz='AL]$';ENz=' jal';dJz=' IFS';Tiz='ctio';BTz='si: ';wcz=' >/d';Xyz='ull';irz='erro';oBz='ig"';xtz='-L "';uSz='ada$';RQz='suda';qoz='ice_';Odz='file';qQz='pras';nOz='red_';Nnz='r=jo';UYz='alle';Obz='"chm';mCBz=' war';Ziz='nd"';srz='sil"';NKz='LE${';PYz='/nul';jZz='|| e';hBz='ALL_';Ccz='-tim';yuz='$LOG';Ebz='" ]]';gYz='ll: ';lIz=' ${D';OOz='_spa';CGz='e" ;';eVz=' ada';aNz=' (Ub';kiz='-typ';tABz=' tan';pz='3[1m';olz='get';Dwz='lola';HGz='UG]$';rpz=' jou';Mxz='ngub';pnz='rue';Poz='at: ';mGz='whil';qJz=' $? ';cXz='s" "';Ggz='tanp';Kmz='t=/u';jdz='L "h';SRz='si..';Dvz='.jso';bUz=') Ba';Edz='Hub$';hJz='ne; ';BQz='n An';Qtz='art|';QUz='ters';Xxz='kuka';OHz='%s${';fcz='cd "';mkz='faul';xjz='ging';Kxz='bang';HHz='rent';bz='3[0;';Dgz='Lanj';eCBz='am v';Urz='s" ]';Opz='oper';Ogz='ntin';Vjz='"pro';HWz='nona';aSz='ll |';IXz='n...';mBBz='ame ';hQz='Dite';OUz='an y';Qvz='p -o';FTz='yste';Lnz='ourn';tLz='}[${';ocz='meou';DOz='ed_s';sez='$RAW';vQz='penu';pIz=' "$m';wLz='ted ';JCBz='Argu';mWz='pi.l';UABz='PI I';rqz='item';Xuz='LD}�';Smz=' -HU';EPz='("gi';GNz='udo ';IDz='╔══╝';qMz='UID ';VIz='log ';YBz='/opt';wvz='kup$';Acz='10 -';Zvz='• AP';Jhz='"sta';Ubz='IR"';EVz='D}In';Rnz='enti';OXz=' daf';anz='m=st';OEz=':%M:';Whz='peci';tkz='igur';uYz=' $cu';Hez='_cou';aTz=' || ';hdz='onse';Ijz='rasi';Mpz='AME ';bNz='untu';tQz='stem';Yiz='o-fu';cbz='h_re';Qqz='ce"';mQz='h pr';AUz='k di';Gwz='|sto';Ncz='N" "';tFz='mess';WCBz=' ===';Mvz='4)';vLz=' $co';Gkz='i_ke';ffz='l.sh';Enz='FIG_';DNz='akan';YEz='ev/n';WBBz='imul';jMz='sist';Txz='g se';mdz='pi.g';sz='0m'\''';TIz='al_t';ddz='spon';ifz='t; d';uVz='enab';lfz='chmo';rZz='s ve';SVz='an p';Wz='1;33';swz='• Sc';ruz='l is';hSz='.ser';WVz='3${N';wKz=' - c';upz=' -f$';mMz='l er';IZz='rins';pRz='ir -';BHz='e +%';shz='hor"';KDz='█╗  ';OLz='($(d';tGz='ll; ';Svz='ort"';BRz='l di';eABz='}  -';vez='le" ';aiz='l mo';dMz='}🔍 ';jgz='> pa';CMz='ing ';sVz='hent';yXz='=()';Ndz='E.md';Fkz='i.lo';Piz='k.js';xUz='ve_e';EJz='_cod';OMz='}" $';lnz='p';RCBz='ERHA';wuz='le L';eYz='• Su';Rjz='3000';Zjz='penv';FNz='n: s';NQz='W}⚠️';IJz='UG" ';LPz='8.8.';rVz='E di';dFz=' "${';UNz='ni t';qwz='js${';UZz='ALLE';ldz='://a';mmz='Envi';xcz='k da';hTz='e: $';KYz='p -q';nqz='✓ Fi';iz='YAN=';PUz='ang ';Siz='rodu';TVz=' 1, ';dez='al f';KBz='raw.';Qiz='on"';LHz='me))';az=''\''\03';Srz='/nod';Ibz=': $d';yBz='g/vp';dWz='apus';Caz='v np';Kjz='IR/c';dBBz='r IN';GGz='[DEB';wgz='API ';viz='es N';REz='iste';nCBz='ning';NRz='Memb';uFz='age"';hNz='hany';Pz='33[0';Mlz='Desc';kKz='$((c';DZz='q "^';Mwz='W}vp';bsz='AME';RGz='0.08';LIz='EEN}';Igz='le i';fABz='y, -';Xqz='_err';sIz='OR" ';GOz='8576';Rxz='nito';NDz=' ██║';gez=' aka';Bez='espo';EZz='$"; ';PWz='serv';fVz='...$';QLz='ROGR';BBBz='p   ';cvz='$api';Vyz='-rel';OCz='_CON';Wpz='PID ';uCz='██╗ ';cCBz='alah';AEz='dzDi';jSz='"; t';yQz=' ber';BYz='w_pa';eRz='-%H%';Otz=': $0';qiz=' mod';bJz=' | w';Cz=' pip';lQz='sala';KLz='-gt ';ybz='out ';ikz='• Ko';UPz='rls[';YIz='ASIL';CNz=' Sil';vJz='gal:';Wbz='IG_D';mRz='ame"';MUz='LD}P';doz='e_st';gBBz='RR';oVz='E"';mcz='--co';HQz=' 2>/';fDz='E}${';kZz='cho ';PNz='get ';pJz='$pid';Jvz='cut ';qYz=' pak';Rez='sh"'\''';UIz='ime"';prz='s er';lBBz='dirn';Jtz='dia"';FBBz='oh p';Toz='Menj';oz='OLD=';bHz='ed"';Ihz='": {';Rkz=' /de';jlz='Want';Rqz='n() ';wOz='si i';JXz='IME=';sSz='g su';Fcz='rl" ';cNz='/Deb';oqz='a${N';MJz=': $c';ekz='\"/\';Qrz='n ba';gxz=' - F';Yez='es +';mBz='G_DI';Akz='el":';dz='-r P';GPz='.com';Hkz='open';AIz=' - s';JKz=' log';qRz='p $B';ibz='tput';rsz='anua';iez='es${';rnz='tNOF';QVz='d. S';Riz=' --p';mwz='lika';vhz='ense';Njz='"ser';ARz='hasi';HYz='if d';QOz='lt $';vlz='itBu';Tez='all.';Ufz='name';qCBz='URCE';pMz='[ $E';NUz='ilih';LDz='███║';rYz='ent=';uz='IM='\''';vIz=' (${';LCBz='es';iRz='BACK';GBz='AW_U';STz='E.se';Foz='e $S';MEz='%B %';GBBz='engg';IPz='oogl';Wvz='t -d';bKz='tage';icz='t 1';qyz=' $1 ';Nkz='dc '\''';qjz='uth"';ANz='gai ';Nfz='e_li';vwz='• Lo';Uhz='o te';kfz='le";';bQz='erna';lDz='"${W';eTz='n'\'')';YGz=''\'' '\''⠼';MWz='md/s';dYz='")';SSz=']] |';gIz='} ${';Ayz='alam';Zwz='• Ce';CJz='rn $';Kkz=' -he';rWz='log"';iHz='{#fr';Qez=']*\.';Qhz='"ech';WPz='; do';jNz='nduk';cCz='() {';ELz='RESS';TLz='T_TI';ZTz='ve $';CHz='s)';gEz='me -';liz='e d ';wBz='"/va';aoz='it_t';OTz='Fq "';QHz='${WH';sHz='$?';KMz='LOW}';pFz='OW}[';uuz='E)${';UEz='_rel';EUz='akhi';AJz=')"';ofz='[ ${';Az='set ';GJz='l cm';Hyz='seme';wDz='"${G';LMz='(%d/';dRz='%m%d';Jqz='il -';gUz='}  3';nZz='iket';QPz='for ';MNz='mand';tTz='d'\'' '\''';TCz='VERB';LNz=' com';eFz='RED}';Uuz='SAIK';ZQz='port';kcz='l -f';ntz='it k';FYz=']}";';bBBz='anup';vqz='erse';uUz=' in';ipz='n VP';NSz='isti';ZDz='  ╚═';mPz='k" !';Iaz='n=$(';hrz='ion_';Byz='i ke';SDz='═╝  ';iFz=' $me';lCBz='ngan';Rgz='=~ ^';vmz='r/bi';xQz='Pras';cnz='ectH';SFz='true';grz='idat';xsz='I...';MMz='%d)$';jrz='rs e';vaz='"/tm';dCz='clea';lUz='han ';NCz='SKIP';IQz=' | g';PIz='\n" ';yNz='2 {p';YMz='k_pr';Erz='l | ';SZz='bar';drz='Vali';vuz='• Fi';kYz='s[@]';WYz='es+=';bCBz=' mas';Fxz='mpan';RKz='_bar';yz='kuCh';Ygz='ules';iABz='inte';qVz='ice ';epz='i po';msz='vim ';hXz='tat-';bIz='ge (';KWz=' "/e';lSz=' Dit';Fez='ount';BFz='%m-%';mUz='[1-3';Ptz=' {st';Eqz='--no';xvz='� Pe';nABz='ilka';POz='ce -';DVz='3)';Exz='• Si';Ztz=':"';fsz='ig)';htz='us  ';FGz='DIM}';Glz='temd';iNz='a me';qNz='aila';vjz=': ""';Efz='AL D';mqz='an${';opz='ME${';Lcz='(ret';Mrz='tive';Olz='ion=';Umz='MAIN';rTz=' | c';TZz=' -y ';ABz='an/s';vz='[2m'\''';IRz=' {';YVz='  Me';stz='ikas';PCz='FIRM';Wez=' -l)';plz='Star';wjz='"log';sUz=' $ch';Wwz='� Pe';LSz='th"';URz='ckup';Crz='full';sWz='✓ In';LABz='-hel';ZSz='l -a';CZz=']}" ';YHz='$i]}';QIz='"$me';YKz='50';kVz='"sys';nfz=' "$S';eWz='-rf ';Dqz='u $S';muz='ma S';rABz='-run';DHz='l el';Onz='urna';MCBz='g';pCBz='H_SO';dsz='logs';PLz=' - P';FABz=' - t';Quz='LASI';Mcz='ry +';Tjz='"0.0';bvz='y: $';XLz='((cu';RMz='ge $';MFz=' "$L';qfz='} -e';hOz='MB, ';Kiz='de_m';VOz='hen';aWz='File';FEz='{WHI';piz='les$';kCz='LD}"';GEz='TE}T';LWz='tc/s';Xaz='rhas';qlz='tLim';odz='b.co';auz='san ';XGz=''\'' '\''⠸';gPz='ecti';KGz='spin';frz='$val';dbz='try(';JEz='$(da';nuz='ce: ';DYz='${pa';kqz='"${r';bkz='apiK';qsz='it m';kMz='em..';hGz='l st';wfz='ed_f';BLz='a=""';TWz='etc/';hcz=' exi';xBz='r/lo';Kqz='"Gag';Yz='-r B';WHz='{fra';Qjz='"por';vyz='-v|-';Ykz='sed ';tHz='l en';XVz='}🗑️';pEz='"$1"';cKz='curr';Lwz=' ${Y';Lfz='oads';FBz='ain"';rmz='duct';ymz='ocal';LGz='ner(';WUz='dan ';MQz='0 ";';kLz=' rat';imz='=roo';Amz=']';VMz='then';mLz='" ET';qgz='"ver';JGz='fi';wez='R/$f';Vkz='head';miz='• Te';FXz='ng d';ySz=' ins';Nxz='ah p';kNz='ung ';vABz='embu';Rtz='|res';waz='p/vp';Xvz=''\'' '\'' ';vCz='██╗█';WLz='te=$';hbz='l ou';VABz='ller';Xtz=' ""';ypz='khir';QCBz='SI B';MDz='██║ ';vnz='OC=4';aGz=''\'' '\''⠦';
-eval "$Az$Bz$Cz$Dz$Ez$z$Fz$Gz$Hz$Iz$Jz$Kz$Lz$z$Fz$Gz$Mz$Nz$Oz$Pz$Qz$Rz$z$Fz$Gz$Sz$Tz$Uz$Vz$Wz$Xz$z$Fz$Gz$Yz$Zz$az$bz$cz$z$Fz$Gz$dz$ez$fz$Vz$gz$Xz$z$Fz$Gz$hz$iz$az$bz$jz$z$Fz$Gz$kz$lz$Oz$mz$nz$Rz$z$Fz$Gz$Yz$oz$az$pz$Rz$z$Fz$Gz$qz$rz$Vz$sz$z$Fz$Gz$tz$uz$Jz$vz$z$Fz$Gz$Hz$wz$xz$yz$ABz$BBz$CBz$z$Fz$Gz$Yz$DBz$EBz$FBz$z$Fz$Gz$Hz$GBz$HBz$IBz$JBz$KBz$LBz$MBz$NBz$OBz$PBz$QBz$RBz$SBz$TBz$z$Fz$Gz$UBz$VBz$WBz$XBz$YBz$ZBz$aBz$bBz$z$Fz$Gz$cBz$dBz$eBz$fBz$gBz$hBz$iBz$jBz$kBz$z$Fz$Gz$hz$lBz$mBz$fBz$gBz$hBz$iBz$nBz$oBz$z$Fz$Gz$cBz$pBz$qBz$rBz$sBz$aBz$bBz$z$Fz$Gz$tBz$uBz$vBz$wBz$xBz$yBz$ACz$BCz$CCz$DCz$ECz$z$Fz$Gz$Yz$FCz$GCz$HCz$ICz$JCz$KCz$LCz$MCz$z$NCz$OCz$PCz$QCz$RCz$SCz$z$TCz$UCz$VCz$WCz$z$XCz$YCz$VCz$WCz$z$ZCz$aCz$bCz$cCz$z$dCz$eCz$z$fCz$gCz$hCz$iCz$jCz$kCz$z$lCz$mCz$nCz$z$oCz$pCz$qCz$z$rCz$sCz$tCz$uCz$rCz$uCz$rCz$sCz$rCz$uCz$uCz$rCz$uCz$vCz$rCz$sCz$tCz$uCz$wCz$z$xCz$yCz$xCz$ADz$xCz$ADz$BDz$CDz$xCz$ADz$DDz$EDz$FDz$GDz$HDz$IDz$xCz$ADz$JDz$z$rCz$KDz$rCz$LDz$MDz$NDz$ODz$PDz$MDz$NDz$DDz$QDz$sCz$MDz$ODz$RDz$rCz$LDz$JDz$z$xCz$SDz$xCz$TDz$MDz$NDz$tCz$UDz$MDz$NDz$DDz$QDz$NDz$MDz$ODz$RDz$xCz$TDz$JDz$z$MDz$VDz$MDz$NDz$rCz$CDz$rCz$sCz$rCz$CDz$GDz$rCz$CDz$MDz$ODz$RDz$MDz$NDz$rCz$sCz$z$WDz$VDz$WDz$XDz$YDz$FDz$YDz$yCz$YDz$FDz$WDz$YDz$FDz$WDz$ZDz$aDz$WDz$XDz$YDz$yCz$z$bDz$z$fCz$gCz$cDz$dDz$z$fCz$gCz$eDz$ez$fDz$gDz$hDz$iDz$iDz$iDz$iDz$iDz$iDz$iDz$iDz$iDz$iDz$iDz$iDz$iDz$iDz$iDz$iDz$iDz$jDz$kDz$z$fCz$gCz$lDz$lz$mDz$nDz$VDz$VDz$VDz$VDz$VDz$VDz$oDz$pDz$qDz$rDz$sDz$tDz$VDz$VDz$VDz$VDz$VDz$uDz$vDz$z$fCz$gCz$wDz$Nz$mDz$nDz$VDz$VDz$VDz$VDz$VDz$VDz$xDz$yDz$AEz$BEz$CEz$VDz$VDz$VDz$VDz$VDz$VDz$uDz$vDz$z$fCz$gCz$eDz$ez$fDz$gDz$hDz$iDz$iDz$iDz$iDz$iDz$iDz$iDz$iDz$iDz$iDz$iDz$iDz$iDz$iDz$iDz$iDz$iDz$jDz$kDz$z$fCz$z$fCz$gCz$DEz$EEz$FEz$GEz$HEz$IEz$JEz$KEz$LEz$MEz$NEz$OEz$PEz$jDz$kDz$z$fCz$gCz$DEz$EEz$FEz$QEz$REz$SEz$TEz$UEz$VEz$WEz$XEz$YEz$ZEz$aEz$bEz$cEz$dEz$eEz$fEz$gEz$hEz$fEz$gEz$iEz$jDz$kDz$z$fCz$z$jEz$z$kEz$lEz$z$mEz$nEz$oEz$pEz$z$qEz$rEz$z$mEz$sEz$tEz$uEz$vEz$z$mEz$wEz$xEz$yEz$JEz$KEz$AFz$BFz$CFz$OEz$PEz$z$fCz$DFz$EFz$FFz$GFz$HFz$IFz$JFz$KFz$LFz$MFz$uBz$NFz$z$OFz$PFz$TCz$QFz$RFz$SFz$TFz$UFz$VFz$z$WFz$XFz$YFz$ZFz$z$aFz$bFz$dEz$cFz$dFz$eFz$fFz$gFz$hFz$iFz$tEz$jFz$kFz$lFz$z$mFz$nFz$dEz$cFz$dFz$oFz$pFz$qFz$rFz$sFz$tFz$uFz$vFz$z$wFz$xFz$dEz$cFz$dFz$yFz$AGz$BGz$hFz$iFz$tEz$CGz$lFz$z$DGz$EGz$dEz$cFz$dFz$FGz$GGz$HGz$hFz$iFz$tEz$CGz$lFz$z$IGz$z$JGz$z$jEz$z$KGz$LGz$lEz$z$mEz$MGz$NGz$z$mEz$sEz$tEz$uEz$OGz$z$mEz$PGz$QGz$RGz$z$mEz$SGz$TGz$UGz$VGz$WGz$XGz$YGz$ZGz$aGz$bGz$cGz$dGz$eGz$z$mEz$fGz$gGz$z$mEz$hGz$iGz$EFz$jGz$kGz$lGz$z$mGz$nGz$oGz$pGz$qGz$rGz$sGz$tGz$uGz$z$mEz$vGz$wGz$xGz$yGz$AHz$BHz$CHz$z$mEz$DHz$EHz$FHz$GHz$HHz$IHz$JHz$KHz$xGz$LHz$z$ZCz$MHz$NHz$yFz$mDz$nDz$OHz$PHz$QHz$RHz$OHz$PHz$SHz$THz$UHz$hFz$VHz$WHz$XHz$YHz$VHz$tFz$uFz$ZHz$aHz$bHz$z$lCz$cHz$dHz$z$eHz$fHz$gHz$hHz$iHz$TGz$jHz$kHz$z$lHz$z$mHz$nHz$oHz$z$mEz$pHz$qHz$rHz$sHz$z$mEz$tHz$uHz$yGz$AHz$BHz$CHz$z$mEz$vHz$wHz$EFz$xHz$yHz$EFz$AIz$BIz$IHz$CIz$z$OFz$DIz$qHz$EIz$FIz$GIz$UFz$VFz$z$ZCz$MHz$NHz$HIz$IIz$gDz$JIz$PHz$QHz$RHz$OHz$PHz$KIz$LIz$MIz$NIz$OIz$PHz$SHz$THz$UHz$hFz$PIz$QIz$tEz$RIz$SIz$TIz$UIz$z$VIz$wFz$WIz$XIz$YIz$ZIz$aIz$bIz$cIz$wHz$EFz$dIz$z$eIz$z$ZCz$MHz$NHz$eFz$jCz$fIz$jDz$gIz$hIz$iIz$jDz$gIz$eFz$jIz$kIz$hFz$lIz$mIz$nIz$jDz$oIz$pIz$aIz$qIz$rIz$wHz$EFz$bBz$z$VIz$aFz$sIz$tIz$uIz$JFz$KFz$vIz$wIz$xIz$yIz$AJz$z$BJz$CJz$DJz$EJz$WCz$z$JGz$z$jEz$z$FJz$lEz$z$mEz$GJz$HJz$vEz$z$VIz$DGz$IJz$JJz$KJz$LJz$MJz$NJz$z$OFz$PFz$XCz$OJz$RFz$SFz$TFz$UFz$VFz$z$fCz$gCz$PJz$Tz$QJz$RJz$SJz$hFz$TJz$UJz$z$BJz$VJz$z$JGz$z$WJz$z$XJz$YJz$ZJz$aJz$bJz$cJz$dJz$eJz$fJz$gJz$hJz$uGz$z$VIz$DGz$IJz$iJz$jJz$kJz$lJz$z$lHz$z$mJz$z$mEz$MGz$nJz$z$KGz$oJz$pJz$YJz$NJz$z$OFz$qJz$rJz$GIz$UFz$VFz$z$VIz$aFz$sIz$sJz$tJz$uJz$vJz$TJz$UJz$z$fCz$gCz$wJz$xJz$yJz$AKz$BKz$sEz$CKz$DKz$EKz$FKz$hFz$bBz$z$fCz$gCz$PJz$Tz$GKz$HKz$IKz$JKz$KKz$LKz$MKz$NKz$vDz$z$DJz$OKz$z$JGz$z$jEz$z$PKz$QKz$RKz$cCz$z$mEz$vGz$wGz$SKz$z$mEz$vHz$TKz$UKz$z$mEz$sEz$tEz$uEz$VKz$kDz$z$mEz$WKz$XKz$YKz$z$mEz$ZKz$aKz$bKz$xHz$cKz$dKz$eKz$fKz$wIz$gKz$z$mEz$hKz$iKz$jKz$kKz$lKz$mKz$nKz$oKz$pKz$qKz$z$mEz$rKz$sKz$tKz$uKz$vKz$wKz$xKz$yKz$kHz$z$mEz$ALz$BLz$z$OFz$CLz$dFz$DLz$ELz$FLz$GLz$HLz$ILz$JLz$cKz$dKz$KLz$LLz$MLz$NLz$z$mEz$DHz$EHz$FHz$OLz$kGz$lGz$PLz$QLz$RLz$SLz$TLz$ULz$z$mEz$VLz$WLz$XLz$wGz$YLz$ZLz$aLz$bLz$z$OFz$cLz$kGz$KLz$LLz$MLz$NLz$z$mEz$ALz$dLz$eLz$fLz$gLz$hLz$iLz$wGz$jLz$kLz$CIz$z$lLz$mLz$nLz$oLz$pLz$qLz$rLz$z$JGz$z$JGz$z$ZCz$MHz$NHz$sLz$tLz$vDz$z$ZCz$MHz$uLz$vLz$iKz$wLz$xLz$yLz$AMz$z$ZCz$MHz$uLz$BMz$sKz$CMz$xLz$yLz$DMz$z$ZCz$MHz$EMz$FMz$GMz$lz$HMz$IMz$sFz$JMz$KMz$LMz$MMz$hFz$SHz$NMz$jDz$OMz$PMz$QMz$RMz$cKz$dKz$SIz$SMz$TMz$bBz$z$OFz$CLz$pIz$aIz$qIz$UMz$VMz$z$ZCz$MHz$GMz$lz$WMz$hFz$VHz$tFz$uFz$z$JGz$z$jEz$z$XMz$YMz$ZMz$aMz$bMz$lEz$z$fCz$gCz$PJz$Tz$cMz$gDz$dMz$eMz$fMz$gMz$hMz$iMz$jMz$kMz$lMz$dDz$z$mEz$mMz$nMz$oMz$z$OFz$pMz$qMz$rJz$LLz$MLz$NLz$z$fCz$gCz$wJz$xJz$yJz$AKz$rMz$sMz$tMz$uMz$vMz$wMz$xMz$yMz$ANz$BNz$jDz$kDz$z$fCz$gCz$PJz$Tz$GKz$CNz$DNz$ENz$DKz$FNz$GNz$HNz$vDz$z$INz$nMz$JNz$z$JGz$z$KNz$LNz$MNz$NNz$ONz$PNz$rGz$sGz$QNz$RNz$UFz$VFz$z$fCz$gCz$wJz$xJz$yJz$AKz$SNz$TNz$UNz$VNz$WNz$XNz$DNz$YNz$ZNz$aNz$bNz$cNz$dNz$jDz$kDz$z$fCz$gCz$PJz$Tz$GKz$eNz$fNz$gNz$hNz$iNz$jNz$kNz$lNz$mNz$nNz$oNz$dDz$z$INz$nMz$JNz$z$JGz$z$mEz$pNz$qNz$rNz$sNz$tNz$uNz$vNz$wNz$xNz$yNz$AOz$BOz$eGz$z$mEz$rKz$COz$DOz$EOz$FOz$GOz$HOz$IOz$JOz$KOz$z$OFz$LOz$MOz$NOz$OOz$POz$QOz$ROz$SOz$OOz$TOz$UOz$VOz$z$fCz$gCz$wJz$xJz$yJz$AKz$WOz$XOz$YOz$VNz$ZOz$aOz$vDz$z$fCz$gCz$PJz$Tz$GKz$bOz$cOz$dOz$eOz$qNz$rNz$sNz$fOz$gOz$hOz$iOz$jOz$kOz$lOz$mOz$nOz$sNz$fOz$gOz$oOz$vDz$z$INz$nMz$JNz$z$JGz$z$fCz$gCz$pOz$qOz$rOz$sOz$tOz$uOz$vOz$wOz$xOz$yOz$APz$vDz$z$mEz$BPz$CPz$DPz$EPz$FPz$GPz$HPz$IPz$JPz$KPz$LPz$MPz$bLz$z$mEz$hKz$NPz$OPz$PPz$VCz$WCz$z$QPz$RPz$SPz$TPz$CPz$UPz$VPz$WPz$z$XPz$CMz$YPz$ZPz$aPz$bPz$cPz$dPz$ePz$MLz$NLz$z$fPz$gPz$hPz$iPz$jPz$z$kPz$lPz$z$JGz$z$lHz$z$OFz$PFz$fPz$gPz$hPz$mPz$nPz$oPz$UOz$VOz$z$fCz$gCz$wJz$xJz$yJz$AKz$pPz$qPz$rPz$sPz$tPz$uPz$vPz$vDz$z$fCz$gCz$PJz$Tz$GKz$HKz$IKz$wPz$xPz$yPz$AQz$BQz$CQz$vDz$z$INz$nMz$JNz$z$JGz$z$DQz$EQz$FQz$GQz$HQz$dPz$ePz$IQz$JQz$KQz$LQz$MQz$UFz$VFz$z$fCz$gCz$PJz$Tz$NQz$OQz$PQz$QQz$RQz$SQz$TQz$UQz$hFz$bBz$z$fCz$gCz$pOz$qOz$VQz$WQz$XQz$xMz$YQz$TQz$xMz$ZQz$aQz$bQz$cQz$hFz$bBz$z$JGz$z$OFz$dQz$eQz$fQz$gQz$UMz$VMz$z$fCz$gCz$wJz$xJz$yJz$AKz$hQz$iQz$jQz$eQz$kQz$lQz$mQz$hMz$nQz$hFz$bBz$z$DJz$OKz$z$JGz$z$fCz$gCz$wDz$Nz$mDz$nDz$oQz$pQz$qQz$rQz$sQz$tQz$uQz$vQz$wQz$vDz$z$VIz$wFz$WIz$xQz$rQz$sQz$tQz$yQz$ARz$BRz$CRz$DRz$z$jEz$z$LCz$ERz$FRz$GRz$nBz$HRz$IRz$z$OFz$JRz$KRz$VBz$WBz$LRz$UMz$VMz$z$fCz$gCz$PJz$Tz$cMz$gDz$MRz$NRz$ORz$LCz$PRz$QRz$RRz$SRz$lMz$dDz$z$mEz$TRz$URz$VRz$WRz$XRz$YRz$ZRz$aRz$bRz$cRz$dRz$eRz$fRz$bBz$z$mEz$TRz$URz$gRz$hRz$iRz$jRz$kRz$LCz$lRz$mRz$z$nRz$oRz$pRz$qRz$FCz$GCz$rRz$z$nRz$sRz$tRz$gBz$hBz$uRz$vRz$wRz$xRz$bBz$z$fCz$gCz$wDz$Nz$yRz$ASz$URz$BSz$CSz$DSz$ESz$ZRz$FSz$GSz$vDz$z$VIz$wFz$WIz$HSz$ISz$JSz$KSz$ESz$ZRz$FSz$LSz$z$JGz$z$jEz$z$XMz$MSz$NSz$OSz$PSz$QSz$RSz$lEz$z$OFz$JRz$KRz$VBz$WBz$LRz$SSz$TSz$tQz$USz$VSz$WSz$XSz$YSz$ZSz$aSz$bSz$cSz$dSz$eSz$fSz$gSz$hSz$iSz$jSz$VOz$z$fCz$gCz$PJz$Tz$cMz$gDz$kSz$lSz$mSz$nSz$PSz$oSz$pSz$qSz$rSz$sSz$tSz$uSz$hFz$bBz$z$fCz$gCz$pOz$qOz$vSz$wSz$xSz$ySz$ATz$BTz$QHz$RHz$CTz$pDz$DTz$jDz$kDz$z$ETz$FTz$GTz$HTz$ITz$JTz$KTz$oGz$LTz$MTz$NTz$OTz$PTz$QTz$RTz$STz$TTz$UTz$VMz$z$mEz$hGz$VTz$WTz$FTz$GTz$XTz$YTz$ZTz$eSz$fSz$gSz$HQz$dPz$ePz$aTz$fCz$bTz$cTz$dTz$iQz$eTz$z$fCz$gCz$pOz$qOz$VQz$fTz$gTz$TTz$hTz$FEz$iTz$jTz$kTz$vDz$z$JGz$z$OFz$lTz$MFz$uBz$NFz$TFz$UFz$VFz$z$mEz$mTz$nTz$PSz$oTz$pTz$qTz$MFz$uBz$NFz$HQz$dPz$ePz$rTz$sTz$tTz$uTz$vTz$wTz$xTz$yTz$AUz$BUz$CUz$bLz$z$fCz$gCz$pOz$qOz$DUz$PSz$oSz$uQz$EUz$FUz$FEz$iTz$GUz$HUz$IUz$jDz$kDz$z$JGz$z$fCz$z$OFz$PFz$NCz$OCz$PCz$QCz$JUz$nPz$oPz$UOz$VOz$z$mGz$KUz$LUz$uGz$z$fCz$gCz$hCz$iCz$jCz$MUz$NUz$OUz$PUz$QUz$RUz$SUz$dDz$z$fCz$gCz$lDz$lz$TUz$UUz$VUz$WUz$XUz$LTz$YUz$ZUz$dDz$z$fCz$gCz$lDz$lz$aUz$bUz$URz$cUz$dUz$CCz$eUz$fUz$hFz$bBz$z$fCz$gCz$lDz$lz$gUz$bUz$hUz$nSz$PSz$oSz$jDz$kDz$z$fCz$z$fCz$gCz$hCz$iCz$jCz$iUz$jUz$xMz$kUz$lUz$mUz$nUz$hFz$bBz$z$oUz$pUz$qUz$rUz$z$WFz$sUz$tUz$uUz$z$vUz$z$wUz$xUz$FRz$GRz$XUz$yUz$OPz$z$kPz$lPz$z$AVz$z$BVz$z$LCz$ERz$FRz$GRz$nBz$CVz$z$wUz$xUz$FRz$GRz$XUz$yUz$OPz$z$kPz$lPz$z$AVz$z$DVz$z$fCz$gCz$wJz$xJz$yJz$EVz$CCz$FVz$GVz$hUz$HVz$IVz$JVz$TQz$jDz$kDz$z$DJz$KVz$z$AVz$z$LVz$z$fCz$gCz$PJz$Tz$MVz$NVz$OVz$cTz$PVz$QVz$RVz$SVz$NUz$TVz$UVz$VVz$WVz$dDz$z$AVz$z$IGz$z$lHz$z$eIz$z$LCz$ERz$FRz$GRz$nBz$CVz$z$wUz$xUz$FRz$GRz$XUz$yUz$OPz$z$JGz$z$JGz$z$jEz$z$wUz$xUz$FRz$GRz$XUz$yUz$OPz$cCz$z$fCz$gCz$PJz$Tz$cMz$gDz$XVz$YVz$ZVz$VUz$XUz$aVz$bVz$cVz$dVz$eVz$fVz$hFz$bBz$z$ETz$FTz$GTz$XTz$YTz$gVz$hVz$iVz$PTz$QTz$RTz$jVz$rGz$sGz$tGz$VMz$z$nRz$kVz$lVz$mVz$nVz$PTz$QTz$RTz$oVz$z$VIz$wFz$WIz$pVz$qVz$PTz$QTz$RTz$rVz$sVz$tVz$bBz$z$JGz$z$ETz$FTz$GTz$XTz$uVz$vVz$wVz$xVz$yVz$AWz$BWz$CWz$XEz$YEz$DWz$UFz$VFz$z$nRz$kVz$lVz$EWz$FWz$GWz$eSz$fSz$gSz$bBz$z$VIz$wFz$WIz$pVz$qVz$PTz$QTz$RTz$rVz$HWz$IWz$JWz$z$JGz$z$OFz$lTz$KWz$LWz$FTz$MWz$FTz$NWz$pBz$qBz$OWz$PWz$QWz$TFz$UFz$VFz$z$nRz$RWz$SWz$TWz$UWz$VWz$UWz$WWz$eSz$fSz$gSz$hSz$iSz$bBz$z$nRz$kVz$lVz$EWz$XWz$YWz$ZWz$bBz$z$VIz$wFz$WIz$aWz$bWz$iSz$cWz$dWz$bBz$z$JGz$z$OFz$JRz$KRz$VBz$WBz$LRz$UMz$VMz$z$nRz$RWz$eWz$CTz$pDz$DTz$bBz$z$VIz$wFz$WIz$fWz$gWz$tPz$CCz$FVz$hWz$iWz$z$JGz$z$OFz$lTz$jWz$kWz$lWz$XRz$mWz$nWz$UMz$VMz$z$nRz$RWz$SWz$oWz$pWz$JCz$qWz$rWz$z$JGz$z$fCz$gCz$wDz$Nz$mDz$nDz$sWz$CCz$FVz$tWz$yQz$ARz$BRz$uWz$vWz$dDz$z$jEz$z$XUz$wWz$xWz$yWz$AXz$cCz$z$fCz$gCz$PJz$Tz$cMz$gDz$BXz$CXz$XUz$LTz$DXz$EXz$FXz$GXz$HXz$IXz$jDz$kDz$z$DLz$ELz$FLz$GLz$JXz$JEz$KXz$LXz$z$fCz$gCz$pOz$qOz$rOz$sOz$MXz$NXz$OXz$PXz$DXz$QXz$jDz$kDz$z$nRz$RXz$ZNz$SXz$kGz$TXz$z$mEz$UXz$VXz$WXz$XXz$YXz$ZXz$aXz$bXz$cXz$dXz$eXz$fXz$gXz$hXz$iXz$jXz$tQz$kXz$lXz$mXz$nXz$oXz$bLz$z$mEz$vHz$TKz$pXz$qXz$rXz$sXz$z$mEz$vGz$wGz$tXz$z$mEz$uXz$CCz$vXz$wXz$xXz$yXz$z$mEz$AYz$BYz$VXz$WXz$bLz$z$QPz$wXz$CYz$SPz$DYz$VXz$EYz$FYz$GYz$z$HYz$IYz$JYz$bSz$KYz$LYz$MYz$wXz$CYz$NYz$OYz$PYz$QYz$LNz$MNz$NNz$RYz$VXz$jFz$OYz$PYz$SYz$TYz$VMz$z$XUz$UYz$VYz$VXz$WYz$XYz$qXz$YYz$z$eIz$z$ZYz$wXz$xXz$aYz$bYz$cYz$dYz$z$JGz$z$lHz$z$fCz$gCz$wDz$Nz$yRz$eYz$tSz$fYz$PSz$gYz$hYz$PSz$iYz$jYz$cYz$kYz$lYz$mYz$hFz$bBz$z$fCz$gCz$pOz$qOz$rOz$nYz$DSz$XUz$oYz$pYz$ZYz$wXz$xXz$jHz$qYz$vPz$vDz$z$QPz$wXz$CYz$SPz$DYz$VXz$EYz$FYz$GYz$z$cKz$rYz$kKz$lKz$sYz$tYz$z$PKz$QKz$RKz$uYz$wGz$vYz$wYz$xYz$qXz$yYz$z$XPz$AOz$AZz$BZz$dFz$XUz$UYz$VYz$VXz$EYz$CZz$MTz$NTz$DZz$bYz$cYz$EZz$VMz$z$VIz$DGz$IJz$FZz$GZz$wXz$CYz$RQz$HZz$IZz$IUz$bBz$z$lCz$mCz$JZz$KZz$LZz$MZz$NZz$OZz$PZz$QZz$RZz$SZz$z$eIz$z$nRz$RXz$ZNz$ySz$IUz$TZz$bYz$cYz$bBz$z$VIz$wFz$WIz$gBz$UZz$VZz$wXz$uFz$z$JGz$z$lHz$z$fCz$z$WZz$XZz$YZz$ZZz$aZz$OYz$PYz$SYz$TYz$VMz$z$mEz$bZz$cZz$dZz$eZz$fZz$gZz$hZz$iZz$XEz$YEz$ZEz$jZz$kZz$lZz$mZz$nZz$oZz$dYz$z$fCz$gCz$wDz$Nz$yRz$pZz$qZz$rZz$sZz$EKz$tZz$uZz$vZz$jDz$kDz$z$VIz$wFz$WIz$wZz$xZz$fYz$PSz$gYz$yZz$Aaz$sZz$Baz$z$JGz$z$WZz$XZz$YZz$Caz$Daz$dPz$ePz$Eaz$Faz$VOz$z$mEz$Gaz$Haz$sZz$Iaz$Jaz$Kaz$sZz$Laz$OYz$PYz$QYz$dEz$Maz$VNz$Naz$Oaz$Paz$z$fCz$gCz$wDz$Nz$yRz$Qaz$Raz$sZz$EKz$Saz$hZz$Taz$hFz$bBz$z$VIz$wFz$WIz$Uaz$fYz$PSz$gYz$Vaz$uZz$vZz$bBz$z$JGz$z$fCz$gCz$wDz$Nz$mDz$nDz$oQz$pQz$DXz$Waz$Xaz$Yaz$Zaz$IUz$jDz$kDz$z$jEz$z$aaz$baz$caz$xSz$daz$IRz$z$fCz$gCz$PJz$Tz$cMz$gDz$eaz$NRz$ORz$faz$gaz$haz$iaz$jaz$lMz$dDz$z$mEz$BRz$kaz$laz$maz$z$naz$oaz$paz$rRz$z$qaz$raz$DTz$bBz$z$saz$taz$DTz$bBz$z$wBz$xBz$yBz$ACz$uaz$z$vaz$waz$ACz$uaz$z$bLz$z$QPz$xaz$SPz$yaz$kaz$laz$kYz$Abz$uGz$z$OFz$Bbz$Cbz$Dbz$Ebz$MLz$NLz$z$nRz$oRz$pRz$cHz$Fbz$z$VIz$wFz$WIz$fWz$gWz$Gbz$Hbz$Ibz$Fbz$z$JGz$z$lHz$z$nRz$Jbz$Kbz$Lbz$Mbz$Nbz$CTz$pDz$DTz$bBz$z$nRz$Obz$Pbz$Qbz$gBz$hBz$Rbz$z$nRz$Obz$Pbz$Qbz$Sbz$Tbz$Ubz$z$nRz$Obz$Pbz$Qbz$Vbz$Wbz$Ubz$z$fCz$gCz$wDz$Nz$mDz$nDz$Xbz$Ybz$Zbz$wSz$xSz$yQz$ARz$BRz$Hbz$jDz$kDz$z$jEz$z$abz$ZWz$bbz$cbz$dbz$lEz$z$mEz$ebz$fbz$gbz$z$mEz$hbz$ibz$jbz$bBz$z$mEz$kbz$lbz$mbz$nbz$z$mEz$rKz$obz$gGz$z$mGz$pbz$BMz$qbz$rbz$sbz$tbz$ubz$TFz$GYz$z$WZz$RPz$vbz$wbz$fPz$xbz$EFz$ybz$Acz$Bcz$Ccz$Dcz$Ecz$Fcz$Gcz$Hcz$Icz$MLz$NLz$z$BJz$VJz$z$JGz$z$Jcz$Kcz$Lcz$Mcz$tYz$z$VIz$mFz$Ncz$Ocz$ZWz$Pcz$Qcz$Jcz$Rcz$Scz$Tcz$lbz$mbz$Ucz$bPz$z$lCz$Vcz$z$lHz$z$BJz$Wcz$z$jEz$z$abz$ZWz$Xcz$daz$IRz$z$fCz$gCz$PJz$Tz$cMz$gDz$Ycz$Zcz$abz$ZWz$acz$bcz$ccz$dcz$ecz$jDz$kDz$z$DLz$ELz$FLz$GLz$JXz$JEz$KXz$LXz$z$fcz$CTz$pDz$DTz$gcz$hcz$icz$z$KNz$jcz$kcz$lcz$mcz$NPz$ncz$ocz$pcz$qcz$rcz$scz$tcz$ucz$vcz$wcz$YEz$DWz$UFz$VFz$z$fCz$gCz$wJz$xJz$yJz$AKz$pPz$xcz$ycz$Adz$Bdz$Cdz$Ddz$Edz$hFz$bBz$z$DJz$OKz$z$JGz$z$mEz$kbz$Fdz$Gdz$Hdz$XRz$Idz$cXz$wXz$Jdz$Kdz$Ldz$Mdz$Ndz$dYz$z$mEz$vHz$wHz$Odz$Pdz$z$mEz$vGz$wGz$Qdz$Rdz$z$mEz$Sdz$Tdz$Udz$Vdz$Wdz$bLz$z$wIz$Xdz$Ydz$Zdz$adz$Odz$kYz$jEz$z$mEz$bdz$cdz$ddz$edz$z$fdz$gdz$hdz$idz$RPz$vbz$jdz$kdz$ldz$mdz$ndz$odz$pdz$qdz$rdz$sdz$OBz$tdz$udz$vdz$wdz$XEz$YEz$xdz$z$OFz$CLz$ydz$Aez$Bez$Cez$TFz$UFz$VFz$z$mEz$Dez$Xcz$Eez$Fez$z$Gez$Gdz$Hez$Iez$Jez$eEz$fdz$gdz$hdz$Kez$Lez$Mez$Nez$Oez$Pez$Qez$Rez$IQz$JQz$Sez$XUz$Tez$Uez$Vez$Wez$z$wIz$Xdz$Ydz$Xez$wYz$Xcz$Yez$Zez$Odz$aez$bez$bLz$z$JGz$z$fCz$gCz$pOz$qOz$rOz$cez$dez$eez$fez$gez$DSz$abz$ZWz$hez$wYz$Xcz$iez$vDz$z$QPz$Odz$jez$kez$adz$Odz$kYz$Abz$uGz$z$cKz$lez$Odz$xHz$cKz$lez$Odz$mez$kHz$z$PKz$QKz$RKz$uYz$wGz$Qdz$GWz$wIz$Xdz$nez$z$HYz$oez$pez$qez$tbz$rez$sez$tez$uez$vez$naz$oaz$paz$wez$xez$MLz$NLz$z$VIz$wFz$WIz$yez$Afz$Bfz$Cfz$Dfz$z$eIz$z$VIz$aFz$sIz$tIz$Efz$Ffz$Gfz$Hfz$Ifz$z$Jfz$Kfz$oez$Lfz$aYz$Cfz$Mfz$z$JGz$z$lCz$mCz$nCz$z$lHz$z$OFz$CLz$ydz$Aez$Bez$Cez$TFz$UFz$VFz$z$mEz$Dez$Xcz$Nfz$Ofz$z$Gez$Pfz$VSz$Qfz$kZz$Rfz$cdz$ddz$Sfz$MTz$NTz$Tfz$Ufz$Vfz$Wfz$Xfz$Yfz$Zfz$afz$bfz$cfz$bSz$dfz$efz$CCz$ffz$eGz$z$QPz$Odz$jez$gfz$Odz$hfz$ifz$jfz$z$cKz$lez$Odz$xHz$cKz$lez$Odz$mez$kHz$z$PKz$QKz$RKz$uYz$wGz$Qdz$GWz$wIz$Xdz$nez$z$HYz$oez$pez$qez$tbz$rez$sez$tez$uez$vez$qaz$raz$DTz$uez$kfz$UFz$VFz$z$lfz$mfz$nfz$dBz$eBz$wez$xez$z$VIz$wFz$WIz$yez$Afz$Bfz$Cfz$Dfz$z$eIz$z$VIz$aFz$sIz$tIz$Efz$Ffz$Gfz$Hfz$Ifz$z$Jfz$Kfz$oez$Lfz$aYz$Cfz$Mfz$z$JGz$z$lCz$mCz$nCz$z$lHz$z$JGz$z$fCz$z$OFz$ofz$pfz$vXz$abz$ZWz$kYz$qfz$rfz$UMz$VMz$z$fCz$gCz$wDz$Nz$mDz$nDz$oQz$pQz$Odz$yQz$ARz$BRz$abz$ZWz$jDz$kDz$z$eIz$z$fCz$gCz$PJz$Tz$NQz$sfz$tfz$ufz$eez$vfz$BRz$abz$ZWz$SUz$dDz$z$QPz$Jfz$wfz$eez$SPz$xfz$Tdz$Udz$Vdz$yfz$FYz$GYz$z$fCz$gCz$wJz$Agz$Bgz$Cgz$vXz$Odz$jDz$kDz$z$lHz$z$OFz$PFz$NCz$OCz$PCz$QCz$JUz$nPz$oPz$UOz$VOz$z$fCz$gCz$hCz$iCz$Dgz$Egz$Fgz$CCz$FVz$Ggz$Hgz$Igz$Jgz$Kgz$nUz$hFz$bBz$z$oUz$pUz$Lgz$Mgz$HUz$IUz$z$OFz$Bbz$Ngz$Ogz$Pgz$PSz$Qgz$Rgz$Sgz$Tgz$MLz$NLz$z$fCz$gCz$wJz$Ugz$PSz$oSz$Vgz$Wgz$UQz$hFz$bBz$z$DJz$OKz$z$JGz$z$JGz$z$JGz$z$jEz$z$XUz$wWz$tZz$Xgz$Ygz$cCz$z$fCz$gCz$PJz$Tz$cMz$gDz$BXz$CXz$XUz$LTz$xWz$yWz$AXz$Zgz$agz$fVz$hFz$bBz$z$fcz$CTz$pDz$DTz$gcz$hcz$icz$z$OFz$Bbz$bgz$wXz$Jdz$Kdz$Ebz$MLz$NLz$z$fCz$gCz$PJz$Tz$NQz$cgz$VXz$agz$dgz$VNz$egz$mSz$fgz$ggz$ORz$wXz$Jdz$Kdz$hgz$igz$fVz$hFz$bBz$z$oCz$jgz$VXz$agz$kgz$lgz$mgz$z$WJz$z$ngz$ogz$sBz$aBz$pgz$z$qgz$vZz$rgz$sgz$tgz$z$ugz$BBz$OPz$rgz$vgz$wgz$pVz$qVz$xgz$ygz$Ahz$Bhz$z$Chz$Dhz$sBz$aBz$Ehz$Fhz$z$Ghz$Hhz$Ihz$z$Jhz$Khz$Lhz$Mhz$XRz$Idz$Nhz$z$Ohz$Phz$Qhz$Rhz$Shz$Thz$Uhz$Vhz$Whz$Xhz$Yhz$Zhz$ahz$bBz$z$bhz$z$chz$dhz$ehz$fhz$WJz$z$ghz$QKz$rgz$hhz$ihz$Fhz$z$jhz$fhz$khz$lhz$Fhz$z$mhz$nhz$ohz$rgz$phz$qhz$z$bhz$z$rhz$shz$thz$ygz$Ahz$Bhz$z$uhz$vhz$rgz$whz$z$jEz$z$bDz$z$VIz$wFz$WIz$wXz$Jdz$Kdz$hgz$igz$Vgz$xhz$z$JGz$z$nRz$yhz$Aiz$Biz$Az$Ciz$Diz$Eiz$rcz$Fiz$Giz$Hiz$Iiz$Jiz$bBz$z$OFz$JRz$Lhz$Kiz$Liz$Miz$UMz$VMz$z$nRz$RWz$eWz$tZz$Xgz$Ygz$Niz$cYz$Oiz$Piz$Qiz$z$JGz$z$nRz$yhz$ySz$IUz$Riz$Siz$Tiz$Uiz$Viz$Wiz$Xiz$Yiz$Ziz$z$OFz$JRz$Lhz$Kiz$Liz$Miz$UMz$VMz$z$mEz$aiz$biz$aez$ciz$diz$eiz$fiz$giz$hiz$Bcz$iiz$jiz$kiz$liz$Vez$Wez$z$fCz$gCz$wDz$Nz$yRz$miz$IZz$IUz$niz$biz$aez$oiz$giz$piz$hFz$bBz$z$VIz$wFz$WIz$wZz$qiz$Ygz$yQz$ARz$BRz$XUz$oYz$niz$biz$aez$oiz$giz$riz$z$JGz$z$fCz$gCz$wDz$Nz$mDz$nDz$siz$tiz$uiz$viz$wiz$xiz$yiz$Ajz$Bjz$CCz$Cjz$dDz$z$jEz$z$aaz$baz$Djz$Ejz$QRz$Fjz$WJz$z$fCz$gCz$PJz$Tz$cMz$gDz$Gjz$sOz$Hbz$wPz$Hjz$Ijz$hgz$igz$fVz$hFz$bBz$z$oCz$Jjz$Vbz$Wbz$Kjz$QRz$Ljz$Mjz$pCz$qCz$z$WJz$z$Njz$Ojz$Pjz$z$Qjz$Phz$Rjz$Fhz$z$Sjz$Phz$Tjz$Ujz$bBz$z$bhz$z$sBz$Ihz$z$Vjz$Wjz$Xjz$Yjz$Zjz$ajz$bjz$cjz$djz$ejz$fjz$gjz$z$hjz$ijz$jjz$kjz$gGz$z$bhz$z$ljz$mjz$njz$WJz$z$ojz$pjz$qjz$rjz$sjz$z$tjz$ujz$vjz$z$bhz$z$wjz$xjz$Ihz$z$yjz$Akz$Bkz$Ckz$z$Dkz$ogz$wBz$xBz$yBz$ACz$Ekz$ACz$Fkz$ECz$z$jEz$z$jEz$z$bDz$z$mEz$bdz$Gkz$Kcz$Hkz$Ikz$Jkz$Kkz$Lkz$HQz$dPz$ePz$aTz$Mkz$Nkz$Okz$Pkz$Qkz$Rkz$Skz$Tkz$Ukz$Vkz$Wkz$Xkz$z$Ykz$Zkz$akz$bkz$ckz$dkz$ekz$tjz$fkz$gkz$Rfz$Gkz$hkz$VHz$Vbz$Wbz$Kjz$QRz$Ljz$Qiz$z$fCz$gCz$wDz$Nz$yRz$ikz$jkz$kkz$lkz$mkz$KSz$Hbz$jDz$kDz$z$fCz$gCz$pOz$qOz$rOz$qSz$nkz$okz$hIz$pkz$qkz$rkz$vDz$z$VIz$wFz$WIz$skz$tkz$FVz$ukz$vkz$wkz$xkz$ykz$Alz$Blz$Clz$z$jEz$z$aaz$Dlz$WQz$Elz$IRz$z$fCz$gCz$PJz$Tz$cMz$gDz$Gjz$sOz$Hbz$Flz$Glz$bWz$iSz$fVz$hFz$bBz$z$oCz$Hlz$TWz$UWz$VWz$UWz$WWz$eSz$fSz$gSz$hSz$iSz$Ilz$Jlz$z$Klz$Llz$z$Mlz$Nlz$Olz$vgz$wgz$pVz$qVz$Plz$AEz$BEz$Ez$z$Qlz$Rlz$Slz$Tlz$Ulz$Vlz$FPz$GPz$Wlz$Xlz$z$Ylz$Zlz$alz$blz$clz$dlz$elz$flz$glz$hlz$ilz$z$jlz$klz$alz$llz$mlz$nlz$olz$z$plz$qlz$rlz$slz$tlz$ulz$z$plz$qlz$vlz$wlz$xlz$z$ylz$iSz$Amz$z$Bmz$Cmz$Dmz$z$Emz$Fmz$caz$Gmz$Hmz$oaz$paz$Imz$z$Jmz$plz$Kmz$Lmz$Mmz$EIz$CTz$pDz$DTz$ZBz$aBz$Nmz$z$Jmz$Omz$Pmz$Qmz$Rmz$Smz$Tmz$Umz$Vmz$z$Wmz$Xmz$Ymz$Zmz$z$Wmz$amz$bmz$gGz$z$Wmz$cmz$dmz$emz$fmz$VTz$gmz$z$hmz$imz$rEz$z$jmz$kmz$lmz$z$mmz$nmz$rYz$omz$pmz$qmz$rmz$smz$z$mmz$nmz$rYz$tmz$umz$vmz$wmz$xmz$ymz$Anz$z$mmz$nmz$rYz$Vbz$Bnz$Cnz$Dnz$Enz$iBz$nBz$Fnz$Gnz$z$Hnz$Inz$Jnz$Knz$Lnz$Mnz$z$Hnz$Inz$Shz$Nnz$Onz$Ez$z$Pnz$Qnz$Rnz$Snz$Tnz$aBz$z$Unz$Vnz$Wnz$Xnz$SFz$z$Ynz$Znz$FTz$anz$bnz$z$Ynz$cnz$dnz$SFz$z$enz$fnz$gnz$hnz$gBz$hBz$uRz$inz$jnz$ZBz$aBz$knz$lnz$z$mnz$nnz$onz$pnz$z$qnz$rnz$vBz$snz$tnz$z$qnz$unz$vnz$wnz$z$xnz$IUz$Amz$z$jlz$ynz$Aoz$Boz$Coz$hlz$ilz$z$bDz$z$nRz$kVz$lVz$EWz$XWz$YWz$ZWz$bBz$z$nRz$kVz$lVz$Doz$Eoz$Foz$pBz$qBz$Goz$z$fCz$gCz$wDz$Nz$mDz$nDz$Hoz$tQz$Ioz$TTz$Joz$Xaz$Yaz$JSz$Koz$DSz$Loz$Moz$jDz$kDz$z$VIz$wFz$WIz$Noz$Ooz$PWz$qVz$wkz$Poz$PTz$QTz$RTz$oVz$z$jEz$z$KHz$Qoz$TTz$Roz$WJz$z$fCz$gCz$PJz$Tz$cMz$gDz$Soz$Toz$wMz$xMz$vgz$wgz$PWz$Uoz$APz$vDz$z$nRz$kVz$lVz$mVz$BIz$Voz$AWz$BWz$Woz$z$mEz$kbz$Xoz$Yoz$gGz$z$mEz$Zoz$aoz$boz$gGz$z$mEz$coz$TTz$doz$eoz$foz$SCz$z$fCz$gCz$pOz$qOz$rOz$Zcz$goz$hoz$TTz$ioz$joz$koz$jDz$kDz$z$mGz$pbz$loz$aoz$moz$rbz$sbz$noz$ooz$WPz$z$ETz$FTz$GTz$XTz$YTz$gVz$hVz$iVz$PTz$QTz$RTz$poz$VMz$z$PWz$qoz$KHz$jKz$SFz$z$kPz$lPz$z$JGz$z$ZCz$MHz$NHz$yFz$yRz$roz$soz$toz$WQz$uoz$BIz$voz$woz$xoz$yoz$Apz$hFz$VHz$mHz$IHz$RIz$sbz$noz$Bpz$z$lCz$Cpz$z$mHz$IHz$tNz$Dpz$xGz$Epz$tYz$z$lHz$z$fCz$z$OFz$PFz$PWz$qoz$KHz$Fpz$RFz$SFz$TFz$UFz$VFz$z$fCz$gCz$wDz$Nz$mDz$nDz$Gpz$Hpz$Ipz$TTz$Joz$Xaz$Yaz$Jpz$DKz$oNz$dDz$z$mEz$coz$TTz$doz$VTz$WTz$FTz$GTz$Kpz$Lpz$pBz$qBz$Mpz$Npz$Opz$Ppz$Qpz$Rpz$Spz$Tpz$Upz$Vpz$Wpz$Xpz$Ypz$z$fCz$gCz$wDz$Nz$yRz$Zpz$VTz$okz$PWz$qoz$jTz$apz$hFz$bBz$z$lCz$Vcz$z$DQz$EQz$FQz$GQz$HQz$dPz$ePz$IQz$JQz$KQz$LQz$MQz$UFz$VFz$z$fCz$gCz$wDz$Nz$yRz$bpz$TTz$Joz$cpz$dpz$epz$PQz$fpz$hFz$bBz$z$JGz$z$VIz$wFz$WIz$vgz$wgz$PWz$qVz$gpz$hpz$vMz$wMz$JWz$z$eIz$z$fCz$gCz$wJz$xJz$yJz$AKz$BKz$sEz$CKz$DKz$ipz$Hpz$Ipz$TTz$jpz$dDz$z$fCz$gCz$PJz$Tz$GKz$HKz$IKz$kpz$lpz$mpz$kOz$UWz$npz$hGz$VTz$Voz$AWz$BWz$opz$vDz$z$fCz$gCz$PJz$Tz$GKz$HKz$IKz$JKz$ppz$qpz$rpz$spz$USz$tpz$eSz$fSz$gSz$upz$hFz$bBz$z$fCz$gCz$wJz$Agz$vpz$wpz$xpz$ypz$SUz$dDz$z$Aqz$Bqz$Cqz$Dqz$pBz$qBz$Mpz$Eqz$Fqz$Gqz$Hqz$Iqz$Jqz$xlz$z$VIz$aFz$sIz$Kqz$Lqz$Mqz$Nqz$Oqz$rDz$Pqz$WQz$Qqz$z$DJz$OKz$z$JGz$z$jEz$z$PVz$bRz$HUz$IUz$Slz$Rqz$WJz$z$fCz$gCz$PJz$Tz$cMz$gDz$dMz$Sqz$Tqz$FVz$XUz$aVz$Uqz$jDz$kDz$z$mEz$Vqz$Wqz$OPz$Xqz$Yqz$gGz$z$OFz$Bbz$Cbz$CTz$pDz$DTz$Ebz$MLz$NLz$z$fCz$gCz$wJz$Agz$Zqz$fWz$gWz$tPz$CCz$FVz$yTz$AUz$aqz$UQz$hFz$bBz$z$bqz$Wqz$OPz$Xqz$cqz$dqz$z$eIz$z$fCz$gCz$wDz$Nz$yRz$eqz$fqz$gqz$XUz$aVz$hqz$iqz$jqz$vDz$z$JGz$z$mEz$rKz$COz$wfz$Gdz$Hdz$XRz$Idz$cXz$wXz$Jdz$Kdz$dYz$z$QPz$Odz$jez$kqz$mOz$nOz$Odz$kYz$Abz$uGz$z$OFz$Bbz$bgz$CTz$pDz$DTz$uez$vez$UMz$VMz$z$fCz$gCz$wJz$Agz$Zqz$aWz$Hfz$lqz$VNz$egz$mSz$mqz$vDz$z$bqz$Wqz$OPz$Xqz$cqz$dqz$z$eIz$z$fCz$gCz$wDz$Nz$yRz$nqz$GWz$Odz$uQz$cOz$oqz$dDz$z$JGz$z$lHz$z$OFz$Bbz$bgz$Dnz$Enz$iBz$nBz$Fnz$pqz$TFz$UFz$VFz$z$fCz$gCz$wJz$Agz$Zqz$aWz$wPz$Hjz$Ijz$qqz$mZz$rqz$sqz$jDz$kDz$z$bqz$Wqz$OPz$Xqz$cqz$dqz$z$eIz$z$fCz$gCz$wDz$Nz$yRz$nqz$tqz$QRz$RRz$uqz$vqz$wqz$hFz$bBz$z$JGz$z$KNz$Flz$lVz$xqz$yqz$Arz$Brz$Crz$Drz$Erz$Lez$Frz$nfz$pBz$qBz$OWz$PWz$QWz$MLz$NLz$z$fCz$gCz$wJz$Agz$Zqz$pVz$qVz$yTz$Grz$Hrz$Irz$hFz$bBz$z$bqz$Wqz$OPz$Xqz$cqz$dqz$z$eIz$z$fCz$gCz$wDz$Nz$yRz$oQz$TTz$Jrz$Hrz$Irz$hFz$bBz$z$JGz$z$KNz$Flz$lVz$Krz$Lrz$Mrz$Nrz$Orz$nfz$pBz$qBz$Goz$MLz$NLz$z$fCz$gCz$wJz$Agz$Zqz$pVz$qVz$yTz$Prz$cpz$mqz$vDz$z$bqz$Wqz$OPz$Xqz$cqz$dqz$z$eIz$z$fCz$gCz$wDz$Nz$yRz$oQz$TTz$Joz$cpz$dpz$ykz$Qrz$Rrz$vDz$z$JGz$z$OFz$Bbz$Cbz$CTz$pDz$DTz$Srz$Trz$biz$Urz$UOz$VOz$z$fCz$gCz$PJz$Tz$GKz$Vrz$EIz$giz$hiz$yTz$AUz$aqz$UQz$hFz$bBz$z$eIz$z$fCz$gCz$wDz$Nz$yRz$Wrz$Xrz$Liz$Yrz$vqz$wqz$hFz$bBz$z$JGz$z$OFz$Zrz$Tqz$Slz$arz$nMz$brz$crz$UOz$VOz$z$fCz$gCz$wJz$xJz$yJz$AKz$drz$erz$Pcz$IEz$frz$grz$hrz$irz$jrz$eQz$egz$mSz$mqz$vDz$z$VIz$aFz$sIz$krz$lrz$tPz$CCz$FVz$vfz$mrz$PVz$nrz$orz$eQz$prz$nMz$bBz$z$BJz$Wcz$z$eIz$z$fCz$gCz$wDz$Nz$mDz$nDz$qrz$Wqz$wOz$PSz$oSz$yQz$ARz$Cjz$dDz$z$VIz$wFz$WIz$drz$erz$ySz$ATz$rrz$yiz$srz$z$BJz$VJz$z$JGz$z$jEz$z$aaz$trz$urz$vrz$Nlz$wrz$WJz$z$fCz$gCz$PJz$Tz$cMz$gDz$xrz$NRz$ORz$jBz$yrz$urz$Asz$jDz$kDz$z$oCz$Jjz$gBz$hBz$iBz$JCz$Bsz$Csz$Dsz$lgz$mgz$z$eSz$fSz$gSz$Esz$ACz$uaz$z$gBz$hBz$Fsz$Gsz$Hsz$ACz$uaz$z$Vbz$Wbz$XBz$CTz$pDz$DTz$Isz$Jsz$z$WFz$Ksz$ZFz$z$KHz$Lsz$z$fCz$Msz$CKz$DKz$ipz$Hpz$Ipz$TTz$Nsz$bBz$z$UWz$npz$hGz$Osz$PTz$QTz$RTz$Psz$z$UWz$npz$hGz$VTz$Voz$AWz$BWz$Qsz$z$AVz$z$Rsz$bLz$z$fCz$Msz$Ssz$Tsz$Oqz$rDz$Pqz$WQz$Usz$Vsz$z$UWz$npz$hGz$Wsz$eSz$fSz$gSz$z$AVz$z$Xsz$Ysz$z$fCz$Msz$Xsz$Osz$vgz$wgz$PWz$Uoz$Zsz$z$UWz$npz$rKz$KHz$asz$pBz$qBz$bsz$z$UWz$npz$hGz$VTz$Voz$AWz$BWz$Qsz$z$AVz$z$jTz$csz$z$UWz$npz$hGz$VTz$Voz$AWz$BWz$Qsz$z$AVz$z$dsz$bLz$z$Aqz$Bqz$Cqz$Dqz$pBz$qBz$Mpz$esz$z$AVz$z$nBz$fsz$z$WZz$XZz$YZz$gsz$hsz$OYz$PYz$SYz$TYz$VMz$z$isz$jsz$taz$DTz$Isz$ksz$Kdz$z$lsz$LNz$MNz$NNz$msz$rGz$sGz$QNz$RNz$UFz$VFz$z$msz$Dnz$Enz$iBz$nBz$Fnz$Gnz$z$eIz$z$fCz$nsz$osz$qqz$mZz$rqz$sqz$psz$qsz$rsz$mrz$Vbz$Wbz$Kjz$QRz$Ljz$Qiz$z$JGz$z$AVz$z$ssz$tsz$z$fCz$Msz$usz$vsz$wsz$Hpz$xsz$bBz$z$ysz$gBz$hBz$Atz$z$Btz$Ctz$Dtz$Etz$sKz$HQz$dPz$ePz$aTz$fCz$Ftz$Gtz$Htz$Gmz$qqz$Itz$vqz$Jtz$z$Jaz$XUz$LTz$Npz$Ktz$OPz$z$UWz$npz$rKz$KHz$asz$pBz$qBz$bsz$z$AVz$z$LVz$z$fCz$Ltz$Mtz$Ntz$Otz$Ptz$Qtz$Rsz$Rtz$BIz$Stz$Ttz$dsz$Utz$Vtz$ssz$Wtz$z$fCz$Xtz$z$fCz$Ltz$AOz$Ytz$PUz$QUz$RUz$Ztz$z$fCz$atz$KHz$btz$ctz$Nqz$dtz$WQz$Qqz$z$fCz$atz$Rsz$VDz$etz$Tsz$dtz$WQz$Qqz$z$fCz$atz$Xsz$Osz$ftz$KHz$gtz$TTz$Dfz$z$fCz$atz$jTz$htz$itz$jtz$jTz$ktz$WQz$Qqz$z$fCz$atz$dsz$VDz$itz$jtz$VIz$PWz$QWz$z$fCz$atz$nBz$ltz$mtz$ntz$QRz$RRz$otz$z$fCz$atz$ssz$ptz$qtz$bRz$rtz$stz$uaz$z$DJz$OKz$z$AVz$z$IGz$z$bDz$z$lfz$mfz$KRz$VBz$WBz$ttz$utz$vtz$wtz$bBz$z$OFz$Bbz$xtz$ytz$Auz$Buz$Cuz$utz$vtz$Duz$UOz$VOz$z$Euz$Fuz$gBz$hBz$iBz$JCz$Bsz$Csz$Guz$ytz$Auz$Buz$Cuz$utz$vtz$Dfz$z$JGz$z$fCz$gCz$wDz$Nz$yRz$Huz$Nlz$Iuz$Juz$wkz$Poz$JCz$Bsz$Kuz$vDz$z$VIz$wFz$WIz$rMz$yrz$urz$Luz$Hbz$bBz$z$jEz$z$Muz$Nuz$Ouz$cCz$z$fCz$z$fCz$gCz$eDz$ez$fDz$gDz$hDz$iDz$iDz$iDz$iDz$iDz$iDz$iDz$iDz$iDz$iDz$iDz$iDz$iDz$iDz$iDz$iDz$iDz$jDz$kDz$z$fCz$gCz$wDz$Nz$mDz$nDz$VDz$VDz$VDz$VDz$VDz$Puz$VBz$Quz$Ruz$NIz$Suz$Tuz$Uuz$Vuz$Wuz$vDz$z$fCz$gCz$eDz$ez$fDz$gDz$hDz$iDz$iDz$iDz$iDz$iDz$iDz$iDz$iDz$iDz$iDz$iDz$iDz$iDz$iDz$iDz$iDz$iDz$jDz$kDz$z$fCz$z$fCz$gCz$hCz$iCz$jCz$Xuz$Yuz$Zuz$auz$buz$aVz$cuz$vDz$z$fCz$gCz$lDz$lz$yRz$duz$fqz$gqz$buz$aVz$euz$fuz$guz$gBz$hBz$huz$hFz$bBz$z$fCz$gCz$lDz$lz$yRz$duz$fqz$gqz$skz$tkz$iuz$juz$Nz$kuz$taz$DTz$jDz$kDz$z$fCz$gCz$lDz$lz$yRz$luz$muz$WQz$nuz$KIz$LIz$PTz$QTz$RTz$ouz$dDz$z$fCz$gCz$lDz$lz$yRz$Zpz$VTz$puz$iSz$okz$HIz$quz$UWz$npz$ruz$suz$tuz$PTz$QTz$RTz$uuz$vDz$z$fCz$gCz$lDz$lz$yRz$vuz$wuz$xuz$KIz$LIz$yuz$Avz$ouz$dDz$z$OFz$lTz$Bvz$lBz$mBz$Cvz$jkz$Dvz$Evz$UOz$VOz$z$mEz$bdz$Gkz$Kcz$Lez$Mez$Fvz$Gvz$rgz$Hvz$Ivz$saz$taz$DTz$Isz$ksz$Kdz$Kez$Jvz$Kvz$Lvz$Mvz$z$mEz$Nvz$Ovz$Pvz$Qvz$Rvz$Svz$Tvz$Uvz$Vvz$Vbz$Wbz$Kjz$QRz$Ljz$Mjz$aEz$Wvz$Xvz$Yvz$z$fCz$gCz$lDz$lz$yRz$Zvz$avz$bvz$JMz$KMz$cvz$dvz$jDz$kDz$z$fCz$gCz$lDz$lz$yRz$evz$fvz$gvz$hvz$ivz$jvz$kvz$lvz$vDz$z$JGz$z$OFz$JRz$mvz$FCz$GCz$nvz$UOz$VOz$z$mEz$TRz$URz$Hez$Iez$ovz$pvz$iRz$jRz$LRz$Bcz$iiz$jiz$kiz$liz$Vez$Wez$z$OFz$qvz$ZRz$rvz$oiz$KLz$svz$MLz$NLz$z$fCz$gCz$lDz$lz$yRz$ASz$URz$uQz$cOz$dOz$fuz$guz$tvz$URz$Hez$uvz$tYz$vvz$wvz$hFz$bBz$z$JGz$z$JGz$z$fCz$z$fCz$gCz$hCz$iCz$jCz$Xuz$xvz$AOz$yvz$Awz$Bwz$SUz$dDz$z$fCz$gCz$lDz$lz$yRz$Cwz$Dwz$bWz$iSz$okz$oFz$Ewz$utz$vtz$Fwz$BIz$Gwz$Hwz$KHz$Iwz$VTz$rFz$dDz$z$fCz$gCz$lDz$lz$yRz$Jwz$jtz$Kwz$Lwz$Tz$Mwz$Nwz$Owz$JKz$vWz$dDz$z$fCz$gCz$lDz$lz$yRz$Pwz$ntz$QRz$RRz$BTz$gvz$hvz$Qwz$Rwz$CYz$nBz$Swz$vDz$z$fCz$gCz$lDz$lz$yRz$Twz$bRz$rtz$stz$euz$JMz$KMz$JCz$Bsz$Uwz$Vwz$jpz$dDz$z$fCz$z$fCz$gCz$hCz$iCz$jCz$Xuz$Wwz$AOz$Xwz$REz$Ywz$vDz$z$fCz$gCz$lDz$lz$yRz$Zwz$awz$VTz$okz$oFz$bwz$FTz$GTz$kpz$lpz$PTz$QTz$RTz$ouz$dDz$z$fCz$gCz$lDz$lz$yRz$Jwz$jtz$VIz$jMz$cwz$gvz$hvz$dwz$spz$USz$tpz$eSz$fSz$gSz$upz$hFz$bBz$z$fCz$gCz$lDz$lz$yRz$ewz$KHz$gtz$TTz$hTz$JMz$KMz$UWz$npz$rKz$KHz$asz$pBz$qBz$fwz$hFz$bBz$z$fCz$z$fCz$gCz$hCz$iCz$jCz$Xuz$gwz$hwz$iwz$jwz$Ogz$kwz$vDz$z$fCz$gCz$lDz$lz$yRz$lwz$mwz$nwz$owz$okz$oFz$pwz$gBz$hBz$iBz$JCz$qWz$qwz$vDz$z$fCz$gCz$lDz$lz$yRz$ikz$jkz$kkz$euz$JMz$KMz$Dnz$Enz$iBz$nBz$Fnz$rwz$hFz$bBz$z$fCz$gCz$lDz$lz$yRz$swz$Nlz$Iuz$twz$Lwz$Tz$uwz$VBz$WBz$ttz$utz$vtz$wtz$jDz$kDz$z$fCz$gCz$lDz$lz$yRz$vwz$wwz$CCz$iuz$Lwz$Tz$xwz$uBz$ywz$hFz$bBz$z$fCz$z$fCz$gCz$PJz$Tz$cMz$gDz$Axz$Bxz$Cxz$Bsz$Dxz$vDz$z$fCz$gCz$lDz$lz$yRz$Exz$Fxz$qSz$nkz$ppz$Gxz$Hxz$jDz$kDz$z$fCz$gCz$lDz$lz$yRz$Ixz$Jxz$Kxz$xMz$bNz$Lxz$Mxz$Nxz$Oxz$ukz$Pxz$hFz$bBz$z$fCz$gCz$lDz$lz$yRz$Qxz$Rxz$Sxz$Txz$Uxz$yQz$Vxz$jDz$kDz$z$fCz$gCz$lDz$lz$yRz$Wxz$Xxz$Qrz$URz$wPz$Hjz$Ijz$Yxz$Zxz$axz$oNz$dDz$z$fCz$z$fCz$gCz$wDz$Nz$mDz$nDz$bxz$cxz$dxz$exz$fxz$WNz$XNz$DNz$pSz$qSz$gxz$ygz$Ahz$hxz$jDz$kDz$z$fCz$gCz$eDz$ez$fDz$gDz$hDz$iDz$iDz$iDz$iDz$iDz$iDz$iDz$iDz$iDz$iDz$iDz$iDz$iDz$iDz$iDz$iDz$iDz$jDz$kDz$z$OFz$CLz$dFz$gBz$hBz$SLz$TLz$ixz$jxz$UOz$VOz$z$mEz$uXz$CCz$kxz$lxz$eZz$mxz$bRz$nxz$oxz$gBz$hBz$SLz$TLz$ULz$z$fCz$gCz$DEz$EEz$FEz$pxz$qxz$ySz$ATz$BTz$rxz$CCz$kxz$lxz$sxz$txz$uxz$dDz$z$JGz$z$fCz$z$jEz$z$dCz$vxz$orz$eQz$cCz$z$fCz$gCz$wxz$xxz$mDz$nDz$yxz$CCz$FVz$YQz$Ayz$Byz$lQz$Cyz$jDz$kDz$z$fCz$gCz$PJz$Tz$Dyz$Eyz$Fyz$Gyz$eez$Hyz$Iyz$Jyz$jDz$kDz$z$OFz$JRz$KRz$VBz$WBz$LRz$Kyz$Lyz$Myz$Nyz$gBz$hBz$uRz$XEz$YEz$xdz$Ebz$MLz$NLz$z$Oyz$Pyz$CTz$pDz$DTz$bBz$z$JGz$z$ETz$FTz$GTz$XTz$YTz$gVz$hVz$iVz$PTz$QTz$RTz$jVz$rGz$sGz$tGz$VMz$z$UWz$npz$hGz$Qyz$PTz$QTz$RTz$jVz$rGz$sGz$Ryz$z$JGz$z$OFz$lTz$KWz$LWz$FTz$MWz$FTz$NWz$pBz$qBz$OWz$PWz$QWz$TFz$UFz$VFz$z$Oyz$Syz$TWz$UWz$VWz$UWz$WWz$eSz$fSz$gSz$hSz$iSz$bBz$z$UWz$npz$Tyz$Uyz$Vyz$Wyz$XEz$YEz$Xyz$z$JGz$z$VIz$aFz$sIz$Yyz$ATz$Zyz$ayz$byz$cyz$dyz$eyz$fyz$z$fCz$gCz$pOz$qOz$gyz$hyz$VIz$bNz$iyz$jyz$kyz$uBz$ywz$hFz$bBz$z$DJz$OKz$z$jEz$z$lyz$myz$nyz$oyz$lEz$z$mGz$pbz$pyz$KLz$LLz$WPz$z$WFz$qyz$ryz$z$syz$tyz$bLz$z$NCz$OCz$PCz$QCz$uyz$jPz$z$qEz$rEz$z$AVz$z$vyz$wyz$xyz$bLz$z$TCz$UCz$SFz$z$qEz$rEz$z$AVz$z$yyz$AABz$BABz$z$XCz$YCz$SFz$z$fCz$gCz$PJz$Tz$CABz$DABz$RJz$EABz$IWz$FABz$VNz$eVz$GABz$HABz$OUz$PUz$DNz$IABz$JABz$mqz$vDz$z$qEz$rEz$z$AVz$z$KABz$LABz$MABz$z$Muz$NABz$lnz$z$DJz$KVz$z$AVz$z$LVz$z$fCz$gCz$wJz$OABz$PABz$yTz$AUz$QABz$mrz$RABz$dDz$z$Muz$NABz$lnz$z$DJz$OKz$z$AVz$z$IGz$z$lHz$z$jEz$z$Muz$NABz$SABz$WJz$z$fCz$gCz$hCz$iCz$jCz$TABz$rDz$UABz$PSz$VABz$gxz$ygz$Ahz$WABz$vDz$z$fCz$z$fCz$gCz$lDz$lz$XABz$XNz$YABz$ZABz$aABz$bABz$vDz$z$fCz$z$fCz$gCz$PJz$Tz$cABz$dABz$PUz$QUz$RUz$SUz$dDz$z$fCz$gCz$lDz$lz$eABz$fABz$tyz$VDz$VDz$gABz$wPz$hABz$FVz$iABz$jABz$kABz$vDz$z$fCz$gCz$lDz$lz$eABz$lABz$wyz$xyz$VDz$mABz$nABz$oABz$ibz$yoz$pABz$hFz$bBz$z$fCz$gCz$lDz$lz$eABz$qABz$rABz$VDz$VDz$sABz$oSz$tABz$uABz$vABz$wABz$xABz$yABz$jDz$kDz$z$fCz$gCz$lDz$lz$eABz$ABBz$LABz$BBBz$VDz$mABz$nABz$Qrz$CBBz$Fgz$DBBz$dDz$z$fCz$z$fCz$gCz$hCz$iCz$EBBz$FBBz$GBBz$HBBz$Dxz$vDz$z$fCz$gCz$lDz$lz$IBBz$GNz$JBBz$VDz$VDz$VDz$VDz$HOz$buz$aVz$KBBz$LBBz$jDz$kDz$z$fCz$gCz$lDz$lz$IBBz$GNz$MBBz$NBBz$VDz$VDz$VDz$OBBz$PSz$oSz$PBBz$QBBz$vWz$dDz$z$fCz$gCz$lDz$lz$IBBz$GNz$MBBz$RBBz$VDz$VDz$VDz$OBBz$PSz$oSz$ppz$Gxz$SBBz$TBBz$UBBz$Cjz$dDz$z$fCz$gCz$lDz$lz$IBBz$GNz$MBBz$qABz$rABz$VDz$VDz$VBBz$WBBz$FVz$XUz$aVz$DBBz$dDz$z$jEz$z$sKz$cCz$z$lyz$myz$nyz$XBBz$YBBz$z$ZBBz$aBBz$bBBz$cBBz$irz$dBBz$eBBz$fBBz$gBBz$z$gBz$hBz$SLz$TLz$hBBz$AHz$BHz$CHz$z$iBBz$jBBz$kBBz$lBBz$mBBz$nBBz$MKz$oBBz$bBz$z$pBBz$qBBz$rBBz$sBBz$bBz$z$VIz$wFz$WIz$tBBz$tBBz$tBBz$tBBz$tBBz$oDz$uBBz$vBBz$rDz$wBBz$xBBz$yBBz$tBBz$tBBz$tBBz$tBBz$ACBz$z$VIz$wFz$WIz$BCBz$tPz$CCz$CCBz$DCBz$bBz$z$VIz$wFz$WIz$SNz$cwz$ECBz$mBBz$FCBz$z$VIz$wFz$WIz$hmz$GCBz$HCBz$ICBz$z$VIz$wFz$WIz$JCBz$Rlz$Ucz$vEz$z$ZCz$aCz$bCz$z$XMz$YMz$ZMz$aMz$KCBz$z$XMz$MSz$NSz$OSz$PSz$QSz$smz$z$XUz$wWz$xWz$yWz$AXz$z$aaz$baz$caz$xSz$LCBz$z$abz$ZWz$Xcz$LCBz$z$XUz$wWz$tZz$Xgz$Ygz$z$aaz$baz$Djz$Ejz$QRz$MCBz$z$aaz$Dlz$WQz$rUz$z$KHz$Qoz$TTz$WCz$z$aaz$trz$urz$vrz$Nlz$NCBz$z$OCBz$Tqz$PCBz$XUz$yUz$OPz$MLz$NLz$z$Muz$Nuz$Ouz$z$VIz$wFz$WIz$tBBz$tBBz$tBBz$tBBz$tBBz$oDz$uBBz$QCBz$RCBz$SCBz$TCBz$UCBz$VCBz$WCBz$tBBz$tBBz$tBBz$tBBz$XCBz$z$eIz$z$fCz$gCz$wJz$xJz$yJz$AKz$buz$aVz$YCBz$ZCBz$hqz$aCBz$eVz$bCBz$cCBz$dCBz$eCBz$Tqz$fCBz$hFz$bBz$z$fCz$gCz$PJz$Tz$gCBz$fMz$hCBz$iCBz$jCBz$VTz$bWz$iSz$Yxz$Zxz$kCBz$WABz$vDz$z$VIz$mFz$Ncz$buz$aVz$YCBz$ZCBz$lkz$lCBz$mCBz$nCBz$bBz$z$JGz$z$jEz$z$OFz$PFz$oCBz$pCBz$qCBz$rCBz$sCBz$dFz$tCBz$UMz$VMz$z$sKz$uCBz$bBz$z$JGz"
+set -euo pipefail
+
+# Definisi warna yang lebih lengkap
+declare -r RED='\033[0;31m'
+declare -r GREEN='\033[0;32m'
+declare -r YELLOW='\033[1;33m'
+declare -r BLUE='\033[0;34m'
+declare -r PURPLE='\033[0;35m'
+declare -r CYAN='\033[0;36m'
+declare -r WHITE='\033[1;37m'
+declare -r BOLD='\033[1m'
+declare -r DIM='\033[2m'
+declare -r UNDERLINE='\033[4m'
+declare -r BLINK='\033[5m'
+declare -r NC='\033[0m'
+
+# Emoji untuk tampilan yang lebih menarik
+declare -r ROCKET="🚀"
+declare -r FIRE="🔥"
+declare -r SPARKLES="✨"
+declare -r CHECK="✅"
+declare -r CROSS="❌"
+declare -r WARNING="⚠️"
+declare -r INFO="ℹ️"
+declare -r GEAR="⚙️"
+declare -r PACKAGE="📦"
+declare -r FOLDER="📁"
+declare -r DOWNLOAD="⬇️"
+declare -r TRASH="🗑️"
+declare -r MAGNIFY="🔍"
+declare -r PARTY="🎉"
+
+# Konfigurasi sistem
+declare -r REPO="MikkuChan/scripts"
+declare -r BRANCH="main"
+declare -r RAW_URL="https://raw.githubusercontent.com/$REPO/$BRANCH"
+declare -r INSTALL_DIR="/opt/vpn-api"
+declare -r SCRIPT_DIR="$INSTALL_DIR/scripts"
+declare -r CONFIG_DIR="$INSTALL_DIR/config"
+declare -r BACKUP_DIR="$INSTALL_DIR/backup"
+declare -r SERVICE_NAME="vpn-api"
+declare -r LOG_FILE="/var/log/vpn-api-install.log"
+declare -r ERROR_LOG="/var/log/vpn-api-error.log"
+declare -r TEMP_DIR="/tmp/vpn-api-install"
+
+# Variabel global untuk tracking
+declare -g INSTALL_START_TIME
+declare -g CURRENT_STEP=0
+declare -g TOTAL_STEPS=10
+
+# Banner yang lebih keren dengan gradient effect
+print_banner() {
+    clear
+    echo -e "${CYAN}${BOLD}"
+    cat << 'EOF'
+╔═══════════════════════════════════════════════════════════════════════════════╗
+║                                                                               ║
+║  ███████╗ █████╗ ██████╗ ███████╗██████╗ ██╗ ██████╗ ██╗████████╗ █████╗ ██╗ ║
+║  ██╔════╝██╔══██╗██╔══██╗╚══███╔╝██╔══██╗██║██╔════╝ ██║╚══██╔══╝██╔══██╗██║ ║
+║  █████╗  ███████║██║  ██║  ███╔╝ ██║  ██║██║██║  ███╗██║   ██║   ███████║██║ ║
+║  ██╔══╝  ██╔══██║██║  ██║ ███╔╝  ██║  ██║██║██║   ██║██║   ██║   ██╔══██║██║ ║
+║  ██║     ██║  ██║██████╔╝███████╗██████╔╝██║╚██████╔╝██║   ██║   ██║  ██║███████╗
+║  ╚═╝     ╚═╝  ╚═╝╚═════╝ ╚══════╝╚═════╝ ╚═╝ ╚═════╝ ╚═╝   ╚═╝   ╚═╝  ╚═╝╚══════╝
+║                                                                               ║
+╚═══════════════════════════════════════════════════════════════════════════════╝
+EOF
+    echo -e "${NC}"
+    echo -e "${PURPLE}${BOLD}╔═══════════════════════════════════════════════════════════════════════════════╗${NC}"
+    echo -e "${PURPLE}${BOLD}║${NC}${WHITE}${BOLD}                      ${FIRE} INSTALLER VPN API v2.0 ${FIRE}                       ${NC}${PURPLE}${BOLD}║${NC}"
+    echo -e "${PURPLE}${BOLD}║${NC}${GREEN}${BOLD}                          ${SPARKLES} by FadzDigital ${SPARKLES}                          ${NC}${PURPLE}${BOLD}║${NC}"
+    echo -e "${PURPLE}${BOLD}║${NC}${YELLOW}${DIM}                   Installer Terbaik untuk VPN API Anda                   ${NC}${PURPLE}${BOLD}║${NC}"
+    echo -e "${PURPLE}${BOLD}╚═══════════════════════════════════════════════════════════════════════════════╝${NC}"
+    echo
+    echo -e "${CYAN}${BOLD}${INFO} Waktu mulai instalasi: ${WHITE}$(date '+%d/%m/%Y %H:%M:%S')${NC}"
+    echo
+}
+
+# Sistem logging yang lebih advanced
+log() {
+    local level="$1"
+    shift
+    local message="$*"
+    local timestamp=$(date '+%Y-%m-%d %H:%M:%S')
+    
+    case "$level" in
+        "INFO")
+            echo "[$timestamp] [INFO] $message" >> "$LOG_FILE"
+            ;;
+        "ERROR")
+            echo "[$timestamp] [ERROR] $message" >> "$ERROR_LOG"
+            echo "[$timestamp] [ERROR] $message" >> "$LOG_FILE"
+            ;;
+        "WARN")
+            echo "[$timestamp] [WARN] $message" >> "$LOG_FILE"
+            ;;
+        "SUCCESS")
+            echo "[$timestamp] [SUCCESS] $message" >> "$LOG_FILE"
+            ;;
+    esac
+}
+
+# Progress tracking yang lebih detail
+update_progress() {
+    CURRENT_STEP=$((CURRENT_STEP + 1))
+    local step_name="$1"
+    local percentage=$((CURRENT_STEP * 100 / TOTAL_STEPS))
+    
+    echo -e "${BLUE}${BOLD}[${WHITE}$CURRENT_STEP${BLUE}/${WHITE}$TOTAL_STEPS${BLUE}]${NC} ${CYAN}Progress: ${WHITE}$percentage%${NC} ${YELLOW}$step_name${NC}"
+    log "INFO" "Step $CURRENT_STEP/$TOTAL_STEPS: $step_name"
+}
+
+# Spinner animasi yang lebih keren
+spinner() {
+    local pid=$1
+    local message="$2"
+    local delay=0.08
+    local spin='⣾⣽⣻⢿⡿⣟⣯⣷'
+    local colors=("${RED}" "${YELLOW}" "${GREEN}" "${CYAN}" "${BLUE}" "${PURPLE}")
+    local i=0
+    local color_index=0
+    
+    while kill -0 $pid 2>/dev/null; do
+        local color=${colors[$color_index]}
+        printf "\r${color}${BOLD}%c${NC} ${WHITE}%s${NC} " "${spin:$i:1}" "$message"
+        sleep $delay
+        i=$(((i + 1) % 8))
+        color_index=$(((color_index + 1) % 6))
+    done
+    
+    wait $pid
+    local exit_code=$?
+    
+    if [ $exit_code -eq 0 ]; then
+        printf "\r${GREEN}${BOLD}${CHECK}${NC} ${WHITE}%s${NC} ${GREEN}${BOLD}[BERHASIL]${NC}\n" "$message"
+        log "SUCCESS" "$message"
+    else
+        printf "\r${RED}${BOLD}${CROSS}${NC} ${WHITE}%s${NC} ${RED}${BOLD}[GAGAL]${NC}\n" "$message"
+        log "ERROR" "Gagal: $message"
+        return $exit_code
+    fi
+}
+
+# Progress bar yang lebih cantik dengan animasi
+animated_progress_bar() {
+    local current=$1
+    local total=$2
+    local message="$3"
+    local width=40
+    local percentage=$((current * 100 / total))
+    local completed=$((current * width / total))
+    local remaining=$((width - completed))
+    
+    # Warna gradient untuk progress bar
+    local bar_color
+    if [ $percentage -lt 30 ]; then
+        bar_color="${RED}"
+    elif [ $percentage -lt 70 ]; then
+        bar_color="${YELLOW}"
+    else
+        bar_color="${GREEN}"
+    fi
+    
+    printf "\r${CYAN}${BOLD}╔${"%-$(($width + 20))s"}╗${NC}\n" ""
+    printf "${CYAN}${BOLD}║${NC} ${WHITE}$message${NC}%*s${CYAN}${BOLD}║${NC}\n" $((width + 20 - ${#message} - 1)) ""
+    printf "${CYAN}${BOLD}║${NC} ${bar_color}["
+    printf "%*s" $completed | tr ' ' '█'
+    printf "%*s" $remaining | tr ' ' '░'
+    printf "${bar_color}] ${WHITE}%3d%%${NC} ${CYAN}${BOLD}║${NC}\n" $percentage
+    printf "${CYAN}${BOLD}╚${"%-$(($width + 20))s"}╝${NC}\n" ""
+}
+
+# Fungsi untuk menampilkan info sistem
+show_system_info() {
+    echo -e "${CYAN}${BOLD}${INFO} Informasi Sistem:${NC}"
+    echo -e "${WHITE}   OS: ${GREEN}$(lsb_release -d 2>/dev/null | cut -f2 || echo "$(uname -s) $(uname -r)")${NC}"
+    echo -e "${WHITE}   Arsitektur: ${GREEN}$(uname -m)${NC}"
+    echo -e "${WHITE}   Kernel: ${GREEN}$(uname -r)${NC}"
+    echo -e "${WHITE}   Memory: ${GREEN}$(free -h | awk '/^Mem:/ {print $2}')${NC}"
+    echo -e "${WHITE}   Disk Space: ${GREEN}$(df -h / | awk 'NR==2 {print $4}') tersedia${NC}"
+    echo -e "${WHITE}   User: ${GREEN}$(whoami)${NC}"
+    echo
+}
+
+# Validasi sistem yang lebih ketat
+check_prerequisites() {
+    update_progress "Memeriksa prasyarat sistem"
+    show_system_info
+    
+    # Array untuk menyimpan error
+    local errors=()
+    
+    # Cek apakah running sebagai root
+    if [[ $EUID -ne 0 ]]; then
+        errors+=("Script ini harus dijalankan sebagai root. Gunakan: sudo $0")
+    fi
+    
+    # Cek versi OS yang didukung
+    if command -v lsb_release >/dev/null 2>&1; then
+        local os_version=$(lsb_release -rs)
+        local os_id=$(lsb_release -is)
+        if [[ "$os_id" == "Ubuntu" ]] && [[ $(echo "$os_version < 18.04" | bc -l) -eq 1 ]]; then
+            errors+=("Ubuntu versi minimum yang didukung adalah 18.04")
+        fi
+    fi
+    
+    # Cek space disk minimum (1GB)
+    local available_space=$(df / | awk 'NR==2 {print $4}')
+    if [[ $available_space -lt 1048576 ]]; then
+        errors+=("Space disk tidak mencukupi. Minimal diperlukan 1GB")
+    fi
+    
+    # Cek koneksi internet dengan multiple test
+    local connection_tests=("github.com" "google.com" "8.8.8.8")
+    local connection_ok=false
+    
+    for host in "${connection_tests[@]}"; do
+        if ping -c 1 -W 3 "$host" &> /dev/null; then
+            connection_ok=true
+            break
+        fi
+    done
+    
+    if [[ "$connection_ok" != true ]]; then
+        errors+=("Tidak ada koneksi internet yang stabil")
+    fi
+    
+    # Cek port yang digunakan
+    local ports_to_check=(80 443 3000 8080)
+    local port_conflicts=()
+    
+    for port in "${ports_to_check[@]}"; do
+        if netstat -tuln 2>/dev/null | grep -q ":$port "; then
+            port_conflicts+=("$port")
+        fi
+    done
+    
+    if [[ ${#port_conflicts[@]} -gt 0 ]]; then
+        errors+=("Port konflik terdeteksi: ${port_conflicts[*]}")
+    fi
+    
+    # Tampilkan error jika ada
+    if [[ ${#errors[@]} -gt 0 ]]; then
+        echo -e "${RED}${BOLD}${CROSS} Ditemukan masalah pada sistem:${NC}"
+        for error in "${errors[@]}"; do
+            echo -e "${RED}   • $error${NC}"
+        done
+        echo
+        exit 1
+    fi
+    
+    echo -e "${GREEN}${BOLD}${CHECK} Semua prasyarat sistem terpenuhi${NC}"
+    log "INFO" "Prasyarat sistem berhasil divalidasi"
+}
+
+# Deteksi instalasi yang sudah ada dengan info lebih detail
+check_existing_installation() {
+    update_progress "Memeriksa instalasi yang sudah ada"
+    
+    local existing_found=false
+    local install_info=()
+    
+    # Cek direktori instalasi
+    if [ -d "$INSTALL_DIR" ]; then
+        existing_found=true
+        local dir_size=$(du -sh "$INSTALL_DIR" 2>/dev/null | cut -f1)
+        install_info+=("Direktori: $INSTALL_DIR ($dir_size)")
+    fi
+    
+    # Cek service
+    if systemctl list-unit-files | grep -q "$SERVICE_NAME.service"; then
+        existing_found=true
+        local service_status=$(systemctl is-active "$SERVICE_NAME" 2>/dev/null || echo "tidak aktif")
+        install_info+=("Service: $SERVICE_NAME ($service_status)")
+    fi
+    
+    # Cek proses yang berjalan
+    if pgrep -f "vpn-api" >/dev/null; then
+        existing_found=true
+        install_info+=("Proses VPN API sedang berjalan")
+    fi
+    
+    if [[ "$existing_found" == true ]]; then
+        echo -e "${YELLOW}${BOLD}${WARNING} Ditemukan instalasi VPN API yang sudah ada:${NC}"
+        for info in "${install_info[@]}"; do
+            echo -e "${BLUE}   • $info${NC}"
+        done
+        echo
+        
+        echo -e "${CYAN}${BOLD}Pilihan tersedia:${NC}"
+        echo -e "${WHITE}   1) ${GREEN}Hapus dan install ulang${NC}"
+        echo -e "${WHITE}   2) ${YELLOW}Backup dan install ulang${NC}"
+        echo -e "${WHITE}   3) ${RED}Batalkan instalasi${NC}"
+        echo
+        
+        while true; do
+            echo -e "${CYAN}${BOLD}Pilih opsi [1-3]: ${NC}"
+            read -r choice
+            case $choice in
+                1)
+                    remove_existing_installation
+                    break
+                    ;;
+                2)
+                    backup_existing_installation
+                    remove_existing_installation
+                    break
+                    ;;
+                3)
+                    echo -e "${RED}${BOLD}${CROSS} Instalasi dibatalkan oleh pengguna${NC}"
+                    exit 0
+                    ;;
+                *)
+                    echo -e "${YELLOW}Pilihan tidak valid. Silakan pilih 1, 2, atau 3${NC}"
+                    ;;
+            esac
+        done
+    fi
+}
+
+# Backup instalasi yang sudah ada
+backup_existing_installation() {
+    echo -e "${YELLOW}${BOLD}${PACKAGE} Membuat backup instalasi yang sudah ada...${NC}"
+    
+    local backup_name="vpn-api-backup-$(date +%Y%m%d-%H%M%S)"
+    local backup_path="/tmp/$backup_name"
+    
+    mkdir -p "$backup_path"
+    
+    if [ -d "$INSTALL_DIR" ]; then
+        cp -r "$INSTALL_DIR" "$backup_path/" 2>/dev/null || true
+        log "INFO" "Backup direktori instalasi ke $backup_path"
+    fi
+    
+    if systemctl list-unit-files | grep -q "$SERVICE_NAME.service"; then
+        systemctl show "$SERVICE_NAME" > "$backup_path/service-config.txt" 2>/dev/null || true
+        log "INFO" "Backup konfigurasi service"
+    fi
+    
+    # Kompres backup
+    tar -czf "$backup_path.tar.gz" -C "/tmp" "$backup_name" 2>/dev/null || true
+    rm -rf "$backup_path"
+    
+    echo -e "${GREEN}${BOLD}${CHECK} Backup berhasil dibuat: ${WHITE}$backup_path.tar.gz${NC}"
+    log "SUCCESS" "Backup dibuat di $backup_path.tar.gz"
+}
+
+# Penghapusan instalasi yang lebih aman
+remove_existing_installation() {
+    update_progress "Menghapus instalasi yang sudah ada"
+    
+    # Stop service dengan timeout
+    if systemctl is-active --quiet "$SERVICE_NAME" 2>/dev/null; then
+        echo -e "${YELLOW}Menghentikan service...${NC}"
+        timeout 30 systemctl stop "$SERVICE_NAME" || {
+            echo -e "${RED}Service tidak bisa dihentikan dengan normal, memaksa...${NC}"
+            systemctl kill "$SERVICE_NAME"
+            sleep 2
+        }
+    fi
+    
+    # Disable service
+    if systemctl is-enabled --quiet "$SERVICE_NAME" 2>/dev/null; then
+        systemctl disable "$SERVICE_NAME" >/dev/null 2>&1
+    fi
+    
+    # Hapus file service
+    if [ -f "/etc/systemd/system/$SERVICE_NAME.service" ]; then
+        rm -f "/etc/systemd/system/$SERVICE_NAME.service"
+        systemctl daemon-reload
+    fi
+    
+    # Hapus direktori instalasi dengan aman
+    if [ -d "$INSTALL_DIR" ]; then
+        # Kill proses yang masih menggunakan direktori
+        lsof +D "$INSTALL_DIR" 2>/dev/null | awk 'NR>1 {print $2}' | xargs -r kill -9 2>/dev/null || true
+        sleep 1
+        rm -rf "$INSTALL_DIR"
+    fi
+    
+    # Bersihkan log lama
+    rm -f "$LOG_FILE" "$ERROR_LOG" 2>/dev/null || true
+    
+    echo -e "${GREEN}${BOLD}${CHECK} Instalasi lama berhasil dihapus${NC}"
+    log "SUCCESS" "Instalasi lama berhasil dihapus"
+}
+
+# Install dependencies dengan versi terbaru
+install_dependencies() {
+    update_progress "Menginstall dependencies yang diperlukan"
+    
+    # Update sistem terlebih dahulu
+    echo -e "${YELLOW}Memperbarui daftar paket...${NC}"
+    {
+        DEBIAN_FRONTEND=noninteractive apt-get update -y
+    } &
+    spinner $! "Memperbarui daftar paket sistem"
+    
+    # Install Node.js dari NodeSource untuk versi terbaru
+    if ! command -v node >/dev/null 2>&1 || [[ $(node -v | cut -d'v' -f2 | cut -d'.' -f1) -lt 16 ]]; then
+        echo -e "${YELLOW}Menginstall Node.js versi terbaru...${NC}"
+        {
+            curl -fsSL https://deb.nodesource.com/setup_lts.x | bash -
+            DEBIAN_FRONTEND=noninteractive apt-get install -y nodejs
+        } &
+        spinner $! "Menginstall Node.js LTS"
+    fi
+    
+    # Daftar paket yang diperlukan
+    local packages=(
+        "curl"
+        "wget" 
+        "git"
+        "unzip"
+        "build-essential"
+        "python3"
+        "python3-pip"
+        "nginx"
+        "ufw"
+        "htop"
+        "nano"
+        "jq"
+        "bc"
+    )
+    
+    local total=${#packages[@]}
+    local installed=0
+    local skipped=0
+    
+    echo -e "${YELLOW}Menginstall paket-paket yang diperlukan...${NC}"
+    
+    for package in "${packages[@]}"; do
+        if ! dpkg -l | grep -q "^ii  $package "; then
+            {
+                DEBIAN_FRONTEND=noninteractive apt-get install -y "$package"
+            } &
+            spinner $! "Menginstall $package"
+            installed=$((installed + 1))
+        else
+            echo -e "${DIM}${package} sudah terinstall${NC}"
+            skipped=$((skipped + 1))
+        fi
+    done
+    
+    echo -e "${GREEN}${BOLD}${CHECK} Dependencies berhasil diinstall${NC}"
+    echo -e "${WHITE}   • Diinstall: ${GREEN}$installed${NC} paket"
+    echo -e "${WHITE}   • Dilewati: ${YELLOW}$skipped${NC} paket"
+    log "SUCCESS" "Dependencies berhasil diinstall: $installed baru, $skipped dilewati"
+}
+
+# Buat struktur direktori yang lebih lengkap
+create_directories() {
+    update_progress "Membuat struktur direktori"
+    
+    local directories=(
+        "$INSTALL_DIR"
+        "$SCRIPT_DIR"
+        "$CONFIG_DIR"
+        "$BACKUP_DIR"
+        "/var/log/vpn-api"
+        "/var/lib/vpn-api"
+        "$TEMP_DIR"
+    )
+    
+    echo -e "${YELLOW}Membuat direktori sistem...${NC}"
+    
+    for dir in "${directories[@]}"; do
+        if [ ! -d "$dir" ]; then
+            mkdir -p "$dir"
+            echo -e "${GREEN}   ${CHECK} $dir${NC}"
+            log "INFO" "Direktori dibuat: $dir"
+        else
+            echo -e "${DIM}   $dir sudah ada${NC}"
+        fi
+    done
+    
+    # Set permission yang tepat
+    chown -R root:root "$INSTALL_DIR"
+    chmod -R 755 "$INSTALL_DIR"
+    chmod 700 "$CONFIG_DIR"
+    
+    echo -e "${GREEN}${BOLD}${CHECK} Struktur direktori berhasil dibuat${NC}"
+}
+
+# Download dengan retry dan validasi
+download_with_retry() {
+    local url="$1"
+    local output="$2"
+    local max_attempts=3
+    local attempt=1
+    
+    while [ $attempt -le $max_attempts ]; do
+        if curl -fsSL --connect-timeout 10 --max-time 60 "$url" -o "$output"; then
+            # Validasi file yang didownload
+            if [ -s "$output" ]; then
+                return 0
+            else
+                rm -f "$output"
+                echo -e "${YELLOW}File kosong, mencoba ulang... (${attempt}/${max_attempts})${NC}"
+            fi
+        else
+            echo -e "${YELLOW}Download gagal, mencoba ulang... (${attempt}/${max_attempts})${NC}"
+        fi
+        
+        attempt=$((attempt + 1))
+        sleep 2
+    done
+    
+    return 1
+}
+
+# Download files dengan progress yang lebih detail
+download_files() {
+    update_progress "Mendownload file dari repository"
+    
+    cd "$INSTALL_DIR"
+    
+    # File-file utama yang diperlukan
+    local main_files=(
+        "vpn-api.js"
+        "package.json"
+        "README.md"
+        ".env.example"
+    )
+    
+    # Download file utama
+    echo -e "${YELLOW}${DOWNLOAD} Mendownload file utama...${NC}"
+    local downloaded=0
+    local total_main=${#main_files[@]}
+    
+    for file in "${main_files[@]}"; do
+        if download_with_retry "$RAW_URL/$file" "$INSTALL_DIR/$file"; then
+            downloaded=$((downloaded + 1))
+            animated_progress_bar $downloaded $total_main "Download: $file"
+            log "SUCCESS" "Downloaded: $file"
+        else
+            echo -e "${RED}${BOLD}${CROSS} Gagal download $file setelah beberapa percobaan${NC}"
+            log "ERROR" "Gagal download $file"
+            exit 1
+        fi
+        sleep 0.5
+    done
+    
+    # Download shell scripts
+    echo -e "${YELLOW}${DOWNLOAD} Mendownload script utilitas...${NC}"
+    local sh_files_api="https://api.github.com/repos/$REPO/contents?ref=$BRANCH"
+    local sh_files_list
+    
+    if sh_files_list=$(curl -s "$sh_files_api" | jq -r '.[] | select(.name | endswith(".sh")) | select(.name != "install.sh") | .name' 2>/dev/null); then
+        local sh_count=0
+        local total_sh=$(echo "$sh_files_list" | wc -l)
+        
+        for file in $sh_files_list; do
+            if download_with_retry "$RAW_URL/$file" "$SCRIPT_DIR/$file"; then
+                chmod +x "$SCRIPT_DIR/$file"
+                sh_count=$((sh_count + 1))
+                animated_progress_bar $sh_count $total_sh "Script: $file"
+                log "SUCCESS" "Downloaded script: $file"
+            else
+                echo -e "${YELLOW}${WARNING} Gagal download script $file (opsional)${NC}"
+                log "WARN" "Gagal download script opsional: $file"
+            fi
+            sleep 0.3
+        done
+    fi
+    
+    # Buat file konfigurasi default
+    if [ -f ".env.example" ]; then
+        cp ".env.example" "$CONFIG_DIR/.env"
+        echo -e "${GREEN}${CHECK} File konfigurasi default dibuat${NC}"
+    fi
+    
+    echo -e "${GREEN}${BOLD}${CHECK} Semua file berhasil didownload${NC}"
+    log "SUCCESS" "Download file selesai"
+}
+
+# Install Node.js modules dengan error handling
+install_node_modules() {
+    update_progress "Menginstall Node.js dependencies"
+    
+    cd "$INSTALL_DIR"
+    
+    if [ -f "package.json" ]; then
+        echo -e "${YELLOW}${PACKAGE} Menginstall packages Node.js...${NC}"
+        
+        # Set npm configuration untuk produksi
+        npm config set fund false
+        npm config set audit false
+        
+        {
+            npm install --only=production --no-optional --silent
+        } &
+        spinner $! "Menginstall Node.js packages"
+        
+        # Verifikasi instalasi
+        if [ -d "node_modules" ] && [ -f "package-lock.json" ]; then
+            local package_count=$(find node_modules -maxdepth 1 -type d | wc -l)
+            echo -e "${GREEN}${BOLD}${CHECK} Node.js dependencies berhasil diinstall (${package_count} packages)${NC}"
+            log "SUCCESS" "Node.js dependencies diinstall: $package_count packages"
+        else
+            echo -e "${RED}${BOLD}${CROSS} Gagal menginstall Node.js dependencies${NC}"
+            log "ERROR" "Gagal menginstall Node.js dependencies"
+            exit 1
+        fi
+    else
+        echo -e "${YELLOW}${WARNING} package.json tidak ditemukan, membuat yang default...${NC}"
+        
+        # Buat package.json minimal
+        cat > package.json << 'EOF'
+{
+  "name": "vpn-api",
+  "version": "1.0.0",
+  "description": "VPN API Service by FadzDigital",
+  "main": "vpn-api.js",
+  "scripts": {
+    "start": "node vpn-api.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "helmet": "^7.0.0",
+    "dotenv": "^16.3.1"
+  },
+  "author": "FadzDigital",
+  "license": "MIT"
+}
+EOF
+        
+        npm install --only=production --silent
+        log "SUCCESS" "Package.json default dibuat dan dependencies diinstall"
+    fi
+}
+
+# Buat systemd service yang lebih robust
+create_service() {
+    update_progress "Mengkonfigurasi systemd service"
+    
+    echo -e "${YELLOW}${GEAR} Membuat service configuration...${NC}"
+    
+    # Buat service file dengan konfigurasi lengkap
+    cat > "/etc/systemd/system/$SERVICE_NAME.service" << EOF
+[Unit]
+Description=VPN API Service - Powered by FadzDigital
+Documentation=https://github.com/$REPO
+After=network.target network-online.target
+Wants=network-online.target
+StartLimitBurst=3
+StartLimitIntervalSec=60
+
+[Service]
+Type=simple
+WorkingDirectory=$SCRIPT_DIR
+ExecStart=/usr/bin/node $INSTALL_DIR/vpn-api.js
+ExecReload=/bin/kill -HUP \$MAINPID
+ExecStop=/bin/kill -TERM \$MAINPID
+TimeoutStartSec=30
+TimeoutStopSec=30
+Restart=always
+RestartSec=10
+User=root
+Group=root
+
+# Environment variables
+Environment=NODE_ENV=production
+Environment=PATH=/usr/bin:/usr/local/bin
+Environment=HOME=$INSTALL_DIR
+
+# Logging
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+    systemctl daemon-reload
+    systemctl enable --now "$SERVICE_NAME.service"
+    log "SUCCESS" "Systemd service $SERVICE_NAME berhasil dikonfigurasi dan dijalankan"
+    echo -e "${GREEN}${BOLD}${CHECK} Systemd service berhasil dikonfigurasi dan dijalankan${NC}"
+}
+
+# Selesai & summary
+finish_installation() {
+    update_progress "Instalasi selesai"
+    local end_time=$(date +%s)
+    local duration=$((end_time - INSTALL_START_TIME))
+    echo
+    echo -e "${PARTY}${GREEN}${BOLD} Instalasi VPN API Selesai! ${NC}${PARTY}"
+    echo -e "${CYAN}${BOLD}Waktu instalasi: ${WHITE}$duration detik${NC}"
+    echo -e "${GREEN}${BOLD}${CHECK} Service aktif: ${WHITE}vpn-api${NC}"
+    echo -e "${CYAN}Cek status: ${WHITE}systemctl status vpn-api${NC}"
+    echo -e "${CYAN}Log:         ${WHITE}journalctl -u vpn-api -f${NC}"
+    echo -e "${CYAN}API folder:  ${WHITE}$INSTALL_DIR${NC}"
+    echo -e "${CYAN}Script:      ${WHITE}$SCRIPT_DIR${NC}"
+    echo -e "${CYAN}Config:      ${WHITE}$CONFIG_DIR/.env${NC}"
+    echo -e "${CYAN}Backup:      ${WHITE}$BACKUP_DIR${NC}"
+    echo -e "${CYAN}Uninstall:   ${WHITE}systemctl stop vpn-api && systemctl disable vpn-api && rm /etc/systemd/system/vpn-api.service${NC}"
+    echo -e "${GREEN}${BOLD}Terima kasih telah menggunakan installer by FadzDigital!${NC}"
+    echo
+}
+
+# Main program eksekusi
+main() {
+    INSTALL_START_TIME=$(date +%s)
+    print_banner
+    check_prerequisites
+    check_existing_installation
+    install_dependencies
+    create_directories
+    download_files
+    install_node_modules
+    create_service
+    finish_installation
+}
+
+main "$@"
