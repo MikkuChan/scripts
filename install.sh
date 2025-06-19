@@ -1,9 +1,8 @@
 #!/bin/bash
 # =============================================================================
-# VPN API Installation Script - FadzDigital Enhanced
-# Version: 2.0
+# VPN API Installation Script - FadzDigital
 # Author: FadzDigital
-# License: MIT
+# Created Kamis, 19 Juni 2025
 # =============================================================================
 
 set -euo pipefail
@@ -46,12 +45,17 @@ declare -r REQUIRED_PORTS=(80 443 8080)
 # UTILITY FUNCTIONS
 # =============================================================================
 
-# Enhanced banner with animation
+#  banner with animation
 print_banner() {
+    # Vars
+    local CYAN="\033[36m"
+    local BOLD="\033[1m"
+    local RESET="\033[0m"
+    local BORDER="${CYAN}${BOLD}╔═══════════════════════════════════════════════════════════════════════════════╗${RESET}"
+
     clear
-    echo -e "${CYAN}${BOLD}"
-    
-    # Animated banner appearance
+
+    # Banner content
     local banner_lines=(
         " ███████╗ █████╗ ██████╗ ███████╗██████╗ ██╗ ██████╗ ██╗████████╗ █████╗ ██╗     "
         " ██╔════╝██╔══██╗██╔══██╗╚══███╔╝██╔══██╗██║██╔════╝ ██║╚══██╔══╝██╔══██╗██║     "
@@ -60,22 +64,29 @@ print_banner() {
         " ██║     ██║  ██║██████╔╝███████╗██████╔╝██║╚██████╔╝██║   ██║   ██║  ██║███████╗"
         " ╚═╝     ╚═╝  ╚═╝╚═════╝ ╚══════╝╚═════╝ ╚═╝ ╚═════╝ ╚═╝   ╚═╝   ╚═╝  ╚═╝╚══════╝"
     )
-    
+
+    # Draw banner with animation
+    echo -e "$BORDER"
     for line in "${banner_lines[@]}"; do
-        echo "$line"
-        sleep 0.1
+        echo -e "${CYAN}${BOLD}║$line║${RESET}"
+        sleep 0.07
     done
+    echo -e "$BORDER"
+    echo -e "           ${CYAN}${BOLD}Welcome to VPN API Service - Powered by FadzDigital${RESET}"
+    echo ""
+}
+
     
     echo -e "${NC}"
     echo -e "${PURPLE}${BOLD}═══════════════════════════════════════════════════════════════════════${NC}"
     echo -e "${WHITE}${BOLD}                      INSTALLER VPN API v${SCRIPT_VERSION}                        ${NC}"
     echo -e "${GREEN}${BOLD}                           by FadzDigital                             ${NC}"
-    echo -e "${DIM}                    Enhanced Security & Performance                   ${NC}"
+    echo -e "${DIM}                     Security & Performance                   ${NC}"
     echo -e "${PURPLE}${BOLD}═══════════════════════════════════════════════════════════════════════${NC}"
     echo
 }
 
-# Enhanced logging with levels
+#  logging with levels
 log() {
     local level="${1:-INFO}"
     local message="$2"
@@ -153,7 +164,7 @@ spinner() {
     fi
 }
 
-# Enhanced command execution with retry mechanism
+#  command execution with retry mechanism
 run() {
     local cmd="$*"
     local max_retries="${MAX_RETRIES:-3}"
@@ -195,7 +206,7 @@ run() {
     done
 }
 
-# Enhanced progress bar with ETA
+#  progress bar with ETA
 progress_bar() {
     local current=$1
     local total=$2
@@ -308,7 +319,7 @@ check_system_requirements() {
     fi
 }
 
-# Enhanced existing installation check
+#  existing installation check
 check_existing_installation() {
     local has_existing=false
     
@@ -432,7 +443,7 @@ EOF
     log "SUCCESS" "Backup created at $backup_path"
 }
 
-# Enhanced removal with confirmation
+#  removal with confirmation
 remove_existing_installation() {
     echo -e "${YELLOW}${BOLD}🗑️  Menghapus instalasi yang sudah ada...${NC}"
     
@@ -477,7 +488,7 @@ remove_existing_installation() {
 # INSTALLATION FUNCTIONS
 # =============================================================================
 
-# Enhanced dependency installation with package verification
+#  dependency installation with package verification
 install_dependencies() {
     echo -e "${YELLOW}${BOLD}📦 Menginstall dependencies...${NC}"
     
@@ -546,7 +557,7 @@ install_dependencies() {
     log "SUCCESS" "All dependencies installed successfully"
 }
 
-# Enhanced directory creation with proper permissions
+#  directory creation with proper permissions
 create_directories() {
     echo -e "${YELLOW}${BOLD}📁 Membuat struktur direktori...${NC}"
     
@@ -579,7 +590,7 @@ create_directories() {
     echo -e "${GREEN}${BOLD}✓ Struktur direktori berhasil dibuat${NC}"
 }
 
-# Enhanced file download with integrity checking
+#  file download with integrity checking
 download_files() {
     echo -e "${YELLOW}${BOLD}⬇️  Mendownload files dari GitHub...${NC}"
     
@@ -677,7 +688,7 @@ download_files() {
     log "SUCCESS" "Downloaded $downloaded_count files successfully"
 }
 
-# Enhanced Node.js dependencies installation
+#  Node.js dependencies installation
 install_node_modules() {
     echo -e "${YELLOW}${BOLD}📦 Menginstall Node.js dependencies...${NC}"
     
@@ -745,13 +756,13 @@ create_systemd_service() {
     cat > "$service_path" << EOF
 [Unit]
 Description=VPN API Service - Powered by FadzDigital
-Documentation=https://github.com/$REPO
+Documentation=https://github.com/MikkuChan/scripts
 After=network.target
 
 [Service]
 Type=simple
-WorkingDirectory=$SCRIPT_DIR
-ExecStart=/usr/bin/node $SCRIPT_DIR/vpn-api.js
+WorkingDirectory=/opt/vpn-api
+ExecStart=/usr/bin/node /opt/vpn-api/vpn-api.js
 Restart=always
 User=root
 Environment=NODE_ENV=production
