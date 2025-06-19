@@ -1,6 +1,6 @@
 #!/bin/bash
 # =============================================================================
-# VPN API Installation Script - FadzDigital 
+# VPN API Installation Script - FadzDigital Enhanced
 # Version: 2.0
 # Author: FadzDigital
 # License: MIT
@@ -46,7 +46,7 @@ declare -r REQUIRED_PORTS=(80 443 5888)
 # UTILITY FUNCTIONS
 # =============================================================================
 
-#  banner with animation
+# Enhanced banner with animation
 print_banner() {
     clear
     echo -e "${CYAN}${BOLD}"
@@ -70,12 +70,12 @@ print_banner() {
     echo -e "${PURPLE}${BOLD}═══════════════════════════════════════════════════════════════════════${NC}"
     echo -e "${WHITE}${BOLD}                      INSTALLER VPN API v${SCRIPT_VERSION}                        ${NC}"
     echo -e "${GREEN}${BOLD}                           by FadzDigital                             ${NC}"
-    echo -e "${DIM}                     Security & Performance                   ${NC}"
+    echo -e "${DIM}                    Enhanced Security & Performance                   ${NC}"
     echo -e "${PURPLE}${BOLD}═══════════════════════════════════════════════════════════════════════${NC}"
     echo
 }
 
-#  logging with levels
+# Enhanced logging with levels
 log() {
     local level="${1:-INFO}"
     local message="$2"
@@ -153,7 +153,7 @@ spinner() {
     fi
 }
 
-#  command execution with retry mechanism
+# Enhanced command execution with retry mechanism
 run() {
     local cmd="$*"
     local max_retries="${MAX_RETRIES:-3}"
@@ -195,7 +195,7 @@ run() {
     done
 }
 
-#  progress bar with ETA
+# Enhanced progress bar with ETA
 progress_bar() {
     local current=$1
     local total=$2
@@ -308,7 +308,7 @@ check_system_requirements() {
     fi
 }
 
-#  existing installation check
+# Enhanced existing installation check
 check_existing_installation() {
     local has_existing=false
     
@@ -432,7 +432,7 @@ EOF
     log "SUCCESS" "Backup created at $backup_path"
 }
 
-#  removal with confirmation
+# Enhanced removal with confirmation
 remove_existing_installation() {
     echo -e "${YELLOW}${BOLD}🗑️  Menghapus instalasi yang sudah ada...${NC}"
     
@@ -477,7 +477,7 @@ remove_existing_installation() {
 # INSTALLATION FUNCTIONS
 # =============================================================================
 
-#  dependency installation with package verification
+# Enhanced dependency installation with package verification
 install_dependencies() {
     echo -e "${YELLOW}${BOLD}📦 Menginstall dependencies...${NC}"
     
@@ -546,7 +546,7 @@ install_dependencies() {
     log "SUCCESS" "All dependencies installed successfully"
 }
 
-#  directory creation with proper permissions
+# Enhanced directory creation with proper permissions
 create_directories() {
     echo -e "${YELLOW}${BOLD}📁 Membuat struktur direktori...${NC}"
     
@@ -579,7 +579,7 @@ create_directories() {
     echo -e "${GREEN}${BOLD}✓ Struktur direktori berhasil dibuat${NC}"
 }
 
-#  file download with integrity checking
+# Enhanced file download with integrity checking
 download_files() {
     echo -e "${YELLOW}${BOLD}⬇️  Mendownload files dari GitHub...${NC}"
     
@@ -677,7 +677,7 @@ download_files() {
     log "SUCCESS" "Downloaded $downloaded_count files successfully"
 }
 
-#  Node.js dependencies installation
+# Enhanced Node.js dependencies installation
 install_node_modules() {
     echo -e "${YELLOW}${BOLD}📦 Menginstall Node.js dependencies...${NC}"
     
@@ -743,7 +743,7 @@ EOF
     run "npm cache clean --force"
 }
 
-#  systemd service creation with advanced configuration
+# Enhanced systemd service creation with advanced configuration
 create_service() {
     echo -e "${YELLOW}${BOLD}⚙️  Membuat systemd service...${NC}"
     
@@ -978,7 +978,7 @@ EOF
     log "SUCCESS" "Service management scripts created"
 }
 
-#  service startup with health checks
+# Enhanced service startup with health checks
 start_service() {
     echo -e "${YELLOW}${BOLD}🚀 Menjalankan VPN API service...${NC}"
     
@@ -1276,7 +1276,7 @@ EOF
 # FINAL SUMMARY AND CLEANUP
 # =============================================================================
 
-#  installation summary
+# Enhanced installation summary
 show_installation_summary() {
     echo
     echo -e "${PURPLE}${BOLD}═══════════════════════════════════════════════════════════════════════${NC}"
@@ -1350,7 +1350,7 @@ show_installation_summary() {
     echo -e "${WHITE}   4. Monitor logs: ${YELLOW}journalctl -u $SERVICE_NAME -f${NC}"
     echo
     
-    echo -e "${GREEN}${BOLD}✨ Developed by FadzDigital -  Version ✨${NC}"
+    echo -e "${GREEN}${BOLD}✨ Developed by FadzDigital - Enhanced Version ✨${NC}"
     echo -e "${PURPLE}${BOLD}═══════════════════════════════════════════════════════════════════════${NC}"
     echo
     
@@ -1387,7 +1387,7 @@ cleanup_installation() {
 # MAIN INSTALLATION FLOW
 # =============================================================================
 
-#  main function with error recovery
+# Enhanced main function with error recovery
 main() {
     # Initialize installation
     export INSTALL_START_TIME=$(date +%s)
