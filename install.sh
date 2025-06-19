@@ -52,12 +52,13 @@ print_banner() {
     
     # Animated banner appearance
     local banner_lines=(
-          __           _     _            _
+      __           _     _            _
 " / _| __ _  __| |___| |_ ___  ___| |__"
 "| |_ / _` |/ _` |_  / __/ _ \/ __| '_ \"
 "|  _| (_| | (_| |/ /| ||  __/ (__| | | |"
 "|_|  \__,_|\__,_/___|\__\___|\___|_| |_|"
-    )
+)
+
     
     for line in "${banner_lines[@]}"; do
         echo "$line"
