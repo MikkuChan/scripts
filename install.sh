@@ -1,8 +1,9 @@
 #!/bin/bash
 # =============================================================================
-# VPN API Installation Script - FadzDigital
+# VPN API Installation Script - FadzDigital Enhanced
+# Version: 2.0
 # Author: FadzDigital
-# Created Kamis, 19 Juni 2025
+# License: MIT
 # =============================================================================
 
 set -euo pipefail
@@ -39,42 +40,45 @@ declare -r BACKUP_DIR="/opt/vpn-api-backup"
 # System requirements
 declare -r MIN_MEMORY_GB=1
 declare -r MIN_DISK_GB=2
-declare -r REQUIRED_PORTS=(80 443 8080)
+declare -r REQUIRED_PORTS=(80 443 5888)
 
 # =============================================================================
 # UTILITY FUNCTIONS
 # =============================================================================
 
-#  banner with animation
+# Enhanced banner with animation
 print_banner() {
     clear
     echo -e "${CYAN}${BOLD}"
     
     # Animated banner appearance
-    local banner_lines=(
-    "  __           _     _            _           "
-    " / _| __ _  __| |___| |_ ___  ___| |__       "
-    "| |_ / _\` |/ _\` |_  / __/ _ \/ __| '_ \\      "
-    "|  _| (_| | (_| |/ /| ||  __/ (__| | | |     "
-    "|_|  \\__,_|\\__,_/___|\\__\\___|\\___|_| |_|     "
+local banner_lines=(
+    "   ___            __            "
+    " /'___\          /\ \           "
+    "/\ \__/   __     \_\ \  ____    "
+    "\ \ ,__\/'__\`\   /'_\` \/\_ ,\`\  "
+    " \ \ \_/\ \L\.\_/\ \L\ \/_/  /_ "
+    "  \ \_\\ \__/.\_\ \___,_\/\____\"
+    "   \/_/ \/__/\/_/\/__,_ /\/____/"
+    "                                "
+    "                                "
 )
 
-    
-    for line in "${banner_lines[@]}"; do
-        echo "$line"
-        sleep 0.1
-    done
+for line in "${banner_lines[@]}"; do
+    echo "$line"
+    sleep 0.1
+done
     
     echo -e "${NC}"
     echo -e "${PURPLE}${BOLD}═══════════════════════════════════════════════════════════════════════${NC}"
     echo -e "${WHITE}${BOLD}                      INSTALLER VPN API v${SCRIPT_VERSION}                        ${NC}"
     echo -e "${GREEN}${BOLD}                           by FadzDigital                             ${NC}"
-    echo -e "${DIM}                     Security & Performance                   ${NC}"
+    echo -e "${DIM}                    Enhanced Security & Performance                   ${NC}"
     echo -e "${PURPLE}${BOLD}═══════════════════════════════════════════════════════════════════════${NC}"
     echo
 }
 
-#  logging with levels
+# Enhanced logging with levels
 log() {
     local level="${1:-INFO}"
     local message="$2"
@@ -152,7 +156,7 @@ spinner() {
     fi
 }
 
-#  command execution with retry mechanism
+# Enhanced command execution with retry mechanism
 run() {
     local cmd="$*"
     local max_retries="${MAX_RETRIES:-3}"
@@ -194,7 +198,7 @@ run() {
     done
 }
 
-#  progress bar with ETA
+# Enhanced progress bar with ETA
 progress_bar() {
     local current=$1
     local total=$2
@@ -307,7 +311,7 @@ check_system_requirements() {
     fi
 }
 
-#  existing installation check
+# Enhanced existing installation check
 check_existing_installation() {
     local has_existing=false
     
@@ -431,7 +435,7 @@ EOF
     log "SUCCESS" "Backup created at $backup_path"
 }
 
-#  removal with confirmation
+# Enhanced removal with confirmation
 remove_existing_installation() {
     echo -e "${YELLOW}${BOLD}🗑️  Menghapus instalasi yang sudah ada...${NC}"
     
@@ -476,7 +480,7 @@ remove_existing_installation() {
 # INSTALLATION FUNCTIONS
 # =============================================================================
 
-#  dependency installation with package verification
+# Enhanced dependency installation with package verification
 install_dependencies() {
     echo -e "${YELLOW}${BOLD}📦 Menginstall dependencies...${NC}"
     
@@ -545,7 +549,7 @@ install_dependencies() {
     log "SUCCESS" "All dependencies installed successfully"
 }
 
-#  directory creation with proper permissions
+# Enhanced directory creation with proper permissions
 create_directories() {
     echo -e "${YELLOW}${BOLD}📁 Membuat struktur direktori...${NC}"
     
@@ -578,7 +582,7 @@ create_directories() {
     echo -e "${GREEN}${BOLD}✓ Struktur direktori berhasil dibuat${NC}"
 }
 
-#  file download with integrity checking
+# Enhanced file download with integrity checking
 download_files() {
     echo -e "${YELLOW}${BOLD}⬇️  Mendownload files dari GitHub...${NC}"
     
@@ -676,7 +680,7 @@ download_files() {
     log "SUCCESS" "Downloaded $downloaded_count files successfully"
 }
 
-#  Node.js dependencies installation
+# Enhanced Node.js dependencies installation
 install_node_modules() {
     echo -e "${YELLOW}${BOLD}📦 Menginstall Node.js dependencies...${NC}"
     
@@ -706,113 +710,791 @@ install_node_modules() {
   "engines": {
     "node": ">=14.0.0"
   },
-    "author": "FadzDigital",
-    "license": "MIT"
+  "author": "FadzDigital",
+  "license": "MIT"
 }
 EOF
     fi
-
-    # Install node modules (production only)
-    if [ -f "package.json" ]; then
-        run "npm install --only=production --no-optional --silent"
-        if [ $? -eq 0 ]; then
-            echo -e "${GREEN}${BOLD}✓ Node.js dependencies berhasil diinstall${NC}"
-            log "SUCCESS" "Node.js dependencies installed"
-        else
-            echo -e "${RED}${BOLD}❌ Gagal menginstall Node.js dependencies${NC}"
-            log "ERROR" "Failed to install Node.js dependencies"
-            exit 1
-        fi
+    
+    # Check package.json validity
+    if ! jq empty package.json 2>/dev/null; then
+        echo -e "${RED}${BOLD}❌ package.json tidak valid${NC}"
+        return 1
     fi
+    
+    # Install with production flag and progress
+    echo -e "${CYAN}📦 Installing dependencies...${NC}"
+    
+    # Set npm configurations for better performance
+    run "npm config set progress=true"
+    run "npm config set loglevel=warn"
+    
+    # Install dependencies
+    if run "npm install --production --no-audit --no-fund"; then
+        # Verify installation
+        local installed_packages=$(npm list --depth=0 --json 2>/dev/null | jq -r '.dependencies | keys | length' 2>/dev/null || echo "0")
+        echo -e "${GREEN}${BOLD}✓ Dependencies installed successfully${NC}"
+        echo -e "${CYAN}📦 Total packages: ${WHITE}$installed_packages${NC}"
+        log "SUCCESS" "Node.js dependencies installed ($installed_packages packages)"
+    else
+        echo -e "${RED}${BOLD}❌ Gagal menginstall dependencies${NC}"
+        log "ERROR" "Failed to install Node.js dependencies"
+        return 1
+    fi
+    
+    # Clean npm cache to save space
+    run "npm cache clean --force"
 }
 
-# Create .env config from example if not exists
-setup_env_file() {
-    echo -e "${YELLOW}${BOLD}⚙️  Setup konfigurasi environment...${NC}"
-    if [ -f "$INSTALL_DIR/.env.example" ] && [ ! -f "$CONFIG_DIR/.env" ]; then
-        cp "$INSTALL_DIR/.env.example" "$CONFIG_DIR/.env"
-        chmod 640 "$CONFIG_DIR/.env"
-        echo -e "${GREEN}${BOLD}✓ File konfigurasi .env dibuat${NC}"
-        log "SUCCESS" ".env configuration created"
-    fi
-}
+# Enhanced systemd service creation with advanced configuration
+create_service() {
+    echo -e "${YELLOW}${BOLD}⚙️  Membuat systemd service...${NC}"
+    
+    # Create environment file
+    cat > "/etc/vpn-api/environment" << EOF
+# VPN API Environment Configuration
+NODE_ENV=production
+PATH=/usr/bin:/usr/local/bin:/bin:/sbin
+HOME=$INSTALL_DIR
+USER=root
+GROUP=root
 
-# Create systemd service with watermark
-create_systemd_service() {
-    echo -e "${YELLOW}${BOLD}🛠️  Setup systemd service...${NC}"
-    local service_path="/etc/systemd/system/$SERVICE_NAME.service"
-    cat > "$service_path" << EOF
+# Application Settings
+VPN_API_PORT=5888
+VPN_API_HOST=0.0.0.0
+VPN_API_LOG_LEVEL=info
+
+# Security Settings
+VPN_API_MAX_CONNECTIONS=1000
+VPN_API_RATE_LIMIT=100
+VPN_API_TIMEOUT=30000
+EOF
+
+    # Create advanced systemd service
+    cat > "/etc/systemd/system/$SERVICE_NAME.service" << EOF
 [Unit]
-Description=VPN API Service - Powered by FadzDigital
-Documentation=https://github.com/MikkuChan/scripts
-After=network.target
+Description=VPN API Service - FadzDigital
+Documentation=https://github.com/$REPO
+Documentation=man:vpn-api(8)
+After=network.target network-online.target
+Wants=network-online.target
+RequiresMountsFor=$INSTALL_DIR
 
 [Service]
 Type=simple
-WorkingDirectory=/opt/vpn-api
-ExecStart=/usr/bin/node /opt/vpn-api/vpn-api.js
+WorkingDirectory=$SCRIPT_DIR
+ExecStart=/usr/bin/node $INSTALL_DIR/vpn-api.js
+ExecReload=/bin/kill -HUP \$MAINPID
+ExecStop=/bin/kill -TERM \$MAINPID
+
+# Process management
 Restart=always
+RestartSec=5
+StartLimitInterval=60s
+StartLimitBurst=3
+KillMode=mixed
+KillSignal=SIGTERM
+TimeoutStartSec=30
+TimeoutStopSec=30
+
+# User and permissions
 User=root
+Group=root
+UMask=0022
+
+# Environment
 Environment=NODE_ENV=production
+EnvironmentFile=-/etc/vpn-api/environment
+
+# Logging
 StandardOutput=journal
 StandardError=journal
+SyslogIdentifier=vpn-api
+SyslogLevel=info
+
+# Security hardening
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+RestrictRealtime=true
+RestrictSUIDSGID=true
+RemoveIPC=true
+PrivateTmp=true
+
+# Filesystem access
+ReadWritePaths=$INSTALL_DIR
+ReadWritePaths=/var/log/vpn-api
+ReadWritePaths=/var/lib/vpn-api
+ReadWritePaths=/tmp
+ReadOnlyPaths=/etc/vpn-api
+
+# Network
+PrivateNetwork=false
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6
+
+# System calls
+SystemCallArchitectures=native
+SystemCallFilter=@system-service
+SystemCallFilter=~@debug @mount @cpu-emulation @obsolete @privileged @reboot @swap @raw-io
+
+# Resource limits
+LimitNOFILE=65536
+LimitNPROC=4096
+MemoryMax=1G
+CPUQuota=200%
 
 [Install]
 WantedBy=multi-user.target
+Alias=$SERVICE_NAME.service
 EOF
 
+    # Create additional service management scripts
+    create_service_management_scripts
+    
+    # Reload systemd and enable service
     run "systemctl daemon-reload"
-    run "systemctl enable --now $SERVICE_NAME"
-    echo -e "${GREEN}${BOLD}✓ Systemd service aktif dan berjalan${NC}"
-    log "SUCCESS" "Systemd service registered & started"
+    run "systemctl enable $SERVICE_NAME"
+    
+    echo -e "${GREEN}${BOLD}✓ Systemd service berhasil dibuat dan diaktifkan${NC}"
+    log "SUCCESS" "Systemd service created and enabled"
 }
 
-# Show installation summary and usage info
-show_summary() {
+# Create service management helper scripts
+create_service_management_scripts() {
+    # Create service status script
+    cat > "$SCRIPT_DIR/vpn-status.sh" << 'EOF'
+#!/bin/bash
+# VPN API Status Check Script
+
+SERVICE_NAME="vpn-api"
+INSTALL_DIR="/opt/vpn-api"
+
+# Colors
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+CYAN='\033[0;36m'
+WHITE='\033[1;37m'
+NC='\033[0m'
+
+echo -e "${CYAN}═══════════════════════════════════════${NC}"
+echo -e "${WHITE}      VPN API Service Status${NC}"
+echo -e "${CYAN}═══════════════════════════════════════${NC}"
+
+# Service status
+if systemctl is-active --quiet $SERVICE_NAME; then
+    echo -e "${GREEN}✓ Service Status: RUNNING${NC}"
+else
+    echo -e "${RED}✗ Service Status: STOPPED${NC}"
+fi
+
+# Uptime
+if systemctl is-active --quiet $SERVICE_NAME; then
+    uptime=$(systemctl show $SERVICE_NAME --property=ActiveEnterTimestamp --value)
+    echo -e "${BLUE}⏱ Started: ${WHITE}$uptime${NC}"
+fi
+
+# Memory usage
+if pgrep -f "vpn-api.js" > /dev/null; then
+    memory=$(ps -o pid,vsz,rss,comm -p $(pgrep -f "vpn-api.js") | tail -n +2)
+    echo -e "${BLUE}💾 Memory Usage:${NC}"
+    echo "$memory" | while read -r line; do
+        echo -e "   ${WHITE}$line${NC}"
+    done
+fi
+
+# Port status
+echo -e "${BLUE}🌐 Port Status:${NC}"
+netstat -tlnp 2>/dev/null | grep ":5888" | while read -r line; do
+    echo -e "   ${WHITE}$line${NC}"
+done
+
+# Recent logs
+echo -e "${BLUE}📋 Recent Logs (last 5 lines):${NC}"
+journalctl -u $SERVICE_NAME -n 5 --no-pager | while read -r line; do
+    echo -e "   ${WHITE}$line${NC}"
+done
+
+echo -e "${CYAN}═══════════════════════════════════════${NC}"
+EOF
+
+    # Create service restart script
+    cat > "$SCRIPT_DIR/vpn-restart.sh" << 'EOF'
+#!/bin/bash
+# VPN API Restart Script
+
+SERVICE_NAME="vpn-api"
+
+echo "🔄 Restarting VPN API service..."
+
+if systemctl restart $SERVICE_NAME; then
+    echo "✅ Service restarted successfully"
+    sleep 2
+    systemctl status $SERVICE_NAME --no-pager
+else
+    echo "❌ Failed to restart service"
+    exit 1
+fi
+EOF
+
+    # Create log viewer script
+    cat > "$SCRIPT_DIR/vpn-logs.sh" << 'EOF'
+#!/bin/bash
+# VPN API Log Viewer Script
+
+SERVICE_NAME="vpn-api"
+
+case "${1:-tail}" in
+    "tail"|"follow"|"f")
+        echo "📋 Following VPN API logs (Ctrl+C to exit)..."
+        journalctl -u $SERVICE_NAME -f
+        ;;
+    "today")
+        echo "📋 Today's VPN API logs..."
+        journalctl -u $SERVICE_NAME --since today
+        ;;
+    "errors"|"error")
+        echo "📋 VPN API error logs..."
+        journalctl -u $SERVICE_NAME -p err
+        ;;
+    "all")
+        echo "📋 All VPN API logs..."
+        journalctl -u $SERVICE_NAME --no-pager
+        ;;
+    *)
+        echo "Usage: $0 [tail|today|errors|all]"
+        echo "  tail   - Follow live logs (default)"
+        echo "  today  - Show today's logs"
+        echo "  errors - Show error logs only"
+        echo "  all    - Show all logs"
+        ;;
+esac
+EOF
+
+    # Make scripts executable
+    chmod +x "$SCRIPT_DIR"/*.sh
+    
+    log "SUCCESS" "Service management scripts created"
+}
+
+# Enhanced service startup with health checks
+start_service() {
+    echo -e "${YELLOW}${BOLD}🚀 Menjalankan VPN API service...${NC}"
+    
+    # Start service
+    if run "systemctl start $SERVICE_NAME"; then
+        echo -e "${BLUE}⏳ Menunggu service startup...${NC}"
+        
+        # Wait for service to be fully ready
+        local wait_time=0
+        local max_wait=30
+        
+        while [ $wait_time -lt $max_wait ]; do
+            if systemctl is-active --quiet "$SERVICE_NAME"; then
+                # Additional health check - try to connect to service port
+                if netstat -tlnp 2>/dev/null | grep -q ":5888.*LISTEN"; then
+                    echo -e "${GREEN}${BOLD}✓ VPN API service berhasil dijalankan${NC}"
+                    log "SUCCESS" "VPN API service started successfully"
+                    
+                    # Show service info
+                    show_service_info
+                    return 0
+                fi
+            fi
+            
+            sleep 1
+            wait_time=$((wait_time + 1))
+            printf "."
+        done
+        
+        echo
+        echo -e "${RED}${BOLD}❌ Service tidak merespon setelah ${max_wait}s${NC}"
+        echo -e "${YELLOW}   Cek status dengan: systemctl status $SERVICE_NAME${NC}"
+        log "ERROR" "Service not responding after startup"
+        return 1
+    else
+        echo -e "${RED}${BOLD}❌ Gagal menjalankan VPN API service${NC}"
+        echo -e "${YELLOW}   Cek log dengan: journalctl -u $SERVICE_NAME -f${NC}"
+        log "ERROR" "Failed to start VPN API service"
+        return 1
+    fi
+}
+
+# Show service information after successful start
+show_service_info() {
+    echo -e "${CYAN}${BOLD}📊 Service Information:${NC}"
+    
+    # Service status
+    local status=$(systemctl is-active $SERVICE_NAME)
+    echo -e "${WHITE}   • Status: ${GREEN}$status${NC}"
+    
+    # Process ID
+    local pid=$(systemctl show $SERVICE_NAME --property=MainPID --value)
+    if [ "$pid" != "0" ]; then
+        echo -e "${WHITE}   • Process ID: ${GREEN}$pid${NC}"
+    fi
+    
+    # Memory usage
+    if [ "$pid" != "0" ] && kill -0 "$pid" 2>/dev/null; then
+        local memory=$(ps -o rss= -p "$pid" 2>/dev/null | awk '{print int($1/1024)"MB"}')
+        echo -e "${WHITE}   • Memory Usage: ${GREEN}$memory${NC}"
+    fi
+    
+    # Listening ports
+    local ports=$(netstat -tlnp 2>/dev/null | grep "$(basename $0)" | awk '{print $4}' | cut -d: -f2 | sort -u | tr '\n' ' ')
+    if [ -n "$ports" ]; then
+        echo -e "${WHITE}   • Listening Ports: ${GREEN}$ports${NC}"
+    fi
+}
+
+# =============================================================================
+# POST-INSTALLATION FUNCTIONS
+# =============================================================================
+
+# Create configuration files
+create_configuration() {
+    echo -e "${YELLOW}${BOLD}⚙️  Membuat file konfigurasi...${NC}"
+    
+    # Create main configuration file
+    cat > "$CONFIG_DIR/config.json" << EOF
+{
+  "server": {
+    "port": 5888,
+    "host": "0.0.0.0",
+    "timeout": 30000
+  },
+  "security": {
+    "cors": {
+      "enabled": true,
+      "origin": "*"
+    },
+    "helmet": {
+      "enabled": true
+    },
+    "rateLimit": {
+      "enabled": true,
+      "windowMs": 900000,
+      "max": 100
+    }
+  },
+  "logging": {
+    "level": "info",
+    "file": "/var/log/vpn-api/app.log",
+    "maxSize": "10MB",
+    "maxFiles": 5
+  },
+  "vpn": {
+    "providers": {
+      "openvpn": {
+        "enabled": true,
+        "configPath": "/etc/openvpn"
+      },
+      "wireguard": {
+        "enabled": false,
+        "configPath": "/etc/wireguard"
+      }
+    }
+  }
+}
+EOF
+
+    # Create environment file from template
+    if [ -f "$INSTALL_DIR/.env.example" ] && [ ! -f "$INSTALL_DIR/.env" ]; then
+        cp "$INSTALL_DIR/.env.example" "$INSTALL_DIR/.env"
+        echo -e "${GREEN}  ✓ Environment file created from template${NC}"
+    fi
+    
+    # Set proper permissions
+    chmod 640 "$CONFIG_DIR/config.json"
+    [ -f "$INSTALL_DIR/.env" ] && chmod 600 "$INSTALL_DIR/.env"
+    
+    echo -e "${GREEN}${BOLD}✓ File konfigurasi berhasil dibuat${NC}"
+    log "SUCCESS" "Configuration files created"
+}
+
+# Setup log rotation
+setup_log_rotation() {
+    echo -e "${YELLOW}${BOLD}📝 Menyiapkan log rotation...${NC}"
+    
+    cat > "/etc/logrotate.d/vpn-api" << EOF
+/var/log/vpn-api/*.log {
+    daily
+    missingok
+    rotate 30
+    compress
+    delaycompress
+    notifempty
+    create 644 root root
+    postrotate
+        systemctl reload-or-restart $SERVICE_NAME
+    endscript
+}
+EOF
+
+    # Test logrotate configuration
+    if logrotate -d /etc/logrotate.d/vpn-api >/dev/null 2>&1; then
+        echo -e "${GREEN}${BOLD}✓ Log rotation berhasil dikonfigurasi${NC}"
+        log "SUCCESS" "Log rotation configured"
+    else
+        echo -e "${YELLOW}⚠️  Log rotation configuration warning${NC}"
+    fi
+}
+
+# Create maintenance scripts
+create_maintenance_scripts() {
+    echo -e "${YELLOW}${BOLD}🛠️  Membuat maintenance scripts...${NC}"
+    
+    # Create update script
+    cat > "$SCRIPT_DIR/update-api.sh" << EOF
+#!/bin/bash
+# VPN API Update Script
+
+INSTALL_DIR="/opt/vpn-api"
+SERVICE_NAME="vpn-api"
+BACKUP_DIR="/opt/vpn-api-backup"
+
+echo "🔄 Updating VPN API..."
+
+# Create backup
+backup_name="pre-update-\$(date +%Y%m%d-%H%M%S)"
+mkdir -p "\$BACKUP_DIR/\$backup_name"
+cp -r "\$INSTALL_DIR"/* "\$BACKUP_DIR/\$backup_name/"
+
+echo "💾 Backup created: \$BACKUP_DIR/\$backup_name"
+
+# Stop service
+systemctl stop \$SERVICE_NAME
+
+# Download latest files
+cd "\$INSTALL_DIR"
+curl -fsSL "https://raw.githubusercontent.com/MikkuChan/scripts/main/vpn-api.js" -o vpn-api.js.new
+curl -fsSL "https://raw.githubusercontent.com/MikkuChan/scripts/main/package.json" -o package.json.new
+
+# Replace files if download successful
+if [ -f "vpn-api.js.new" ] && [ -s "vpn-api.js.new" ]; then
+    mv vpn-api.js.new vpn-api.js
+    echo "✅ Main application updated"
+fi
+
+if [ -f "package.json.new" ] && [ -s "package.json.new" ]; then
+    mv package.json.new package.json
+    npm install --production
+    echo "✅ Dependencies updated"
+fi
+
+# Start service
+systemctl start \$SERVICE_NAME
+
+if systemctl is-active --quiet \$SERVICE_NAME; then
+    echo "✅ VPN API updated successfully"
+else
+    echo "❌ Update failed, restoring backup..."
+    systemctl stop \$SERVICE_NAME
+    cp -r "\$BACKUP_DIR/\$backup_name"/* "\$INSTALL_DIR/"
+    systemctl start \$SERVICE_NAME
+    echo "🔄 Backup restored"
+fi
+EOF
+
+    # Create health check script
+    cat > "$SCRIPT_DIR/health-check.sh" << EOF
+#!/bin/bash
+# VPN API Health Check Script
+
+SERVICE_NAME="vpn-api"
+LOG_FILE="/var/log/vpn-api/health.log"
+API_PORT="5888"
+
+# Function to log with timestamp
+log_message() {
+    echo "\$(date '+%Y-%m-%d %H:%M:%S') - \$1" >> "\$LOG_FILE"
+}
+
+# Check service status
+if ! systemctl is-active --quiet \$SERVICE_NAME; then
+    log_message "ERROR: Service is not running"
+    systemctl start \$SERVICE_NAME
+    log_message "INFO: Attempted to restart service"
+    exit 1
+fi
+
+# Check port availability
+if ! netstat -tlnp 2>/dev/null | grep -q ":\$API_PORT.*LISTEN"; then
+    log_message "ERROR: Port \$API_PORT is not listening"
+    systemctl restart \$SERVICE_NAME
+    log_message "INFO: Restarted service due to port issue"
+    exit 1
+fi
+
+# Check memory usage
+memory_usage=\$(ps -o rss= -p \$(pgrep -f "vpn-api.js") 2>/dev/null | awk '{print int(\$1/1024)}')
+if [ "\$memory_usage" -gt 500 ]; then
+    log_message "WARN: High memory usage: \${memory_usage}MB"
+fi
+
+log_message "INFO: Health check passed"
+exit 0
+EOF
+
+    # Create cleanup script
+    cat > "$SCRIPT_DIR/cleanup.sh" << EOF
+#!/bin/bash
+# VPN API Cleanup Script
+
+echo "🧹 Cleaning up VPN API..."
+
+# Clean npm cache
+npm cache clean --force
+
+# Clean old logs (keep last 7 days)
+find /var/log/vpn-api -name "*.log.*" -mtime +7 -delete
+
+# Clean old backups (keep last 10)
+if [ -d "/opt/vpn-api-backup" ]; then
+    cd /opt/vpn-api-backup
+    ls -t | tail -n +11 | xargs -r rm -rf
+fi
+
+# Clean temporary files
+find /tmp -name "vpn-api-*" -mtime +1 -delete
+
+echo "✅ Cleanup completed"
+EOF
+
+    # Make all scripts executable
+    chmod +x "$SCRIPT_DIR"/*.sh
+    
+    # Create cron job for health check
+    (crontab -l 2>/dev/null; echo "*/5 * * * * $SCRIPT_DIR/health-check.sh") | crontab -
+    
+    echo -e "${GREEN}${BOLD}✓ Maintenance scripts berhasil dibuat${NC}"
+    log "SUCCESS" "Maintenance scripts created"
+}
+
+# =============================================================================
+# FINAL SUMMARY AND CLEANUP
+# =============================================================================
+
+# Enhanced installation summary
+show_installation_summary() {
     echo
-    echo -e "${GREEN}${BOLD}🎉 Instalasi VPN API berhasil!${NC}"
-    echo -e "${CYAN}Service status: ${WHITE}systemctl status $SERVICE_NAME${NC}"
-    echo -e "${CYAN}Log:            ${WHITE}journalctl -u $SERVICE_NAME -f${NC}"
-    echo -e "${CYAN}Config:         ${WHITE}$CONFIG_DIR/.env${NC}"
-    echo -e "${CYAN}Scripts:        ${WHITE}$SCRIPT_DIR${NC}"
-    echo -e "${CYAN}Uninstall:      ${WHITE}systemctl stop $SERVICE_NAME && systemctl disable $SERVICE_NAME && rm /etc/systemd/system/$SERVICE_NAME.service${NC}"
-    echo -e "${GREEN}${BOLD}Terima kasih telah menggunakan VPN API by FadzDigital!${NC}"
+    echo -e "${PURPLE}${BOLD}═══════════════════════════════════════════════════════════════════════${NC}"
+    echo -e "${GREEN}${BOLD}                    🎉 INSTALASI BERHASIL DISELESAIKAN! 🎉${NC}"
+    echo -e "${PURPLE}${BOLD}═══════════════════════════════════════════════════════════════════════${NC}"
     echo
+    
+    # Installation details
+    echo -e "${CYAN}${BOLD}📋 Detail Instalasi:${NC}"
+    echo -e "${WHITE}   • Version: ${GREEN}$SCRIPT_VERSION${NC}"
+    echo -e "${WHITE}   • Install Directory: ${GREEN}$INSTALL_DIR${NC}"
+    echo -e "${WHITE}   • Service Name: ${GREEN}$SERVICE_NAME${NC}"
+    echo -e "${WHITE}   • Service Status: ${GREEN}$(systemctl is-active $SERVICE_NAME)${NC}"
+    echo -e "${WHITE}   • Config Directory: ${GREEN}$CONFIG_DIR${NC}"
+    echo -e "${WHITE}   • Log Directory: ${GREEN}/var/log/vpn-api${NC}"
+    echo -e "${WHITE}   • Installation Log: ${GREEN}$LOG_FILE${NC}"
+    echo
+    
+    # Service information
+    echo -e "${CYAN}${BOLD}🌐 Service Information:${NC}"
+    local pid=$(systemctl show $SERVICE_NAME --property=MainPID --value)
+    if [ "$pid" != "0" ]; then
+        echo -e "${WHITE}   • Process ID: ${GREEN}$pid${NC}"
+        local memory=$(ps -o rss= -p "$pid" 2>/dev/null | awk '{print int($1/1024)"MB"}')
+        echo -e "${WHITE}   • Memory Usage: ${GREEN}$memory${NC}"
+    fi
+    
+    local ports=$(netstat -tlnp 2>/dev/null | grep -E ":5888|:80|:443" | awk '{print $4}' | cut -d: -f2 | sort -u | tr '\n' ' ')
+    if [ -n "$ports" ]; then
+        echo -e "${WHITE}   • Listening Ports: ${GREEN}$ports${NC}"
+    fi
+    echo
+    
+    # Management commands
+    echo -e "${CYAN}${BOLD}🔧 Perintah Management:${NC}"
+    echo -e "${WHITE}   • Cek status: ${YELLOW}systemctl status $SERVICE_NAME${NC}"
+    echo -e "${WHITE}   • Lihat logs: ${YELLOW}journalctl -u $SERVICE_NAME -f${NC}"
+    echo -e "${WHITE}   • Restart service: ${YELLOW}systemctl restart $SERVICE_NAME${NC}"
+    echo -e "${WHITE}   • Stop service: ${YELLOW}systemctl stop $SERVICE_NAME${NC}"
+    echo -e "${WHITE}   • Status lengkap: ${YELLOW}$SCRIPT_DIR/vpn-status.sh${NC}"
+    echo
+    
+    # Maintenance commands
+    echo -e "${CYAN}${BOLD}🛠️  Maintenance Commands:${NC}"
+    echo -e "${WHITE}   • Update API: ${YELLOW}$SCRIPT_DIR/update-api.sh${NC}"
+    echo -e "${WHITE}   • Health check: ${YELLOW}$SCRIPT_DIR/health-check.sh${NC}"
+    echo -e "${WHITE}   • View logs: ${YELLOW}$SCRIPT_DIR/vpn-logs.sh${NC}"
+    echo -e "${WHITE}   • Cleanup: ${YELLOW}$SCRIPT_DIR/cleanup.sh${NC}"
+    echo
+    
+    # Configuration files
+    echo -e "${CYAN}${BOLD}⚙️  File Konfigurasi:${NC}"
+    echo -e "${WHITE}   • Main config: ${GREEN}$CONFIG_DIR/config.json${NC}"
+    echo -e "${WHITE}   • Environment: ${GREEN}$INSTALL_DIR/.env${NC}"
+    echo -e "${WHITE}   • Service config: ${GREEN}/etc/systemd/system/$SERVICE_NAME.service${NC}"
+    echo
+    
+    # Security notes
+    echo -e "${CYAN}${BOLD}🔒 Catatan Keamanan:${NC}"
+    echo -e "${WHITE}   • Service berjalan dengan security hardening${NC}"
+    echo -e "${WHITE}   • Log rotation telah dikonfigurasi${NC}"
+    echo -e "${WHITE}   • Health check monitoring aktif${NC}"
+    echo -e "${WHITE}   • Backup otomatis tersedia${NC}"
+    echo
+    
+    # Next steps
+    echo -e "${CYAN}${BOLD}📝 Langkah Selanjutnya:${NC}"
+    echo -e "${WHITE}   1. Edit konfigurasi di: ${GREEN}$CONFIG_DIR/config.json${NC}"
+    echo -e "${WHITE}   2. Sesuaikan environment di: ${GREEN}$INSTALL_DIR/.env${NC}"
+    echo -e "${WHITE}   3. Test API endpoint: ${GREEN}http://$(hostname -I | awk '{print $1}'):5888${NC}"
+    echo -e "${WHITE}   4. Monitor logs: ${YELLOW}journalctl -u $SERVICE_NAME -f${NC}"
+    echo
+    
+    echo -e "${GREEN}${BOLD}✨ Developed by FadzDigital - Enhanced Version ✨${NC}"
+    echo -e "${PURPLE}${BOLD}═══════════════════════════════════════════════════════════════════════${NC}"
+    echo
+    
+    # Show installation time
+    if [ -n "${INSTALL_START_TIME:-}" ]; then
+        local install_end_time=$(date +%s)
+        local total_time=$((install_end_time - INSTALL_START_TIME))
+        local minutes=$((total_time / 60))
+        local seconds=$((total_time % 60))
+        
+        echo -e "${DIM}Installation completed in ${minutes}m ${seconds}s${NC}"
+    fi
+}
+
+# Cleanup temporary files and optimize system
+cleanup_installation() {
+    echo -e "${YELLOW}${BOLD}🧹 Membersihkan file sementara...${NC}"
+    
+    # Clean temporary files
+    rm -f /tmp/*.tmp
+    rm -f /tmp/vpn-api-*
+    
+    # Clean package cache
+    apt-get clean
+    apt-get autoremove -y
+    
+    # Update file database
+    updatedb &>/dev/null || true
+    
+    log "SUCCESS" "Installation cleanup completed"
 }
 
 # =============================================================================
 # MAIN INSTALLATION FLOW
 # =============================================================================
 
+# Enhanced main function with error recovery
 main() {
+    # Initialize installation
+    export INSTALL_START_TIME=$(date +%s)
+    
+    # Setup error handling
+    trap 'handle_installation_error $? $LINENO' ERR
+    trap 'handle_installation_interrupt' INT TERM
+    
+    # Initialize logging
+    mkdir -p "$(dirname "$LOG_FILE")"
+    touch "$LOG_FILE"
+    log "INFO" "VPN API Installation Started (Version $SCRIPT_VERSION)"
+    
+    # Main installation steps
     print_banner
-
-    # Step 1: System checks
-    check_system_requirements || exit 1
-
-    # Step 2: Existing installation check
+    check_system_requirements
     check_existing_installation
-
-    # Step 3: Install dependencies
     install_dependencies
-
-    # Step 4: Create directories
     create_directories
-
-    # Step 5: Download files
     download_files
-
-    # Step 6: Install node modules
     install_node_modules
-
-    # Step 7: Setup .env config
-    setup_env_file
-
-    # Step 8: Setup systemd service
-    create_systemd_service
-
-    # Step 9: Show summary
-    show_summary
+    create_configuration
+    create_service
+    setup_log_rotation
+    create_maintenance_scripts
+    start_service
+    cleanup_installation
+    show_installation_summary
+    
+    log "SUCCESS" "VPN API Installation Completed Successfully"
+    
+    # Final success notification
+    echo -e "${GREEN}${BOLD}🎊 Instalasi selesai! VPN API siap digunakan.${NC}"
 }
 
-main "$@"
+# Error handling functions
+handle_installation_error() {
+    local exit_code=$1
+    local line_number=$2
+    
+    echo -e "\n${RED}${BOLD}❌ Instalasi gagal pada baris $line_number (exit code: $exit_code)${NC}"
+    log "ERROR" "Installation failed at line $line_number (exit code: $exit_code)"
+    
+    # Show recent logs
+    if [ -f "$LOG_FILE" ]; then
+        echo -e "${YELLOW}📋 Log terakhir:${NC}"
+        tail -5 "$LOG_FILE" | while read -r line; do
+            echo -e "   ${DIM}$line${NC}"
+        done
+    fi
+    
+    # Cleanup on error
+    echo -e "${YELLOW}🧹 Membersihkan instalasi yang gagal...${NC}"
+    
+    # Stop service if it was started
+    systemctl stop "$SERVICE_NAME" 2>/dev/null || true
+    systemctl disable "$SERVICE_NAME" 2>/dev/null || true
+    
+    # Remove service file
+    rm -f "/etc/systemd/system/$SERVICE_NAME.service"
+    systemctl daemon-reload 2>/dev/null || true
+    
+    # Ask user if they want to keep files for debugging
+    echo -e "${CYAN}Apakah Anda ingin menyimpan file untuk debugging? [y/N]: ${NC}"
+    read -r -t 10 keep_files || keep_files="n"
+    
+    if [[ ! "$keep_files" =~ ^[Yy] ]]; then
+        rm -rf "$INSTALL_DIR" 2>/dev/null || true
+        echo -e "${GREEN}✓ File instalasi dibersihkan${NC}"
+    else
+        echo -e "${YELLOW}📁 File disimpan di: $INSTALL_DIR${NC}"
+        echo -e "${YELLOW}📄 Log tersimpan di: $LOG_FILE${NC}"
+    fi
+    
+    exit $exit_code
+}
+
+handle_installation_interrupt() {
+    echo -e "\n${YELLOW}${BOLD}⚠️  Instalasi dihentikan oleh pengguna${NC}"
+    log "WARN" "Installation interrupted by user"
+    
+    # Quick cleanup
+    systemctl stop "$SERVICE_NAME" 2>/dev/null || true
+    
+    echo -e "${BLUE}Terima kasih telah menggunakan installer VPN API!${NC}"
+    exit 130
+}
+
+# =============================================================================
+# SCRIPT EXECUTION
+# =============================================================================
+
+# Verify script is not being sourced
+if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
+    # Check if running with proper permissions
+    if [[ $EUID -ne 0 ]]; then
+        echo -e "${RED}${BOLD}❌ Script ini harus dijalankan sebagai root${NC}"
+        echo -e "${YELLOW}   Gunakan: sudo $0${NC}"
+        exit 1
+    fi
+    
+    # Run main installation
+    main "$@"
+else
+    echo "Script ini harus dijalankan, bukan di-source!"
+    exit 1
+fi
