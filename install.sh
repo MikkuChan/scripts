@@ -1,7 +1,5 @@
 #!/bin/bash
-# VPN API Setup Script
-# This script installs Node.js, copies VPN scripts, installs dependencies,
-# and configures a systemd service.
+# VPN API Setup Script - Otomatis download file dari GitHub
 
 set -e
 
@@ -10,6 +8,13 @@ GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
 BLUE='\033[0;34m'
 NC='\033[0m'
+
+REPO="MikkuChan/scripts"
+BRANCH="main"
+RAW_URL="https://raw.githubusercontent.com/$REPO/$BRANCH"
+
+INSTALL_DIR="/opt/vpn-api"
+SCRIPT_DIR="$INSTALL_DIR/scripts"
 
 spinner() {
   local pid=$1
@@ -29,43 +34,55 @@ run() {
   "$@" >/dev/null 2>&1 &
   spinner $!
   if [ $? -eq 0 ]; then
-    echo -e "\r${GREEN}✔ $*${NC}"
+    echo -e "\r${GREEN}\u2714 $*${NC}"
   else
-    echo -e "\r${RED}✘ $*${NC}"
+    echo -e "\r${RED}\u2718 $*${NC}"
     exit 1
   fi
 }
 
 echo -e "${GREEN}==============================${NC}"
-echo -e "${GREEN}       VPN API INSTALLER      ${NC}"
+echo -e "${GREEN}      VPN API INSTALLER       ${NC}"
 echo -e "${GREEN}==============================${NC}"
 
 if [[ $EUID -ne 0 ]]; then
-  echo -e "${RED}This script must be run as root${NC}" >&2
+  echo -e "${RED}Script ini harus dijalankan sebagai root${NC}" >&2
   exit 1
 fi
 
-# Install Node.js and npm if not installed
+# Cek dan install Node.js dan npm jika belum ada
 if ! command -v node >/dev/null 2>&1; then
   run apt-get update -y
   run apt-get install -y nodejs npm
 fi
 
-INSTALL_DIR=/opt/vpn-api
-SCRIPT_DIR="$INSTALL_DIR/scripts"
 run mkdir -p "$SCRIPT_DIR"
 
-# Copy project files
-run cp vpn-api.js package.json "$INSTALL_DIR"/
-run cp *.sh "$SCRIPT_DIR"/
-run chmod +x "$SCRIPT_DIR"/*.sh
+cd "$INSTALL_DIR"
 
-# Install node dependencies
+# Daftar file utama di root repo
+MAIN_FILES=(vpn-api.js package.json)
+
+for file in "${MAIN_FILES[@]}"; do
+  echo -e "${YELLOW}Mengunduh $file ...${NC}"
+  curl -fsSL "$RAW_URL/$file" -o "$INSTALL_DIR/$file"
+done
+
+# Download semua file .sh (kecuali install.sh) dari repo github
+# Dapatkan list file .sh dari GitHub API
+SH_FILES=$(curl -s "https://api.github.com/repos/$REPO/contents?ref=$BRANCH" | grep 'name.*\.sh' | cut -d '"' -f4 | grep -v 'install.sh')
+for file in $SH_FILES; do
+  echo -e "${YELLOW}Mengunduh $file ...${NC}"
+  curl -fsSL "$RAW_URL/$file" -o "$SCRIPT_DIR/$file"
+  chmod +x "$SCRIPT_DIR/$file"
+done
+
+# Instalasi node_modules
 cd "$INSTALL_DIR"
 run npm install --production
 
-# Create systemd service
-echo -e "${YELLOW}Creating systemd service${NC}"
+# Buat systemd service
+echo -e "${YELLOW}Membuat systemd service${NC}"
 cat > /etc/systemd/system/vpn-api.service <<'SERVICE'
 [Unit]
 Description=VPN API Service
@@ -86,4 +103,4 @@ SERVICE
 run systemctl daemon-reload
 run systemctl enable --now vpn-api.service
 
-echo -e "${GREEN}VPN API installed and started.${NC}"
+echo -e "${GREEN}VPN API berhasil diinstal dan dijalankan.${NC}"
