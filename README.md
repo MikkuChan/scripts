@@ -1,58 +1,54 @@
 # VPN API Scripts
 
-This repository contains a collection of bash scripts and a small Node.js
-service to manage VPN accounts (VMess, VLess, Trojan and SSH). The API exposes
-a simple HTTP interface to execute the scripts.
+Repositori ini berisi kumpulan skrip bash dan service kecil Node.js untuk mengelola akun VPN (VMess, VLess, Trojan, dan SSH) secara otomatis melalui HTTP API.
 
-## Features
+## Fitur
 
-- Create and renew VPN accounts via HTTP requests
-- Delete accounts and check active users
-- Backup and restore server configuration
-- JSON responses suitable for automation
+- Membuat & memperpanjang akun VPN via HTTP
+- Menghapus akun & cek user aktif
+- Backup & restore konfigurasi server
+- Respons JSON, cocok untuk otomasi
 
-## Requirements
+## Persyaratan
 
-- Debian/Ubuntu based system
-- Root privileges for installation
-- Internet connection to install dependencies
+- Sistem Debian/Ubuntu
+- Hak akses root (sudo)
+- Koneksi internet
 
-## Installation
+## Instalasi Sekali Klik
 
-Run the provided `install.sh` script as root. It will install Node.js,
-copy the scripts to `/opt/vpn-api`, install Node dependencies and set up a
-systemd service named `vpn-api` with colorful progress output.
-
-For a one-line install, you can execute:
+Jalankan perintah di bawah ini pada terminal (sebagai root/sudo):
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/yourusername/vpn-api/main/install.sh | sudo bash
+bash <(curl -fsSL https://raw.githubusercontent.com/MikkuChan/scripts/main/install.sh)
 ```
 
-After installation the service will start automatically. You can check its
-status with:
+Perintah di atas akan:
+- Mengunduh seluruh file penting dari repo ini secara otomatis.
+- Menginstal semua dependensi.
+- Membuat service systemd dan langsung menjalankan service VPN API.
+
+Setelah instalasi, service akan otomatis berjalan. Cek status dengan:
 
 ```bash
 systemctl status vpn-api
 ```
 
-The API listens on port `5888` by default.
+API berjalan pada port `5888` secara default.
 
-## Usage
+## Contoh Penggunaan
 
-Example of creating a VMess account:
+Contoh membuat akun VMess:
 
 ```bash
-curl "http://localhost:5888/createvmess?user=test&exp=30&quota=10&iplimit=1&auth=fadznewbie_do"
+curl "http://localhost:5888/createvmess?user=test&exp=30&quota=10&iplimit=1&auth=kuncirahasia"
 ```
 
-Each endpoint requires the `auth` parameter with the correct key. See
-`vpn-api.js` for a list of available endpoints and parameters.
+Setiap endpoint membutuhkan parameter `auth` dengan kunci yang sesuai. Lihat file `vpn-api.js` untuk daftar endpoint dan parameter lengkap.
 
-## Updating
+## Update
 
-If you modify the scripts or the Node.js application, redeploy them to
-`/opt/vpn-api` and restart the service:
+Jika ada perubahan pada skrip atau aplikasi, jalankan ulang perintah instalasi atau deploy ulang ke `/opt/vpn-api` lalu restart service:
 
 ```bash
 sudo systemctl restart vpn-api
@@ -60,5 +56,4 @@ sudo systemctl restart vpn-api
 
 ## Disclaimer
 
-Use these scripts at your own risk. They are provided as-is without any
-warranty. Review the code before running it in a production environment.
+Gunakan skrip ini dengan risiko Anda sendiri. Semua kode disediakan sebagaimana adanya tanpa jaminan apapun. Pastikan meninjau kode sebelum digunakan di server produksi.
