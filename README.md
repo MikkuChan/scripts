@@ -36,6 +36,52 @@ systemctl status vpn-api
 
 API berjalan pada port `5888` secara default.
 
+## Manajemen Service (systemd)
+
+Beberapa perintah systemd yang bisa digunakan untuk mengelola service VPN API:
+
+- **Cek status service**
+  
+  ```bash
+  systemctl status vpn-api
+  ```
+
+- **Menjalankan service**
+  
+  ```bash
+  systemctl start vpn-api
+  ```
+
+- **Menghentikan service**
+  
+  ```bash
+  systemctl stop vpn-api
+  ```
+
+- **Restart service**
+  
+  ```bash
+  systemctl restart vpn-api
+  ```
+
+- **Cek log output service**
+  
+  ```bash
+  journalctl -u vpn-api -f
+  ```
+
+- **Agar service aktif otomatis saat booting**
+  
+  ```bash
+  systemctl enable vpn-api
+  ```
+
+- **Menonaktifkan start otomatis saat booting**
+  
+  ```bash
+  systemctl disable vpn-api
+  ```
+
 ## Contoh Penggunaan
 
 Contoh membuat akun VMess:
