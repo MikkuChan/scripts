@@ -2,7 +2,7 @@
 # =============================================================================
 # VPN API Installation Script - FadzDigital
 # Author: FadzDigital
-# Created: Kamis, 19 Juni 2025
+# Created Kamis, 19 Juni 2025
 # =============================================================================
 
 set -euo pipefail
@@ -45,70 +45,100 @@ declare -r REQUIRED_PORTS=(80 443 8080)
 # UTILITY FUNCTIONS
 # =============================================================================
 
+#  banner with animation
 print_banner() {
     clear
-    local BORDER="${CYAN}${BOLD}╔═══════════════════════════════════════════════════════════════════════════════╗${NC}"
+    echo -e "${CYAN}${BOLD}"
+    
+    # Animated banner appearance
     local banner_lines=(
-        " ███████╗ █████╗ ██████╗ ███████╗██████╗ ██╗ ██████╗ ██╗████████╗ █████╗ ██╗     "
-        " ██╔════╝██╔══██╗██╔══██╗╚══███╔╝██╔══██╗██║██╔════╝ ██║╚══██╔══╝██╔══██╗██║     "
-        " █████╗  ███████║██║  ██║  ███╔╝ ██║  ██║██║██║  ███╗██║   ██║   ███████║██║     "
-        " ██╔══╝  ██╔══██║██║  ██║ ███╔╝  ██║  ██║██║██║   ██║██║   ██║   ██╔══██║██║     "
-        " ██║     ██║  ██║██████╔╝███████╗██████╔╝██║╚██████╔╝██║   ██║   ██║  ██║███████╗"
-        " ╚═╝     ╚═╝  ╚═╝╚═════╝ ╚══════╝╚═╝ ╚═════╝ ╚═╝   ╚═╝   ╚═╝  ╚═╝╚══════╝"
+          __           _     _            _
+" / _| __ _  __| |___| |_ ___  ___| |__"
+"| |_ / _` |/ _` |_  / __/ _ \/ __| '_ \"
+"|  _| (_| | (_| |/ /| ||  __/ (__| | | |"
+"|_|  \__,_|\__,_/___|\__\___|\___|_| |_|"
     )
-    echo -e "$BORDER"
+    
     for line in "${banner_lines[@]}"; do
-        echo -e "${CYAN}${BOLD}║$line║${NC}"
-        sleep 0.07
+        echo "$line"
+        sleep 0.1
     done
-    echo -e "$BORDER"
+    
+    echo -e "${NC}"
     echo -e "${PURPLE}${BOLD}═══════════════════════════════════════════════════════════════════════${NC}"
-    echo -e "${WHITE}${BOLD}                   INSTALLER VPN API v${SCRIPT_VERSION}                     ${NC}"
-    echo -e "${GREEN}${BOLD}                        by FadzDigital                            ${NC}"
-    echo -e "${DIM}                   Security & Performance                   ${NC}"
-    echo -e "${PURPLE}${BOLD}═══════════════════════════════════════════════════════════════════════${NC}\n"
+    echo -e "${WHITE}${BOLD}                      INSTALLER VPN API v${SCRIPT_VERSION}                        ${NC}"
+    echo -e "${GREEN}${BOLD}                           by FadzDigital                             ${NC}"
+    echo -e "${DIM}                     Security & Performance                   ${NC}"
+    echo -e "${PURPLE}${BOLD}═══════════════════════════════════════════════════════════════════════${NC}"
+    echo
 }
 
+#  logging with levels
 log() {
     local level="${1:-INFO}"
     local message="$2"
-    local timestamp
-    timestamp=$(date '+%Y-%m-%d %H:%M:%S')
+    local timestamp=$(date '+%Y-%m-%d %H:%M:%S')
+    
+    # Create log directory if it doesn't exist
     mkdir -p "$(dirname "$LOG_FILE")"
+    
     case "$level" in
-        "ERROR")   echo "[$timestamp] [ERROR] $message" | tee -a "$LOG_FILE" >&2 ;;
-        "WARN")    echo "[$timestamp] [WARN] $message" | tee -a "$LOG_FILE" ;;
-        "SUCCESS") echo "[$timestamp] [SUCCESS] $message" >> "$LOG_FILE" ;;
-        *)         echo "[$timestamp] [INFO] $message" >> "$LOG_FILE" ;;
+        "ERROR")
+            echo "[$timestamp] [ERROR] $message" | tee -a "$LOG_FILE" >&2
+            ;;
+        "WARN")
+            echo "[$timestamp] [WARN] $message" | tee -a "$LOG_FILE"
+            ;;
+        "SUCCESS")
+            echo "[$timestamp] [SUCCESS] $message" >> "$LOG_FILE"
+            ;;
+        *)
+            echo "[$timestamp] [INFO] $message" >> "$LOG_FILE"
+            ;;
     esac
 }
 
+# Advanced spinner with different animations
 spinner() {
     local pid=$1
     local message="$2"
     local animation="${3:-dots}"
     local delay=0.1
-    local spin
+    
     case "$animation" in
-        "dots")   spin='⠋⠙⠹⠸⠼⠴⠦⠧⠇⠏' ;;
-        "bars")   spin='▁▂▃▄▅▆▇█▇▆▅▄▃▂' ;;
-        "arrows") spin='←↖↑↗→↘↓↙' ;;
-        *)        spin='⠋⠙⠹⠸⠼⠴⠦⠧⠇⠏' ;;
+        "dots")
+            local spin='⠋⠙⠹⠸⠼⠴⠦⠧⠇⠏'
+            ;;
+        "bars")
+            local spin='▁▂▃▄▅▆▇█▇▆▅▄▃▂'
+            ;;
+        "arrows")
+            local spin='←↖↑↗→↘↓↙'
+            ;;
+        *)
+            local spin='⠋⠙⠹⠸⠼⠴⠦⠧⠇⠏'
+            ;;
     esac
+    
     local i=0
     local start_time=$(date +%s)
+    
     while kill -0 $pid 2>/dev/null; do
         local current_time=$(date +%s)
         local elapsed=$((current_time - start_time))
+        
         printf "\r${BLUE}${BOLD}%c${NC} ${WHITE}%s${NC} ${DIM}[%ds]${NC}" \
                "${spin:$i:1}" "$message" "$elapsed"
+        
         sleep $delay
         i=$(((i + 1) % ${#spin}))
     done
+    
     wait $pid
     local exit_code=$?
     local end_time=$(date +%s)
     local total_time=$((end_time - start_time))
+    
     if [ $exit_code -eq 0 ]; then
         printf "\r${GREEN}${BOLD}✓${NC} ${WHITE}%s${NC} ${GREEN}[BERHASIL]${NC} ${DIM}(%ds)${NC}\n" \
                "$message" "$total_time"
@@ -121,25 +151,35 @@ spinner() {
     fi
 }
 
+#  command execution with retry mechanism
 run() {
     local cmd="$*"
     local max_retries="${MAX_RETRIES:-3}"
     local retry_delay="${RETRY_DELAY:-2}"
     local attempt=1
+    
     log "INFO" "Executing: $cmd"
+    
     while [ $attempt -le $max_retries ]; do
-        { eval "$cmd" 2>&1; } &
+        {
+            eval "$cmd" 2>&1
+        } &
+        
         local pid=$!
+        
         if [ $attempt -eq 1 ]; then
             spinner $pid "$cmd" "dots"
         else
             spinner $pid "$cmd (percobaan $attempt/$max_retries)" "bars"
         fi
+        
         local exit_code=$?
+        
         if [ $exit_code -eq 0 ]; then
             return 0
         else
             log "WARN" "Attempt $attempt failed for: $cmd"
+            
             if [ $attempt -lt $max_retries ]; then
                 echo -e "${YELLOW}⚠️  Percobaan $attempt gagal, mencoba lagi dalam ${retry_delay}s...${NC}"
                 sleep $retry_delay
@@ -153,6 +193,7 @@ run() {
     done
 }
 
+#  progress bar with ETA
 progress_bar() {
     local current=$1
     local total=$2
@@ -161,21 +202,22 @@ progress_bar() {
     local percentage=$((current * 100 / total))
     local completed=$((current * width / total))
     local remaining=$((width - completed))
+    
+    # Calculate ETA
     local eta=""
     if [ $current -gt 0 ] && [ ! -z "${PROGRESS_START_TIME:-}" ]; then
-        local elapsed=$(( $(date +%s) - PROGRESS_START_TIME ))
-        [ $elapsed -eq 0 ] && elapsed=1
-        local rate=$((current * 1000 / elapsed))
-        [ $rate -eq 0 ] && rate=1
+        local elapsed=$(($(date +%s) - PROGRESS_START_TIME))
+        local rate=$((current * 1000 / (elapsed + 1)))  # items per second * 1000
         local remaining_items=$((total - current))
-        local eta_seconds=$((remaining_items * 1000 / rate))
-        [ $eta_seconds -lt 0 ] && eta_seconds=0
+        local eta_seconds=$((remaining_items * 1000 / (rate + 1)))
+        
         if [ $eta_seconds -lt 60 ]; then
             eta=" ETA: ${eta_seconds}s"
         else
             eta=" ETA: $((eta_seconds / 60))m $((eta_seconds % 60))s"
         fi
     fi
+    
     printf "\r${CYAN}[${NC}"
     printf "%*s" $completed | tr ' ' '█'
     printf "%*s" $remaining | tr ' ' '░'
@@ -187,52 +229,74 @@ progress_bar() {
 # SYSTEM VALIDATION FUNCTIONS
 # =============================================================================
 
+# Comprehensive system check
 check_system_requirements() {
     echo -e "${YELLOW}${BOLD}🔍 Memeriksa persyaratan sistem...${NC}"
+    
     local checks_passed=0
     local total_checks=7
+    
+    # Check 1: Root privileges
     if [[ $EUID -ne 0 ]]; then
         echo -e "${RED}${BOLD}❌ Script harus dijalankan sebagai root${NC}"
         echo -e "${YELLOW}   Gunakan: sudo $0${NC}"
         return 1
     fi
     checks_passed=$((checks_passed + 1))
+    
+    # Check 2: Operating system
     if ! command -v apt-get >/dev/null 2>&1; then
         echo -e "${RED}${BOLD}❌ Sistem operasi tidak didukung (diperlukan Ubuntu/Debian)${NC}"
         return 1
     fi
     checks_passed=$((checks_passed + 1))
+    
+    # Check 3: Memory
     local memory_gb=$(free -g | awk '/^Mem:/{print $2}')
     if [ "$memory_gb" -lt $MIN_MEMORY_GB ]; then
         echo -e "${RED}${BOLD}❌ RAM tidak mencukupi (minimal ${MIN_MEMORY_GB}GB, tersedia ${memory_gb}GB)${NC}"
         return 1
     fi
     checks_passed=$((checks_passed + 1))
+    
+    # Check 4: Disk space
     local disk_gb=$(df -BG / | awk 'NR==2 {print $4}' | sed 's/G//')
     if [ "$disk_gb" -lt $MIN_DISK_GB ]; then
         echo -e "${RED}${BOLD}❌ Ruang disk tidak mencukupi (minimal ${MIN_DISK_GB}GB, tersedia ${disk_gb}GB)${NC}"
         return 1
     fi
     checks_passed=$((checks_passed + 1))
+    
+    # Check 5: Internet connectivity
     if ! ping -c 1 -W 5 8.8.8.8 >/dev/null 2>&1; then
         echo -e "${RED}${BOLD}❌ Tidak ada koneksi internet${NC}"
         return 1
     fi
     checks_passed=$((checks_passed + 1))
+    
+    # Check 6: GitHub connectivity
     if ! curl -s --connect-timeout 10 https://api.github.com/repos/$REPO >/dev/null; then
         echo -e "${RED}${BOLD}❌ Tidak dapat mengakses GitHub repository${NC}"
         return 1
     fi
     checks_passed=$((checks_passed + 1))
+    
+    # Check 7: Port availability
     local ports_available=true
     for port in "${REQUIRED_PORTS[@]}"; do
-        if ss -ln | grep -q ":$port "; then
+        if netstat -ln 2>/dev/null | grep -q ":$port "; then
             echo -e "${YELLOW}⚠️  Port $port sudah digunakan${NC}"
             ports_available=false
         fi
     done
-    [ "$ports_available" = true ] && checks_passed=$((checks_passed + 1))
+    
+    if [ "$ports_available" = true ]; then
+        checks_passed=$((checks_passed + 1))
+    fi
+    
+    # Summary
     echo -e "${GREEN}${BOLD}✓ Pemeriksaan sistem selesai ($checks_passed/$total_checks)${NC}"
+    
     if [ $checks_passed -eq $total_checks ]; then
         log "SUCCESS" "All system requirements met"
         return 0
@@ -242,40 +306,67 @@ check_system_requirements() {
     fi
 }
 
+#  existing installation check
 check_existing_installation() {
     local has_existing=false
+    
     echo -e "${YELLOW}${BOLD}🔍 Memeriksa instalasi yang sudah ada...${NC}"
+    
     if [ -d "$INSTALL_DIR" ]; then
         echo -e "${BLUE}   • Direktori instalasi ditemukan: ${WHITE}$INSTALL_DIR${NC}"
         has_existing=true
     fi
+    
     if systemctl is-active --quiet "$SERVICE_NAME" 2>/dev/null; then
         echo -e "${BLUE}   • Service aktif: ${WHITE}$SERVICE_NAME${NC}"
         has_existing=true
     fi
+    
     if [ -f "/etc/systemd/system/$SERVICE_NAME.service" ]; then
         echo -e "${BLUE}   • Service file ditemukan${NC}"
         has_existing=true
     fi
+    
     if [ "$has_existing" = true ]; then
         echo -e "${YELLOW}${BOLD}⚠️  Ditemukan instalasi VPN API yang sudah ada${NC}"
         echo
+        
+        # Show current installation info
         show_current_installation_info
+        
         echo -e "${CYAN}${BOLD}Pilihan yang tersedia:${NC}"
         echo -e "${WHITE}  [1] Hapus dan install ulang (Recommended)${NC}"
         echo -e "${WHITE}  [2] Backup dan install ulang${NC}"
         echo -e "${WHITE}  [3] Update saja (Keep config)${NC}"
         echo -e "${WHITE}  [4] Batalkan instalasi${NC}"
         echo
+        
         while true; do
             echo -e "${CYAN}${BOLD}Pilih opsi [1-4]: ${NC}"
             read -r choice
+            
             case $choice in
-                1) remove_existing_installation; break ;;
-                2) backup_existing_installation; remove_existing_installation; break ;;
-                3) UPDATE_MODE=true; break ;;
-                4) echo -e "${RED}${BOLD}Instalasi dibatalkan oleh pengguna${NC}"; log "INFO" "Installation cancelled by user"; exit 0 ;;
-                *) echo -e "${YELLOW}Pilihan tidak valid. Silakan pilih 1-4${NC}" ;;
+                1)
+                    remove_existing_installation
+                    break
+                    ;;
+                2)
+                    backup_existing_installation
+                    remove_existing_installation
+                    break
+                    ;;
+                3)
+                    UPDATE_MODE=true
+                    break
+                    ;;
+                4)
+                    echo -e "${RED}${BOLD}Instalasi dibatalkan oleh pengguna${NC}"
+                    log "INFO" "Installation cancelled by user"
+                    exit 0
+                    ;;
+                *)
+                    echo -e "${YELLOW}Pilihan tidak valid. Silakan pilih 1-4${NC}"
+                    ;;
             esac
         done
     else
@@ -283,36 +374,48 @@ check_existing_installation() {
     fi
 }
 
+# Show current installation information
 show_current_installation_info() {
     echo -e "${CYAN}${BOLD}📋 Informasi Instalasi Saat Ini:${NC}"
+    
     if [ -d "$INSTALL_DIR" ]; then
         local install_size=$(du -sh "$INSTALL_DIR" 2>/dev/null | cut -f1)
         echo -e "${WHITE}   • Ukuran instalasi: ${GREEN}$install_size${NC}"
+        
         if [ -f "$INSTALL_DIR/package.json" ]; then
             local version=$(grep '"version"' "$INSTALL_DIR/package.json" 2>/dev/null | cut -d'"' -f4)
             echo -e "${WHITE}   • Versi: ${GREEN}${version:-"Unknown"}${NC}"
         fi
     fi
+    
     if systemctl is-enabled --quiet "$SERVICE_NAME" 2>/dev/null; then
         local status=$(systemctl is-active "$SERVICE_NAME" 2>/dev/null)
         local uptime=$(systemctl show "$SERVICE_NAME" --property=ActiveEnterTimestamp --value 2>/dev/null)
         echo -e "${WHITE}   • Status service: ${GREEN}$status${NC}"
         [ -n "$uptime" ] && echo -e "${WHITE}   • Uptime: ${GREEN}$uptime${NC}"
     fi
+    
     echo
 }
 
+# Backup existing installation
 backup_existing_installation() {
     echo -e "${YELLOW}${BOLD}💾 Membuat backup instalasi lama...${NC}"
+    
     local backup_name="vpn-api-backup-$(date +%Y%m%d-%H%M%S)"
     local backup_path="$BACKUP_DIR/$backup_name"
+    
     run "mkdir -p $backup_path"
+    
     if [ -d "$INSTALL_DIR" ]; then
         run "cp -r $INSTALL_DIR/* $backup_path/"
     fi
+    
     if [ -f "/etc/systemd/system/$SERVICE_NAME.service" ]; then
         run "cp /etc/systemd/system/$SERVICE_NAME.service $backup_path/"
     fi
+    
+    # Create backup info
     cat > "$backup_path/backup-info.txt" << EOF
 Backup Information
 ==================
@@ -322,43 +425,64 @@ Service Name: $SERVICE_NAME
 System: $(uname -a)
 User: $(whoami)
 EOF
+    
     echo -e "${GREEN}${BOLD}✓ Backup disimpan di: ${WHITE}$backup_path${NC}"
     log "SUCCESS" "Backup created at $backup_path"
 }
 
+#  removal with confirmation
 remove_existing_installation() {
     echo -e "${YELLOW}${BOLD}🗑️  Menghapus instalasi yang sudah ada...${NC}"
+    
     local removal_steps=4
     local current_step=0
+    
+    # Stop service
     if systemctl is-active --quiet "$SERVICE_NAME" 2>/dev/null; then
         current_step=$((current_step + 1))
         progress_bar $current_step $removal_steps "Menghentikan service"
         run "systemctl stop $SERVICE_NAME"
     fi
+    
+    # Disable service
     if systemctl is-enabled --quiet "$SERVICE_NAME" 2>/dev/null; then
         current_step=$((current_step + 1))
         progress_bar $current_step $removal_steps "Menonaktifkan service"
         run "systemctl disable $SERVICE_NAME"
     fi
+    
+    # Remove service file
     if [ -f "/etc/systemd/system/$SERVICE_NAME.service" ]; then
         current_step=$((current_step + 1))
         progress_bar $current_step $removal_steps "Menghapus service file"
         run "rm -f /etc/systemd/system/$SERVICE_NAME.service"
         run "systemctl daemon-reload"
     fi
+    
+    # Remove installation directory
     if [ -d "$INSTALL_DIR" ]; then
         current_step=$((current_step + 1))
         progress_bar $current_step $removal_steps "Menghapus direktori instalasi"
         run "rm -rf $INSTALL_DIR"
     fi
+    
     echo
     echo -e "${GREEN}${BOLD}✓ Instalasi lama berhasil dihapus${NC}"
     log "SUCCESS" "Previous installation removed successfully"
 }
 
+# =============================================================================
+# INSTALLATION FUNCTIONS
+# =============================================================================
+
+#  dependency installation with package verification
 install_dependencies() {
     echo -e "${YELLOW}${BOLD}📦 Menginstall dependencies...${NC}"
+    
+    # Update package list
     run "apt-get update -y"
+    
+    # Install essential packages
     local packages=(
         "curl:Command line tool for transferring data"
         "wget:Network downloader"
@@ -366,19 +490,23 @@ install_dependencies() {
         "nodejs:JavaScript runtime"
         "npm:Node.js package manager"
         "systemd:System and service manager"
-        "net-tools:Network statistics"
+        "netstat-nat:Network statistics"
         "jq:JSON processor"
         "unzip:Archive extraction"
         "htop:Process viewer"
     )
+    
     local total=${#packages[@]}
     local current=0
     export PROGRESS_START_TIME=$(date +%s)
+    
     for package_info in "${packages[@]}"; do
         local package_name=$(echo "$package_info" | cut -d':' -f1)
         local package_desc=$(echo "$package_info" | cut -d':' -f2)
+        
         current=$((current + 1))
         progress_bar $current $total "Installing $package_name"
+        
         if ! command -v "$package_name" >/dev/null 2>&1 && ! dpkg -l | grep -q "^ii  $package_name "; then
             if ! run "apt-get install -y $package_name"; then
                 echo -e "${RED}${BOLD}❌ Gagal menginstall $package_name${NC}"
@@ -388,14 +516,21 @@ install_dependencies() {
         else
             log "INFO" "$package_name already installed"
         fi
-        sleep 0.1
+        
+        sleep 0.1  # Small delay for visual effect
     done
+    
     echo
+    
+    # Verify Node.js and npm versions
     local node_version=$(node --version 2>/dev/null || echo "Not found")
     local npm_version=$(npm --version 2>/dev/null || echo "Not found")
+    
     echo -e "${CYAN}📋 Versi yang terinstall:${NC}"
     echo -e "${WHITE}   • Node.js: ${GREEN}$node_version${NC}"
     echo -e "${WHITE}   • npm: ${GREEN}$npm_version${NC}"
+    
+    # Check if Node.js version is compatible (minimum v14)
     if command -v node >/dev/null 2>&1; then
         local node_major=$(node --version | cut -d'v' -f2 | cut -d'.' -f1)
         if [ "$node_major" -lt 14 ]; then
@@ -404,12 +539,15 @@ install_dependencies() {
             run "apt-get install -y nodejs"
         fi
     fi
+    
     echo -e "${GREEN}${BOLD}✓ Semua dependencies berhasil diinstall${NC}"
     log "SUCCESS" "All dependencies installed successfully"
 }
 
+#  directory creation with proper permissions
 create_directories() {
     echo -e "${YELLOW}${BOLD}📁 Membuat struktur direktori...${NC}"
+    
     local directories=(
         "$INSTALL_DIR:755:VPN API main directory"
         "$SCRIPT_DIR:755:Scripts directory"
@@ -418,54 +556,76 @@ create_directories() {
         "/var/lib/vpn-api:755:Data directory"
         "/etc/vpn-api:750:System config directory"
     )
+    
     for dir_info in "${directories[@]}"; do
         local dir_path=$(echo "$dir_info" | cut -d':' -f1)
         local dir_perms=$(echo "$dir_info" | cut -d':' -f2)
         local dir_desc=$(echo "$dir_info" | cut -d':' -f3)
+        
         if [ ! -d "$dir_path" ]; then
             run "mkdir -p $dir_path"
             run "chmod $dir_perms $dir_path"
             run "chown root:root $dir_path"
+            
             echo -e "${GREEN}  ✓ Created: ${WHITE}$dir_path${NC} ${DIM}($dir_desc)${NC}"
             log "SUCCESS" "Created directory: $dir_path"
         else
             echo -e "${BLUE}  ℹ Exists: ${WHITE}$dir_path${NC} ${DIM}($dir_desc)${NC}"
         fi
     done
+    
     echo -e "${GREEN}${BOLD}✓ Struktur direktori berhasil dibuat${NC}"
 }
 
+#  file download with integrity checking
 download_files() {
     echo -e "${YELLOW}${BOLD}⬇️  Mendownload files dari GitHub...${NC}"
+    
     cd "$INSTALL_DIR"
+    
+    # Get repository information
     local repo_info
     if ! repo_info=$(curl -s "https://api.github.com/repos/$REPO"); then
         echo -e "${RED}${BOLD}❌ Gagal mengakses repository information${NC}"
         return 1
     fi
+    
+    # Main application files
     local main_files=(
         "vpn-api.js:VPN API main application"
         "package.json:Node.js dependencies"
         "README.md:Documentation"
         ".env.example:Environment template"
     )
+    
+    # Get shell scripts from repository
     local sh_files
     if ! sh_files=$(curl -s "https://api.github.com/repos/$REPO/contents?ref=$BRANCH" | jq -r '.[] | select(.name | endswith(".sh")) | select(.name != "install.sh") | .name'); then
         echo -e "${YELLOW}⚠️  Tidak dapat mengambil daftar shell scripts${NC}"
         sh_files=""
     fi
+    
+    # Calculate total files
     local total_files=${#main_files[@]}
     [ -n "$sh_files" ] && total_files=$((total_files + $(echo "$sh_files" | wc -l)))
+    
     local current_file=0
     export PROGRESS_START_TIME=$(date +%s)
+    
+    # Download main files
     for file_info in "${main_files[@]}"; do
         local filename=$(echo "$file_info" | cut -d':' -f1)
         local filedesc=$(echo "$file_info" | cut -d':' -f2)
+        
         current_file=$((current_file + 1))
         progress_bar $current_file $total_files "Downloading $filename"
+        
         local download_url="$RAW_URL/$filename"
         local temp_file="/tmp/${filename}.tmp"
+        
+        # Download to temporary file first
         if curl -fsSL "$download_url" -o "$temp_file"; then
+            # Verify file is not empty and move to final location
             if [ -s "$temp_file" ]; then
                 mv "$temp_file" "$INSTALL_DIR/$filename"
                 chmod 644 "$INSTALL_DIR/$filename"
@@ -479,13 +639,18 @@ download_files() {
             rm -f "$temp_file"
         fi
     done
+    
+    # Download shell scripts
     if [ -n "$sh_files" ]; then
         while IFS= read -r filename; do
             [ -z "$filename" ] && continue
+            
             current_file=$((current_file + 1))
             progress_bar $current_file $total_files "Downloading $filename"
+            
             local download_url="$RAW_URL/$filename"
             local temp_file="/tmp/${filename}.tmp"
+            
             if curl -fsSL "$download_url" -o "$temp_file"; then
                 if [ -s "$temp_file" ]; then
                     mv "$temp_file" "$SCRIPT_DIR/$filename"
@@ -499,18 +664,27 @@ download_files() {
             fi
         done <<< "$sh_files"
     fi
+    
     echo
     echo -e "${GREEN}${BOLD}✓ File download selesai${NC}"
+    
+    # Show downloaded files summary
     local downloaded_count=$(find "$INSTALL_DIR" -type f | wc -l)
     echo -e "${CYAN}📋 Summary: ${WHITE}$downloaded_count${NC} files downloaded"
+    
     log "SUCCESS" "Downloaded $downloaded_count files successfully"
 }
 
+#  Node.js dependencies installation
 install_node_modules() {
     echo -e "${YELLOW}${BOLD}📦 Menginstall Node.js dependencies...${NC}"
+    
     cd "$INSTALL_DIR"
+    
     if [ ! -f "package.json" ]; then
         echo -e "${YELLOW}⚠️  package.json tidak ditemukan, membuat default...${NC}"
+        
+        # Create basic package.json if not exists
         cat > package.json << EOF
 {
   "name": "vpn-api",
@@ -531,11 +705,13 @@ install_node_modules() {
   "engines": {
     "node": ">=14.0.0"
   },
-  "author": "FadzDigital",
-  "license": "MIT"
+    "author": "FadzDigital",
+    "license": "MIT"
 }
 EOF
     fi
+
+    # Install node modules (production only)
     if [ -f "package.json" ]; then
         run "npm install --only=production --no-optional --silent"
         if [ $? -eq 0 ]; then
@@ -549,6 +725,7 @@ EOF
     fi
 }
 
+# Create .env config from example if not exists
 setup_env_file() {
     echo -e "${YELLOW}${BOLD}⚙️  Setup konfigurasi environment...${NC}"
     if [ -f "$INSTALL_DIR/.env.example" ] && [ ! -f "$CONFIG_DIR/.env" ]; then
@@ -559,6 +736,7 @@ setup_env_file() {
     fi
 }
 
+# Create systemd service with watermark
 create_systemd_service() {
     echo -e "${YELLOW}${BOLD}🛠️  Setup systemd service...${NC}"
     local service_path="/etc/systemd/system/$SERVICE_NAME.service"
@@ -588,6 +766,7 @@ EOF
     log "SUCCESS" "Systemd service registered & started"
 }
 
+# Show installation summary and usage info
 show_summary() {
     echo
     echo -e "${GREEN}${BOLD}🎉 Instalasi VPN API berhasil!${NC}"
@@ -606,14 +785,32 @@ show_summary() {
 
 main() {
     print_banner
+
+    # Step 1: System checks
     check_system_requirements || exit 1
+
+    # Step 2: Existing installation check
     check_existing_installation
+
+    # Step 3: Install dependencies
     install_dependencies
+
+    # Step 4: Create directories
     create_directories
+
+    # Step 5: Download files
     download_files
+
+    # Step 6: Install node modules
     install_node_modules
+
+    # Step 7: Setup .env config
     setup_env_file
+
+    # Step 8: Setup systemd service
     create_systemd_service
+
+    # Step 9: Show summary
     show_summary
 }
 
