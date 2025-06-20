@@ -16,16 +16,8 @@ if [[ "$REQUEST_METHOD" == "GET" ]]; then
   masaaktif=$(echo "$QUERY_STRING" | grep -oE '(^|&)exp=[^&]*' | cut -d= -f2)
   Quota=$(echo "$QUERY_STRING" | grep -oE '(^|&)quota=[^&]*' | cut -d= -f2)
   iplimit=$(echo "$QUERY_STRING" | grep -oE '(^|&)iplimit=[^&]*' | cut -d= -f2)
-  auth=$(echo "$QUERY_STRING" | grep -oE '(^|&)auth=[^&]*' | cut -d= -f2)
-  
-  # Validasi auth key
-  valid_auth="fadznewbie_do"
-  if [[ "$auth" != "$valid_auth" ]]; then
-    echo -e "Content-Type: application/json\r\n"
-    printf '{"status":"error","message":"Invalid authentication key"}\n'
-    exit 1
-  fi
-  
+  # auth sudah dihapus
+
   # Validasi parameter wajib
   if [[ -z "$user" || -z "$masaaktif" || -z "$Quota" || -z "$iplimit" ]]; then
     echo -e "Content-Type: application/json\r\n"
@@ -293,9 +285,9 @@ END
     MYIP=$(curl -s ifconfig.me)
     CITY=${CITY:-"Unknown"}
     ISP=${ISP:-"Unknown"}
-    TEXT="<b>━━━━━━ 𝙑𝙈𝙀𝙎𝙎 𝙋𝙍𝙀𝙈𝙄𝙐𝙈 ━━━━━</b>
+    TEXT="<b>━━━━━━ VMESS PREMIUM ━━━━━</b>
 
-<b>👤 𝙐𝙨𝙚𝙧 𝘿𝙚𝙩𝙖𝙞𝙡𝙨</b>
+<b>👤 User Details</b>
 ┣ <b>Username</b>   : <code>$user</code>
 ┣ <b>UUID</b>       : <code>$uuid</code>
 ┣ <b>Quota</b>      : <code>${Quota} GB</code>
@@ -303,13 +295,13 @@ END
 ┣ <b>Dibuat</b>     : <code>$tnggl</code>
 ┗ <b>Expired</b>    : <code>$expe</code>
 
-<b>🌎 𝙎𝙚𝙧𝙫𝙚𝙧 𝙄𝙣𝙛𝙤</b>
+<b>🌎 Server Info</b>
 ┣ <b>Domain</b>     : <code>$domain</code>
 ┣ <b>IP</b>         : <code>$MYIP</code>
 ┣ <b>Location</b>   : <code>$CITY</code>
 ┗ <b>ISP</b>        : <code>$ISP</code>
 
-<b>🔗 𝘾𝙤𝙣𝙣𝙚𝙘𝙩𝙞𝙤𝙣</b>
+<b>🔗 Connection</b>
 ┣ <b>TLS Port</b>        : <code>400-900</code>
 ┣ <b>Non-TLS Port</b>    : <code>80, 8080, 8081-9999</code>
 ┣ <b>Network</b>         : <code>ws, grpc</code>
@@ -318,25 +310,25 @@ END
 ┣ <b>Security</b>        : <code>auto</code>
 ┗ <b>alterId</b>         : <code>0</code>
 
-<b>━━━━━ 𝙑𝙈𝙀𝙎𝙎 𝙋𝙧𝙚𝙢𝙞𝙪𝙢 𝙇𝙞𝙣𝙠𝙨 ━━━━━</b>
-<b>📍 𝙒𝙎 𝙏𝙇𝙎</b>
+<b>━━━━━ VMESS Premium Links ━━━━━</b>
+<b>📍 WS TLS</b>
 <pre>$vmesslink1</pre>
-<b>📍 𝙒𝙎 𝙉𝙤𝙣-𝙏𝙇𝙎</b>
+<b>📍 WS Non-TLS</b>
 <pre>$vmesslink2</pre>
-<b>📍 𝙜𝙍𝙋𝘾</b>
+<b>📍 gRPC</b>
 <pre>$vmesslink3</pre>
 
-<b>📥 𝘾𝙤𝙣𝙛𝙞𝙜 𝙁𝙞𝙡𝙚 (Clash/OpenClash):</b>
+<b>📥 Config File (Clash/OpenClash):</b>
 ➤ https://${domain}:81/vmess-$user.txt
 
-<b>✨ 𝙏𝙤𝙤𝙡𝙨 & 𝙍𝙚𝙨𝙤𝙪𝙧𝙘𝙚𝙨</b>
+<b>✨ Tools & Resources</b>
 ┣  https://vpntech.my.id/converteryaml
 ┗  https://vpntech.my.id/auto-configuration
 
-<b>❓ 𝘽𝙪𝙩𝙪𝙝 𝘽𝙖𝙣𝙩𝙪𝙖𝙣?</b>
+<b>❓ Butuh Bantuan?</b>
 ➤ https://wa.me/6285727035336
 
-<b>━━━━━━━━━ 𝙏𝙝𝙖𝙣𝙠 𝙔𝙤𝙪 ━━━━━━━━</b>
+<b>━━━━━━━━━ Thank You ━━━━━━━━</b>
 "
     TEXT_ENCODED=$(echo "$TEXT" | jq -sRr @uri)
     curl -s -d "chat_id=$CHAT_ID&disable_web_page_preview=1&text=$TEXT_ENCODED&parse_mode=html" "https://api.telegram.org/bot$BOT_TOKEN/sendMessage" > /dev/null 2>&1
@@ -347,4 +339,3 @@ END
     "$user" "$uuid" "$domain" "$exp" "$Quota" "$iplimit" "$tnggl" "$vmesslink1" "$vmesslink2" "$vmesslink3"
   exit 0
 fi
-
