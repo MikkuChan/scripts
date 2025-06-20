@@ -55,7 +55,7 @@ print_banner() {
         "╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╭━╯┃"
         "╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╰━━╯"
         "                               "
-        "          Digital Zone         "
+        "          fadzDigital Zone         "
     )
     
     # Print banner dengan warna
@@ -63,11 +63,6 @@ print_banner() {
         echo -e "${CYAN}${BOLD}${line}${NC}"
     done
     echo -e "${NC}"
-    echo -e "${PURPLE}${BOLD}══════════════════════════════════════════════════════════════════════════════${NC}"
-    echo -e "${WHITE}${BOLD}                         INSTALLER VPN API v2.0${NC}"
-    echo -e "${GREEN}${BOLD}                        Dibuat oleh FadzDigital${NC}"
-    echo -e "${ORANGE}${BOLD}                    Premium VPN Management System${NC}"
-    echo -e "${PURPLE}${BOLD}══════════════════════════════════════════════════════════════════════════════${NC}"
     
     # Animasi pembukaan yang lebih menarik
     echo -e "${CYAN}${BOLD}"
