@@ -15,8 +15,11 @@ declare -r BLUE='\033[1;34m'
 declare -r PURPLE='\033[1;35m'
 declare -r CYAN='\033[1;36m'
 declare -r WHITE='\033[1;37m'
+declare -r ORANGE='\033[1;38;5;208m'
+declare -r PINK='\033[1;38;5;213m'
 declare -r BOLD='\033[1m'
 declare -r DIM='\033[2m'
+declare -r BLINK='\033[5m'
 declare -r NC='\033[0m'
 
 # Gradient color array untuk animasi
@@ -24,6 +27,9 @@ declare -a GRADIENT=(
     '\033[1;34m'  # Blue
     '\033[1;35m'  # Purple
     '\033[1;36m'  # Cyan
+    '\033[1;32m'  # Green
+    '\033[1;33m'  # Yellow
+    '\033[1;31m'  # Red
 )
 
 # Konfigurasi
@@ -35,79 +41,95 @@ declare -r SCRIPT_DIR="$INSTALL_DIR/scripts"
 declare -r SERVICE_NAME="vpn-api"
 declare -r LOG_FILE="/var/log/vpn-api-install.log"
 
-# Modern ASCII banner menggunakan figlet style
+# ASCII Banner FADZ dengan figlet style
 print_banner() {
     clear
     echo -e "${CYAN}${BOLD}"
     cat << 'EOF'
-    ╔══════════════════════════════════════════════════════════════════════╗
-    ╔═╗─╔╗───────╔╗─╔════╗─█──█─████───█───╦════╗
-    ║╬╠═╬╬═╦═╦═╬╦╗─╬═╦╦╦═╦═╦═╗─╚════╦═╦═╦╦═╝
-    ║╔╬╩╬╬╬╦╧╬╬╩╦╬╬═╬╬╬╩╬═║─███──╩╬╬═╬╬═╦
-    ╚═╩╩╩╩✩╩╩╩╩✩╩╩╩╩✩ ✩✩╩╩✩ ✩✩╩ ╩╩╩✩✩
-    ╚ DIGITAL
-    ╚══════════════════════════════════════════════════════════════════════╩
+╔════════════════════════════════════════════════════════════════════════════╗
+║                                                                            ║
+║  ███████╗ █████╗ ██████╗ ███████╗    ██████╗ ██╗ ██████╗ ██╗████████╗ █████╗ ██╗     ║
+║  ██╔════╝██╔══██╗██╔══██╗╚══███╔╝    ██╔══██╗██║██╔════╝ ██║╚══██╔══╝██╔══██╗██║     ║
+║  █████╗  ███████║██║  ██║  ███╔╝     ██║  ██║██║██║  ███╗██║   ██║   ███████║██║     ║
+║  ██╔══╝  ██╔══██║██║  ██║ ███╔╝      ██║  ██║██║██║   ██║██║   ██║   ██╔══██║██║     ║
+║  ██║     ██║  ██║██████╔╝███████╗    ██████╔╝██║╚██████╔╝██║   ██║   ██║  ██║███████╗║
+║  ╚═╝     ╚═╝  ╚═╝╚═════╝ ╚══════╝    ╚═════╝ ╚═╝ ╚═════╝ ╚═╝   ╚═╝   ╚═╝  ╚═╝╚══════╝║
+║                                                                            ║
+║    ██╗   ██╗██████╗ ███╗   ██╗     █████╗ ██████╗ ██╗    ██╗   ██╗██████╗ ██╗        ║
+║    ██║   ██║██╔══██╗████╗  ██║    ██╔══██╗██╔══██╗██║    ╚██╗ ██╔╝╚════██╗██║        ║
+║    ██║   ██║██████╔╝██╔██╗ ██║    ███████║██████╔╝██║     ╚████╔╝  █████╔╝██║        ║
+║    ╚██╗ ██╔╝██╔═══╝ ██║╚██╗██║    ██╔══██║██╔═══╝ ██║      ╚██╔╝  ██╔═══╝ ╚═╝        ║
+║     ╚████╔╝ ██║     ██║ ╚████║    ██║  ██║██║     ██║       ██║   ███████╗██╗        ║
+║      ╚═══╝  ╚═╝     ╚═╝  ╚═══╝    ╚═╝  ╚═╝╚═╝     ╚═╝       ╚═╝   ╚══════╝╚═╝        ║
+║                                                                            ║
+╚════════════════════════════════════════════════════════════════════════════╝
 EOF
-    echo -e "${PURPLE}${BOLD}═══════════════════════════════════════════════════════════════════════${NC}"
-    echo -e "${WHITE}${BOLD}                    VPN API INSTALLER v2.0${NC}"
-    echo -e "${GREEN}${BOLD}                      Created by FadzDigital${NC}"
-    echo -e "${PURPLE}${BOLD}═══════════════════════════════════════════════════════════════════════${NC}"
-    # Animasi pembukaan
-    local anim_chars=('█' '▒' '▓' '░')
-    for i in {1..3}; do
-        for char in "${anim_chars[@]}"; do
-            printf "\r${YELLOW}${BOLD}Initializing${char}${DIM}..."
-            sleep 0.1
-        done
+    echo -e "${NC}"
+    echo -e "${PURPLE}${BOLD}══════════════════════════════════════════════════════════════════════════════${NC}"
+    echo -e "${WHITE}${BOLD}                         INSTALLER VPN API v2.0${NC}"
+    echo -e "${GREEN}${BOLD}                        Dibuat oleh FadzDigital${NC}"
+    echo -e "${ORANGE}${BOLD}                    Premium VPN Management System${NC}"
+    echo -e "${PURPLE}${BOLD}══════════════════════════════════════════════════════════════════════════════${NC}"
+    
+    # Animasi pembukaan yang lebih menarik
+    echo -e "${CYAN}${BOLD}"
+    local loading_text="Memulai instalasi"
+    local dots=""
+    for i in {1..10}; do
+        dots+="."
+        printf "\r${YELLOW}${BOLD}${loading_text}${PINK}${dots}${NC}"
+        sleep 0.2
     done
-    echo -e "\r${GREEN}${BOLD}✓ Ready to Install!${NC}\n"
+    echo -e "\n${GREEN}${BOLD}✨ Siap untuk menginstall! ✨${NC}\n"
+    sleep 1
 }
 
-# Fungsi logging dengan format lebih rapi
+# Fungsi logging dengan format yang lebih rapi
 log() {
     echo "[$(date '+%Y-%m-%d %H:%M:%S')] $1" >> "$LOG_FILE"
 }
 
-# Animasi spinner dengan efek modern
+# Animasi spinner dengan efek yang lebih menarik
 spinner() {
     local pid=$1
     local message="$2"
-    local delay=0.05
-    local spin='⣾⣽⣻⢿⡿⣟⣯⣷'
-    local i=0
+    local delay=0.08
+    local spinstr='⠋⠙⠹⠸⠼⠴⠦⠧⠇⠏'
+    local temp
     
     while kill -0 $pid 2>/dev/null; do
-        printf "\r${GRADIENT[$((i % ${#GRADIENT[@]}))]}${spin:$i:1}${NC} ${CYAN}${message}${NC}"
+        temp=${spinstr:0:1}
+        printf "\r${GRADIENT[$((RANDOM % ${#GRADIENT[@]}))]}${temp}${NC} ${CYAN}${BOLD}${message}${NC}"
+        spinstr=${spinstr:1}${temp}
         sleep $delay
-        i=$(( (i + 1) % 8 ))
     done
     
     wait $pid
     local exit_code=$?
     
     if [ $exit_code -eq 0 ]; then
-        printf "\r${GREEN}${BOLD}✓${NC} ${CYAN}${message}${NC} ${GREEN}[SUCCESS]${NC}\n"
-        log "SUCCESS: $message"
+        printf "\r${GREEN}${BOLD}✅${NC} ${WHITE}${message}${NC} ${GREEN}${BOLD}[BERHASIL]${NC}\n"
+        log "SUKSES: $message"
     else
-        printf "\r${RED}${BOLD}✗${NC} ${CYAN}${message}${NC} ${RED}[FAILED]${NC}\n"
-        log "FAILED: $message"
+        printf "\r${RED}${BOLD}❌${NC} ${WHITE}${message}${NC} ${RED}${BOLD}[GAGAL]${NC}\n"
+        log "GAGAL: $message"
         return $exit_code
     fi
 }
 
-# Fungsi eksekusi dengan retry
+# Fungsi eksekusi dengan retry yang diperbaiki
 run() {
     local cmd="$1"
     local retries=3
     local attempt=1
-    log "Executing: ${cmd}"
+    log "Menjalankan: ${cmd}"
     
     while [ $attempt -le $retries ]; do
         {
             eval "$cmd"
         } &
         local pid=$!
-        spinner $pid "$cmd (Attempt $attempt/$retries)"
+        spinner $pid "$cmd (Percobaan $attempt/$retries)"
         
         if [ $? -eq 0 ]; then
             return 0
@@ -115,93 +137,97 @@ run() {
         
         attempt=$((attempt + 1))
         if [ $attempt -le $retries ]; then
-            echo -e "${YELLOW}${BOLD}⚡ Retrying in 3 seconds...${NC}"
+            echo -e "${YELLOW}${BOLD}⚡ Mencoba lagi dalam 3 detik...${NC}"
             sleep 3
         fi
-        echo -e "${RED}${BOLD}❌ Failed to execute: ${cmd${NC}}"
-        exit 1
     done
+    
+    echo -e "${RED}${BOLD}❌ Gagal menjalankan: ${cmd}${NC}"
+    exit 1
 }
 
-# Progress bar dengan animasi lebih halus
+# Progress bar dengan animasi yang lebih halus
 progress_bar() {
     local current=$1
     local total=$2
-    local width=40
+    local width=50
     local percentage=$((current * 100 / total))
     local completed=$((current * width / total))
     local remaining=$((width - completed))
     
-    printf "\r${CYAN}[${NC}"
+    printf "\r${PURPLE}${BOLD}Progress: ${NC}${CYAN}[${NC}"
     printf "%${completed}s" | tr ' ' '█'
-    printf "%${remaining}s" | tr ' ' '─'
-    printf "${CYAN}] ${WHITE}%3d%%${NC} ${BLUE}(${current}/${total})${NC}"
-    sleep 0.05
+    printf "%${remaining}s" | tr ' ' '░'
+    printf "${CYAN}]${NC} ${WHITE}${BOLD}%3d%%${NC} ${BLUE}(${current}/${total})${NC} "
+    sleep 0.03
 }
 
 # Cek prasyarat dengan animasi
 check_prerequisites() {
-    echo -e "${YELLOW}${BOLD}🔎 Checking system prerequisites...${NC}\n"
+    echo -e "${YELLOW}${BOLD}🔍 Memeriksa prasyarat sistem...${NC}\n"
     
     # Root check
     if [[ $EUID -ne 0 ]]; then
-        echo -e "${RED}${BOLD}❌ This script must be run as root${NC}"
-        echo -e "${BLUE}   Run: ${YELLOW}sudo $0${NC}"
+        echo -e "${RED}${BOLD}❌ Script ini harus dijalankan sebagai root${NC}"
+        echo -e "${BLUE}   Jalankan: ${YELLOW}sudo $0${NC}"
         exit 1
     fi
     
-    # Internet check with animation
-    echo -e "${CYAN}Checking internet connection...${NC}"
+    # Internet check dengan animasi
+    echo -e "${CYAN}Memeriksa koneksi internet...${NC}"
+    local ping_dots=""
     for i in {1..10}; do
-        printf "\r${YELLOW}${BOLD}Pinging${NC}${...${i}%}"
-        sleep 0.05
+        ping_dots+="."
+        printf "\r${YELLOW}${BOLD}Ping ke server${PINK}${ping_dots}${NC}"
+        sleep 0.1
     done
+    
     if ! ping -c 1 github.com &> /dev/null; then
-        echo -e "\r${RED}${BOLD}❌ No internet connection${NC}\n"
+        echo -e "\r${RED}${BOLD}❌ Tidak ada koneksi internet${NC}\n"
         exit 1
     fi
-    echo -e "\r${GREEN}${BOLD}✓ Internet connection established${NC}\n"
+    echo -e "\r${GREEN}${BOLD}✅ Koneksi internet tersedia${NC}                  \n"
     
-    echo -e "${GREEN}${BOLD}✓ System prerequisites verified ✅${NC}"
+    echo -e "${GREEN}${BOLD}✅ Prasyarat sistem sudah terpenuhi ✅${NC}"
     sleep 1
 }
 
 # Cek instalasi yang sudah ada
 check_existing_installation() {
     if [ -d "${INSTALL_DIR}" ] || systemctl is-active --quiet "${SERVICE_NAME}" 2>/dev/null; then
-        echo -e "${YELLOW}${BOLD}⚠️  Existing installation found${NC}"
-        echo -e "${BLUE}   • Installation directory: ${WHITE}${INSTALL_DIR}${NC}"
-        echo -e "${BLUE}   • Service status: ${WHITE}$(systemctl is-active $SERVICE_NAME 2>/dev/null || echo 'inactive')${NC}"
+        echo -e "${YELLOW}${BOLD}⚠️  Instalasi sebelumnya ditemukan${NC}"
+        echo -e "${BLUE}   • Direktori instalasi: ${WHITE}${INSTALL_DIR}${NC}"
+        echo -e "${BLUE}   • Status service: ${WHITE}$(systemctl is-active $SERVICE_NAME 2>/dev/null || echo 'tidak aktif')${NC}"
         echo
         
-        n"
-        
-        echo -e "${CYAN}${BOLD}Would you like to remove the existing installation and reinstall? [Y/n]: ${NC}"
-        read -r response
-        case "${response}" in
-            [Yy]|[Yy][Ee][Ss]|"" ||
-                remove_existing_installation
-                ;;
-            [Nn]|[Nn][Oo]
-                echo -e "${RED}${BOLD}❌ Installation aborted by user${NC}"
-                exit 0
-                ;;
-            *
-                echo -e "${YELLOW}Please enter yes or no${NC}"
-                check_existing_installation
-                ;;
-        esac
+        while true; do
+            echo -e "${CYAN}${BOLD}Apakah Anda ingin menghapus instalasi lama dan install ulang? [Y/n]: ${NC}"
+            read -r response
+            case "${response}" in
+                [Yy]|[Yy][Ee][Ss]|"")
+                    remove_existing_installation
+                    break
+                    ;;
+                [Nn]|[Nn][Oo])
+                    echo -e "${RED}${BOLD}❌ Instalasi dibatalkan oleh pengguna${NC}"
+                    exit 0
+                    ;;
+                *)
+                    echo -e "${YELLOW}Silakan masukkan yes atau no${NC}"
+                    ;;
+            esac
+        done
     fi
 }
 
 # Hapus instalasi lama
 remove_existing_installation() {
-    echo -e "${YELLOW}${BOLD}🗑️  Removing existing installation...${NC}\n"
+    echo -e "${YELLOW}${BOLD}🗑️  Menghapus instalasi sebelumnya...${NC}\n"
     
     # Stop service
     if systemctl is-active --quiet "${SERVICE_NAME}" 2>/dev/null; then
-        run "systemctl stop $SERVICE_NAME}"
-        run "systemctl disable $SERVICE_NAME}"
+        run "systemctl stop $SERVICE_NAME"
+        run "systemctl disable $SERVICE_NAME"
     fi
     
     # Remove service file
@@ -215,19 +241,19 @@ remove_existing_installation() {
         run "rm -rf ${INSTALL_DIR}"
     fi
     
-    echo -e "${GREEN}${BOLD}✓ Previous installation removed successfully ✅${NC}\n"
+    echo -e "${GREEN}${BOLD}✅ Instalasi sebelumnya berhasil dihapus ✅${NC}\n"
     sleep 1
 }
 
 # Install dependencies
 install_dependencies() {
-    echo -e "${YELLOW}${BOLD}📦 Installing required packages...${NC}\n"
+    echo -e "${YELLOW}${BOLD}📦 Menginstall paket yang diperlukan...${NC}\n"
     
     # Update package list
     run "apt-get update -y"
     
     # Install packages
-    local packages=("curl" "wget" "nodejs" "-nodejs" npm "git")
+    local packages=("curl" "wget" "nodejs" "npm" "git")
     local total=${#packages[@]}
     local current=0
     
@@ -238,30 +264,30 @@ install_dependencies() {
             run "apt-get install -y $package"
         else
             progress_bar $current $total
-            log "SKIPPED: $package already installed"
+            log "DILEWATI: $package sudah terinstall"
             sleep 0.1
         fi
     done
     
-    echo -e "\n${GREEN}${BOLD}✓ All packages installed successfully ✅${NC}\n"
+    echo -e "\n${GREEN}${BOLD}✅ Semua paket berhasil diinstall ✅${NC}\n"
     sleep 1
 }
 
 # Buat struktur direktori
 create_directories() {
-    echo -e "${YELLOW}${BOLD}📁 Creating directory structure...${NC}\n"
+    echo -e "${YELLOW}${BOLD}📁 Membuat struktur direktori...${NC}\n"
     
     run "mkdir -p $SCRIPT_DIR"
     run "mkdir -p /var/log/vpn-api"
     run "chown -R root:root $INSTALL_DIR"
     
-    echo -e "${GREEN}${BOLD}✓ Directory structure created successfully ✅${NC}\n"
+    echo -e "${GREEN}${BOLD}✅ Struktur direktori berhasil dibuat ✅${NC}\n"
     sleep 1
 }
 
 # Download file dari GitHub
 download_files() {
-    echo -e "${YELLOW}${BOLD}⬇️  Downloading files from GitHub...${NC}\n"
+    echo -e "${YELLOW}${BOLD}⬇️  Mengunduh file dari GitHub...${NC}\n"
     
     cd "${INSTALL_DIR}"
     
@@ -281,10 +307,10 @@ download_files() {
         current_file=$((current_file + 1))
         progress_bar $current_file $total_files
         if curl -fsSL "${RAW_URL}/${file}" -o "${INSTALL_DIR}/${file}"; then
-            log "DOWNLOADED: $file"
+            log "DIUNDUH: $file"
             sleep 0.1
         else
-            echo -e "\n${RED}${BOLD}❌ Failed to download ${file}${NC}"
+            echo -e "\n${RED}${BOLD}❌ Gagal mengunduh ${file}${NC}"
             exit 1
         fi
     done
@@ -298,36 +324,36 @@ download_files() {
         progress_bar $current_file $total_files
         if curl -fsSL "${RAW_URL}/${file}" -o "${SCRIPT_DIR}/${file}"; then
             chmod +x "${SCRIPT_DIR}/${file}"
-            log "DOWNLOADED: $file"
+            log "DIUNDUH: $file"
             sleep 0.1
         else
-            echo -e "\n${RED}${BOLD}❌ Failed to download ${file}${NC}"
+            echo -e "\n${RED}${BOLD}❌ Gagal mengunduh ${file}${NC}"
             exit 1
         fi
     done
     
-    echo -e "\n${GREEN}${BOLD}✓ All files downloaded successfully ✅${NC}\n"
+    echo -e "\n${GREEN}${BOLD}✅ Semua file berhasil diunduh ✅${NC}\n"
     sleep 1
 }
 
 # Install Node.js dependencies
 install_node_modules() {
-    echo -e "${YELLOW}${BOLD}📦 Installing Node.js dependencies...${NC}\n"
+    echo -e "${YELLOW}${BOLD}📦 Menginstall dependencies Node.js...${NC}\n"
     
     cd "${INSTALL_DIR}"
     
     if [ -f "package.json" ]; then
         run "npm install --production --silent"
-        echo -e "${GREEN}${BOLD}✓ Node.js dependencies installed successfully ✅${NC}\n"
+        echo -e "${GREEN}${BOLD}✅ Dependencies Node.js berhasil diinstall ✅${NC}\n"
     else
-        echo -e "${YELLOW}⚠️  package.json not found, skipping npm install${NC}\n"
+        echo -e "${YELLOW}⚠️  package.json tidak ditemukan, melewati npm install${NC}\n"
     fi
     sleep 1
 }
 
 # Buat systemd service
 create_service() {
-    echo -e "${YELLOW}${BOLD}⚙️  Creating systemd service...${NC}\n"
+    echo -e "${YELLOW}${BOLD}⚙️  Membuat systemd service...${NC}\n"
     
     cat > "/etc/systemd/system/${SERVICE_NAME}.service" << EOF
 [Unit]
@@ -364,13 +390,13 @@ EOF
     run "systemctl daemon-reload"
     run "systemctl enable $SERVICE_NAME"
     
-    echo -e "${GREEN}${BOLD}✓ Systemd service created and enabled successfully ✅${NC}\n"
+    echo -e "${GREEN}${BOLD}✅ Systemd service berhasil dibuat dan diaktifkan ✅${NC}\n"
     sleep 1
 }
 
 # Jalankan service
 start_service() {
-    echo -e "${YELLOW}${BOLD}🚀 Starting VPN API service...${NC}\n"
+    echo -e "${YELLOW}${BOLD}🚀 Memulai VPN API service...${NC}\n"
     
     run "systemctl start $SERVICE_NAME"
     
@@ -378,10 +404,10 @@ start_service() {
     sleep 2
     
     if systemctl is-active --quiet "${SERVICE_NAME}"; then
-        echo -e "${GREEN}${BOLD}✓ VPN API service started successfully ✅${NC}\n"
+        echo -e "${GREEN}${BOLD}✅ VPN API service berhasil dimulai ✅${NC}\n"
     else
-        echo -e "${RED}${BOLD}❌ Failed to start VPN API service${NC}"
-        echo -e "${YELLOW}   Check logs with: ${CYAN}journalctl -u ${SERVICE_NAME} -f${NC}\n"
+        echo -e "${RED}${BOLD}❌ Gagal memulai VPN API service${NC}"
+        echo -e "${YELLOW}   Periksa log dengan: ${CYAN}journalctl -u ${SERVICE_NAME} -f${NC}\n"
         exit 1
     fi
     sleep 1
@@ -389,32 +415,37 @@ start_service() {
 
 # Tampilkan ringkasan
 show_summary() {
-    echo -e "${PURPLE}${BOLD}═══════════════════════════════════════════════════════════════════════${NC}"
-    echo -e "${GREEN}${BOLD}                    🎉 INSTALLATION COMPLETED SUCCESSFULLY! 🎉${NC}"
-    echo -e "${PURPLE}${BOLD}═══════════════════════════════════════════════════════════════════════${NC}\n"
+    echo -e "${PURPLE}${BOLD}══════════════════════════════════════════════════════════════════════════════${NC}"
+    echo -e "${GREEN}${BOLD}                    🎉 INSTALASI BERHASIL DISELESAIKAN! 🎉${NC}"
+    echo -e "${PURPLE}${BOLD}══════════════════════════════════════════════════════════════════════════════${NC}\n"
     
-    echo -e "${CYAN}${BOLD}📋 Installation Summary:${NC}"
-    echo -e "${WHITE}   • Installation Directory: ${GREEN}${INSTALL_DIR}${NC}"
-    echo -e "${WHITE}   • Service Name: ${GREEN}${SERVICE_NAME}${NC}"
-    echo -e "${WHITE}   • Service Status: ${GREEN}$(systemctl is-active ${SERVICE_NAME})${NC}"
-    echo -e "${WHITE}   • Log File: ${GREEN}${LOG_FILE}${NC}\n"
+    echo -e "${CYAN}${BOLD}📋 Ringkasan Instalasi:${NC}"
+    echo -e "${WHITE}   • Direktori Instalasi: ${GREEN}${INSTALL_DIR}${NC}"
+    echo -e "${WHITE}   • Nama Service: ${GREEN}${SERVICE_NAME}${NC}"
+    echo -e "${WHITE}   • Status Service: ${GREEN}$(systemctl is-active ${SERVICE_NAME})${NC}"
+    echo -e "${WHITE}   • File Log: ${GREEN}${LOG_FILE}${NC}\n"
     
-    echo -e "${CYAN}${BOLD}🔧 Useful Commands:${NC}"
-    echo -e "${WHITE}   • Check service status: ${YELLOW}systemctl status ${SERVICE_NAME}${NC}"
-    echo -e "${WHITE}   • View service logs: ${YELLOW}journalctl -u ${SERVICE_NAME} -f${NC}"
+    echo -e "${CYAN}${BOLD}🔧 Perintah Berguna:${NC}"
+    echo -e "${WHITE}   • Cek status service: ${YELLOW}systemctl status ${SERVICE_NAME}${NC}"
+    echo -e "${WHITE}   • Lihat log service: ${YELLOW}journalctl -u ${SERVICE_NAME} -f${NC}"
     echo -e "${WHITE}   • Restart service: ${YELLOW}systemctl restart ${SERVICE_NAME}${NC}"
     echo -e "${WHITE}   • Stop service: ${YELLOW}systemctl stop ${SERVICE_NAME}${NC}\n"
     
-    echo -e "${GREEN}${BOLD}✨ Powered by FadzDigital ✨${NC}"
-    echo -e "${PURPLE}${BOLD}═══════════════════════════════════════════════════════════════════════${NC}\n"
+    echo -e "${PINK}${BOLD}✨ Powered by FadzDigital ✨${NC}"
+    echo -e "${ORANGE}${BOLD}🚀 Premium VPN Management System 🚀${NC}"
+    echo -e "${PURPLE}${BOLD}══════════════════════════════════════════════════════════════════════════════${NC}\n"
     
-    # Animasi penutup
-    local anim="🚀 Installation Complete!"
-    for ((i=0; i<${#anim}; i++)); do
-        printf "${GREEN}${BOLD}%s${NC}" "${anim:$i:1}"
+    # Animasi penutup yang lebih menarik
+    local success_msg="🎊 INSTALASI SELESAI! 🎊"
+    echo -e "${GREEN}${BOLD}${BLINK}"
+    for ((i=0; i<${#success_msg}; i++)); do
+        printf "%s" "${success_msg:$i:1}"
         sleep 0.05
     done
-    echo -e "\n"
+    echo -e "${NC}\n"
+    
+    echo -e "${CYAN}${BOLD}Terima kasih telah menggunakan FadzDigital VPN API!${NC}"
+    echo -e "${YELLOW}${BOLD}Untuk support dan update, kunjungi: https://github.com/MikkuChan/scripts${NC}\n"
 }
 
 # Fungsi utama
@@ -438,7 +469,7 @@ main() {
 }
 
 # Error handling
-trap 'echo -e "\n${RED}${BOLD}❌ Installation interrupted!${NC}\n"; log "Installation interrupted"; exit 1' INT TERM
+trap 'echo -e "\n${RED}${BOLD}❌ Instalasi terinterupsi!${NC}\n"; log "Installation interrupted"; exit 1' INT TERM
 
 # Jalankan instalasi
 main "$@"
