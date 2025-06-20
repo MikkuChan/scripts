@@ -300,9 +300,9 @@ install_node_modules() {
 
 create_env_file() {
     echo -e "${YELLOW}${BOLD}🔐 Membuat file konfigurasi .env...${NC}\n"
-    local env_path="${INSTALL_DIR}/.env"
-    if [ ! -d "${INSTALL_DIR}" ]; then
-        echo -e "${RED}${BOLD}❌ Direktori instalasi tidak ditemukan!${NC}"
+    local env_path="${SCRIPT_DIR}/.env"      # <-- Ganti dari INSTALL_DIR ke SCRIPT_DIR
+    if [ ! -d "${SCRIPT_DIR}" ]; then
+        echo -e "${RED}${BOLD}❌ Direktori script tidak ditemukan!${NC}"
         exit 1
     fi
     if [ -n "$USER_AUTHKEY" ]; then
@@ -325,6 +325,7 @@ create_env_file() {
     echo
     sleep 1
 }
+
 
 create_service() {
     echo -e "${YELLOW}${BOLD}⚙️  Membuat systemd service...${NC}\n"
@@ -388,13 +389,14 @@ show_summary() {
     echo -e "${WHITE}   • Nama Service: ${GREEN}${SERVICE_NAME}${NC}"
     echo -e "${WHITE}   • Status Service: ${GREEN}$(systemctl is-active ${SERVICE_NAME})${NC}"
     echo -e "${WHITE}   • File Log: ${GREEN}${LOG_FILE}${NC}"
-    echo -e "${WHITE}   • File .env: ${GREEN}${INSTALL_DIR}/.env${NC}"
-    if [ -f "${INSTALL_DIR}/.env" ]; then
-        echo -e "${WHITE}   • Status .env: ${GREEN}✅ Berhasil dibuat${NC}"
-        echo -e "${WHITE}   • AUTHKEY: ${GREEN}${USER_AUTHKEY}${NC}"
-    else
-        echo -e "${WHITE}   • Status .env: ${RED}❌ Tidak ditemukan${NC}"
-    fi
+    echo -e "${WHITE}   • File .env: ${GREEN}${SCRIPT_DIR}/.env${NC}"
+if [ -f "${SCRIPT_DIR}/.env" ]; then
+    echo -e "${WHITE}   • Status .env: ${GREEN}✅ Berhasil dibuat${NC}"
+    echo -e "${WHITE}   • AUTHKEY: ${GREEN}${USER_AUTHKEY}${NC}"
+else
+    echo -e "${WHITE}   • Status .env: ${RED}❌ Tidak ditemukan${NC}"
+fi
+
     echo
     echo -e "${CYAN}${BOLD}🔧 Perintah Berguna:${NC}"
     echo -e "${WHITE}   • Cek status service: ${YELLOW}systemctl status ${SERVICE_NAME}${NC}"
