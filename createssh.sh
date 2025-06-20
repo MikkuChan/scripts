@@ -12,13 +12,7 @@ if [[ "$REQUEST_METHOD" == "GET" ]]; then
   masaaktif=$(echo "$QUERY_STRING" | grep -oE '(^|&)exp=[^&]*' | cut -d= -f2)
   Quota=$(echo "$QUERY_STRING" | grep -oE '(^|&)quota=[^&]*' | cut -d= -f2)
   iplimit=$(echo "$QUERY_STRING" | grep -oE '(^|&)iplimit=[^&]*' | cut -d= -f2)
-  auth=$(echo "$QUERY_STRING" | grep -oE '(^|&)auth=[^&]*' | cut -d= -f2)
-
-  valid_auth="fadznewbie_do"
-  if [[ "$auth" != "$valid_auth" ]]; then
-    printf '{"status":"error","message":"Invalid authentication key"}\n'
-    exit 1
-  fi
+  # auth sudah dihapus
 
   if [[ -z "$Login" || -z "$Pass" || -z "$masaaktif" || -z "$Quota" || -z "$iplimit" ]]; then
     printf '{"status":"error","message":"Missing required parameters"}\n'
@@ -136,9 +130,9 @@ https://$domain:81/ssh-$Login.txt
 ####### ARIGATOU #######
 END
 
-  TEXT="<b>━━━━━ 𝙎𝙎𝙃/𝙊𝙑𝙋𝙉 𝙋𝙍𝙀𝙈𝙄𝙐𝙈 ━━━━━</b>
+  TEXT="<b>━━━━━ SSH/OVPN PREMIUM ━━━━━</b>
 
-<b>👤 𝙐𝙨𝙚𝙧 𝘿𝙚𝙩𝙖𝙞𝙡𝙨</b>
+<b>👤 User Details</b>
 ┣ <b>Username</b>   : <code>$Login</code>
 ┣ <b>Password</b>   : <code>$Pass</code>
 ┣ <b>Login</b>      : <code>$domain:80@$Login:$Pass</code>
@@ -147,13 +141,13 @@ END
 ┣ <b>Dibuat</b>     : <code>$tnggl</code>
 ┗ <b>Expired</b>    : <code>$expe</code>
 
-<b>🌎 𝙎𝙚𝙧𝙫𝙚𝙧 𝙄𝙣𝙛𝙤</b>
+<b>🌎 Server Info</b>
 ┣ <b>Domain</b>     : <code>$domain</code>
 ┣ <b>IP</b>         : <code>$IP</code>
 ┣ <b>Location</b>   : <code>$CITY</code>
 ┗ <b>ISP</b>        : <code>$ISP</code>
 
-<b>🔌 𝘾𝙤𝙣𝙣𝙚𝙘𝙩𝙞𝙤𝙣</b>
+<b>🔌 Connection</b>
 ┣ <b>Port OpenSSH</b>     : <code>443, 80, 22</code>
 ┣ <b>Port Dropbear</b>    : <code>443, 109</code>
 ┣ <b>Port SSH WS</b>      : <code>80,8080,8081-9999</code>
@@ -165,19 +159,19 @@ END
 ┣ <b>Port OVPN UDP</b>    : <code>2200</code>
 ┗ <b>BadVPN UDP</b>       : <code>7100,7300,7300</code>
 
-<b>⚡ 𝙥𝙖𝙮𝙡𝙤𝙖𝙙 𝙒𝙎</b>
+<b>⚡ payload WS</b>
 <code>GET / HTTP/1.1[crlf]Host: [host][crlf]Connection: Upgrade[crlf]User-Agent: [ua][crlf]Upgrade: websocket[crlf][crlf]</code>
 
-<b>⚡ 𝙋𝙖𝙮𝙡𝙤𝙖𝙙 𝙒𝙎𝙎</b>
+<b>⚡ Payload WSS</b>
 <code>GET wss://BUG.COM/ HTTP/1.1[crlf]Host: $domain[crlf]Upgrade: websocket[crlf][crlf]</code>
 
-<b>📥 𝙊𝙑𝙋𝙉 𝘿𝙤𝙬𝙣𝙡𝙤𝙖𝙙</b>
+<b>📥 OVPN Download</b>
 ✎ https://$domain:81/
 
-<b>📝 𝙎𝙖𝙫𝙚 𝙇𝙞𝙣𝙠 𝘼𝙠𝙪𝙣</b>
+<b>📝 Save Link Akun</b>
 ✎ https://$domain:81/ssh-$Login.txt
 
-<b>━━━━━━━━━ 𝙏𝙝𝙖𝙣𝙠 𝙔𝙤𝙪 ━━━━━━━━</b>
+<b>━━━━━━━━━ Thank You ━━━━━━━━</b>
 "
 
   # Kirim notifikasi ke Telegram
