@@ -1,13 +1,12 @@
 #!/bin/bash
 # =============================================================================
 # VPN API Installation Script - FadzDigital
-# Version: 2.0
-# Enhanced with professional animations and styling
+# Version: 2.0 ( MikkuChan)
 # =============================================================================
 
 set -e
 
-# Definisi warna dengan palet modern
+# Definisi warna
 declare -r RED='\033[1;31m'
 declare -r GREEN='\033[1;32m'
 declare -r YELLOW='\033[1;33m'
@@ -41,7 +40,7 @@ declare -r SCRIPT_DIR="$INSTALL_DIR/scripts"
 declare -r SERVICE_NAME="vpn-api"
 declare -r LOG_FILE="/var/log/vpn-api-install.log"
 
-# Banner FADZ dengan style yang diminta
+# Banner
 print_banner() {
     clear
     echo -e "${CYAN}${BOLD}"
@@ -64,7 +63,7 @@ print_banner() {
     done
     echo -e "${NC}"
     
-    # Animasi pembukaan yang lebih menarik
+    # Animasi pembukaan
     echo -e "${CYAN}${BOLD}"
     local loading_text="Memulai instalasi"
     local dots=""
@@ -77,12 +76,12 @@ print_banner() {
     sleep 1
 }
 
-# Fungsi logging dengan format yang lebih rapi
+# Fungsi logging
 log() {
     echo "[$(date '+%Y-%m-%d %H:%M:%S')] $1" >> "$LOG_FILE"
 }
 
-# Animasi spinner dengan efek yang lebih menarik
+# Animasi spinner
 spinner() {
     local pid=$1
     local message="$2"
@@ -110,7 +109,7 @@ spinner() {
     fi
 }
 
-# Fungsi eksekusi dengan retry yang diperbaiki
+# Fungsi eksekusi
 run() {
     local cmd="$1"
     local retries=3
@@ -139,7 +138,7 @@ run() {
     exit 1
 }
 
-# Progress bar dengan animasi yang lebih halus
+# Progress bar dengan animasi
 progress_bar() {
     local current=$1
     local total=$2
@@ -151,11 +150,11 @@ progress_bar() {
     printf "\r${PURPLE}${BOLD}Progress: ${NC}${CYAN}[${NC}"
     printf "%${completed}s" | tr ' ' '█'
     printf "%${remaining}s" | tr ' ' '░'
-    printf "${CYAN}]${NC} ${WHITE}${BOLD}%3d%%${NC} ${BLUE}(${current}/${total})${NC} "
+    printf "${CYAN}]${NC} ${WHITE}${BOLD}%3d%%${NC} ${BLUE}(${current}/${total})${NC} " "$percentage"
     sleep 0.03
 }
 
-# Cek prasyarat dengan animasi
+# Cek prasyarat
 check_prerequisites() {
     echo -e "${YELLOW}${BOLD}🔍 Memeriksa prasyarat sistem...${NC}\n"
     
@@ -166,7 +165,7 @@ check_prerequisites() {
         exit 1
     fi
     
-    # Internet check dengan animasi
+    # Internet check
     echo -e "${CYAN}Memeriksa koneksi internet...${NC}"
     ping_dots=""
     for i in {1..10}; do
@@ -280,7 +279,7 @@ create_directories() {
 
 # Download file dari GitHub
 download_files() {
-    echo -e "${YELLOW}${BOLD}⬇️  Mengunduh file dari GitHub...${NC}\n"
+    echo -e "${YELLOW}${BOLD}🔄 Memproses file instalasi...${NC}\n"
     
     cd "${INSTALL_DIR}"
     
@@ -302,7 +301,7 @@ download_files() {
             log "DIUNDUH: $file"
             sleep 0.1
         else
-            echo -e "\n${RED}${BOLD}❌ Gagal mengunduh ${file}${NC}"
+            echo -e "\n${RED}${BOLD}❌ Gagal Memproses file instalasi ${file}${NC}"
             exit 1
         fi
     done
@@ -318,7 +317,7 @@ download_files() {
             log "DIUNDUH: $file"
             sleep 0.1
         else
-            echo -e "\n${RED}${BOLD}❌ Gagal mengunduh ${file}${NC}"
+            echo -e "\n${RED}${BOLD}❌ Gagal Memproses file instalasi ${file}${NC}"
             exit 1
         fi
     done
@@ -406,15 +405,16 @@ start_service() {
 
 # Tampilkan ringkasan
 show_summary() {
-    echo -e "${PURPLE}${BOLD}══════════════════════════════════════════════════════════════════════════════${NC}"
-    echo -e "${GREEN}${BOLD}                    🎉 INSTALASI BERHASIL DISELESAIKAN! 🎉${NC}"
-    echo -e "${PURPLE}${BOLD}══════════════════════════════════════════════════════════════════════════════${NC}\n"
+    echo -e "${PURPLE}${BOLD}════════════════════════════════════════════════════════════════════${NC}"
+    echo -e "${GREEN}${BOLD}                               🎉 INSTALASI BERHASIL DISELESAIKAN! 🎉${NC}"
+    echo -e "${PURPLE}${BOLD}════════════════════════════════════════════════════════════════════${NC}\n"
     
     echo -e "${CYAN}${BOLD}📋 Ringkasan Instalasi:${NC}"
     echo -e "${WHITE}   • Direktori Instalasi: ${GREEN}${INSTALL_DIR}${NC}"
     echo -e "${WHITE}   • Nama Service: ${GREEN}${SERVICE_NAME}${NC}"
     echo -e "${WHITE}   • Status Service: ${GREEN}$(systemctl is-active ${SERVICE_NAME})${NC}"
     echo -e "${WHITE}   • File Log: ${GREEN}${LOG_FILE}${NC}\n"
+    echo -e "${WHITE}   • File .env: ${GREEN}${INSTALL_DIR}/.env${NC}\n"
     
     echo -e "${CYAN}${BOLD}🔧 Perintah Berguna:${NC}"
     echo -e "${WHITE}   • Cek status service: ${YELLOW}systemctl status ${SERVICE_NAME}${NC}"
@@ -424,7 +424,7 @@ show_summary() {
     
     echo -e "${PINK}${BOLD}✨ Powered by FadzDigital ✨${NC}"
     echo -e "${ORANGE}${BOLD}🚀 Premium VPN Management System 🚀${NC}"
-    echo -e "${PURPLE}${BOLD}══════════════════════════════════════════════════════════════════════════════${NC}\n"
+    echo -e "${PURPLE}${BOLD}════════════════════════════════════════════════════════════════════${NC}\n"
     
     # Animasi penutup yang lebih menarik
     success_msg="🎊 INSTALASI SELESAI! 🎊"
@@ -439,13 +439,30 @@ show_summary() {
     echo -e "${YELLOW}${BOLD}Untuk support dan update, kunjungi: https://github.com/MikkuChan/scripts${NC}\n"
 }
 
+# === Fungsi buat file .env ===
+create_env_file() {
+    echo -e "${CYAN}${BOLD}🔐 Masukkan Authentication Key (AUTHKEY) untuk API:${NC}"
+    read -rp "   AUTHKEY: " user_authkey
+    while [[ -z "$user_authkey" ]]; do
+        echo -e "${RED}Auth key tidak boleh kosong!${NC}"
+        read -rp "   AUTHKEY: " user_authkey
+    done
+    env_path="${INSTALL_DIR}/.env"
+    mkdir -p "$INSTALL_DIR"
+    echo "AUTHKEY=$user_authkey" > "$env_path"
+    chmod 600 "$env_path"
+    echo -e "${GREEN}File .env berhasil dibuat di ${env_path}${NC}\n"
+    log "File .env created with user input AUTHKEY"
+}
+
 # Fungsi utama
 main() {
-    # Initialize log
     touch "${LOG_FILE}"
     log "VPN API Installation Started"
     
     print_banner
+    create_env_file
+
     check_prerequisites
     check_existing_installation
     install_dependencies
@@ -455,7 +472,7 @@ main() {
     create_service
     start_service
     show_summary
-    
+
     log "VPN API Installation Completed Successfully"
 }
 
