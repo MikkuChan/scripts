@@ -58,12 +58,6 @@ print_banner() {
         "          Digital Zone         "
     )
     
-    for line in "${banner_lines[@]}"; do
-        echo -e "$line"
-    done
-    echo -e "${NC}"
-}
-    
     # Print banner dengan warna
     for line in "${banner_lines[@]}"; do
         echo -e "${CYAN}${BOLD}${line}${NC}"
