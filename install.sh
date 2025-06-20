@@ -40,6 +40,9 @@ declare -r SCRIPT_DIR="$INSTALL_DIR/scripts"
 declare -r SERVICE_NAME="vpn-api"
 declare -r LOG_FILE="/var/log/vpn-api-install.log"
 
+# Variable global untuk menyimpan AUTHKEY
+declare USER_AUTHKEY=""
+
 # Banner
 print_banner() {
     clear
@@ -152,6 +155,21 @@ progress_bar() {
     printf "%${remaining}s" | tr ' ' '░'
     printf "${CYAN}]${NC} ${WHITE}${BOLD}%3d%%${NC} ${BLUE}(${current}/${total})${NC} " "$percentage"
     sleep 0.03
+}
+
+# Fungsi untuk input AUTHKEY
+get_authkey_input() {
+    echo -e "${CYAN}${BOLD}🔐 Masukkan Authentication Key (AUTHKEY) untuk API:${NC}"
+    while true; do
+        read -rp "   AUTHKEY: " USER_AUTHKEY
+        if [[ -n "$USER_AUTHKEY" ]]; then
+            echo -e "${GREEN}${BOLD}✅ AUTHKEY berhasil dimasukkan${NC}\n"
+            log "AUTHKEY input received from user"
+            break
+        else
+            echo -e "${RED}${BOLD}❌ AUTHKEY tidak boleh kosong! Silakan masukkan AUTHKEY yang valid.${NC}"
+        fi
+    done
 }
 
 # Cek prasyarat
@@ -269,6 +287,7 @@ install_dependencies() {
 create_directories() {
     echo -e "${YELLOW}${BOLD}📁 Membuat struktur direktori...${NC}\n"
     
+    run "mkdir -p $INSTALL_DIR"
     run "mkdir -p $SCRIPT_DIR"
     run "mkdir -p /var/log/vpn-api"
     run "chown -R root:root $INSTALL_DIR"
@@ -341,6 +360,45 @@ install_node_modules() {
     sleep 1
 }
 
+# Buat file .env
+create_env_file() {
+    echo -e "${YELLOW}${BOLD}🔐 Membuat file konfigurasi .env...${NC}\n"
+    
+    local env_path="${INSTALL_DIR}/.env"
+    
+    # Pastikan direktori ada
+    if [ ! -d "${INSTALL_DIR}" ]; then
+        echo -e "${RED}${BOLD}❌ Direktori instalasi tidak ditemukan!${NC}"
+        exit 1
+    fi
+    
+    # Buat file .env dengan AUTHKEY yang sudah diinput
+    if [ -n "$USER_AUTHKEY" ]; then
+        echo "AUTHKEY=$USER_AUTHKEY" > "$env_path"
+        
+        # Set permission yang aman
+        chmod 600 "$env_path"
+        chown root:root "$env_path"
+        
+        # Verifikasi file berhasil dibuat
+        if [ -f "$env_path" ] && [ -s "$env_path" ]; then
+            echo -e "${GREEN}${BOLD}✅ File .env berhasil dibuat di ${env_path}${NC}"
+            echo -e "${WHITE}   • AUTHKEY: ${GREEN}${USER_AUTHKEY}${NC}"
+            echo -e "${WHITE}   • Permission: ${GREEN}600 (read/write owner only)${NC}"
+            log "File .env created successfully with AUTHKEY: $USER_AUTHKEY"
+        else
+            echo -e "${RED}${BOLD}❌ Gagal membuat file .env${NC}"
+            exit 1
+        fi
+    else
+        echo -e "${RED}${BOLD}❌ AUTHKEY tidak tersedia untuk membuat file .env${NC}"
+        exit 1
+    fi
+    
+    echo
+    sleep 1
+}
+
 # Buat systemd service
 create_service() {
     echo -e "${YELLOW}${BOLD}⚙️  Membuat systemd service...${NC}\n"
@@ -354,7 +412,7 @@ Wants=network-online.target
 
 [Service]
 Type=simple
-WorkingDirectory=$SCRIPT_DIR
+WorkingDirectory=$INSTALL_DIR
 ExecStart=/usr/bin/node $INSTALL_DIR/vpn-api.js
 ExecReload=/bin/kill -HUP \$MAINPID
 Restart=always
@@ -406,21 +464,31 @@ start_service() {
 # Tampilkan ringkasan
 show_summary() {
     echo -e "${PURPLE}${BOLD}════════════════════════════════════════════════════════════════════${NC}"
-    echo -e "${GREEN}${BOLD}                               🎉 INSTALASI BERHASIL DISELESAIKAN! 🎉${NC}"
+    echo -e "${GREEN}${BOLD}               🎉 INSTALASI BERHASIL DISELESAIKAN! 🎉${NC}"
     echo -e "${PURPLE}${BOLD}════════════════════════════════════════════════════════════════════${NC}\n"
     
     echo -e "${CYAN}${BOLD}📋 Ringkasan Instalasi:${NC}"
     echo -e "${WHITE}   • Direktori Instalasi: ${GREEN}${INSTALL_DIR}${NC}"
     echo -e "${WHITE}   • Nama Service: ${GREEN}${SERVICE_NAME}${NC}"
     echo -e "${WHITE}   • Status Service: ${GREEN}$(systemctl is-active ${SERVICE_NAME})${NC}"
-    echo -e "${WHITE}   • File Log: ${GREEN}${LOG_FILE}${NC}\n"
-    echo -e "${WHITE}   • File .env: ${GREEN}${INSTALL_DIR}/.env${NC}\n"
+    echo -e "${WHITE}   • File Log: ${GREEN}${LOG_FILE}${NC}"
+    echo -e "${WHITE}   • File .env: ${GREEN}${INSTALL_DIR}/.env${NC}"
+    
+    # Verifikasi file .env
+    if [ -f "${INSTALL_DIR}/.env" ]; then
+        echo -e "${WHITE}   • Status .env: ${GREEN}✅ Berhasil dibuat${NC}"
+        echo -e "${WHITE}   • AUTHKEY: ${GREEN}${USER_AUTHKEY}${NC}"
+    else
+        echo -e "${WHITE}   • Status .env: ${RED}❌ Tidak ditemukan${NC}"
+    fi
+    echo
     
     echo -e "${CYAN}${BOLD}🔧 Perintah Berguna:${NC}"
     echo -e "${WHITE}   • Cek status service: ${YELLOW}systemctl status ${SERVICE_NAME}${NC}"
     echo -e "${WHITE}   • Lihat log service: ${YELLOW}journalctl -u ${SERVICE_NAME} -f${NC}"
     echo -e "${WHITE}   • Restart service: ${YELLOW}systemctl restart ${SERVICE_NAME}${NC}"
-    echo -e "${WHITE}   • Stop service: ${YELLOW}systemctl stop ${SERVICE_NAME}${NC}\n"
+    echo -e "${WHITE}   • Stop service: ${YELLOW}systemctl stop ${SERVICE_NAME}${NC}"
+    echo -e "${WHITE}   • Edit .env: ${YELLOW}nano ${INSTALL_DIR}/.env${NC}\n"
     
     echo -e "${PINK}${BOLD}✨ Powered by FadzDigital ✨${NC}"
     echo -e "${ORANGE}${BOLD}🚀 Premium VPN Management System 🚀${NC}"
@@ -439,36 +507,30 @@ show_summary() {
     echo -e "${YELLOW}${BOLD}Untuk support dan update, kunjungi: https://github.com/MikkuChan/scripts${NC}\n"
 }
 
-# === Fungsi buat file .env ===
-create_env_file() {
-    echo -e "${CYAN}${BOLD}🔐 Masukkan Authentication Key (AUTHKEY) untuk API:${NC}"
-    read -rp "   AUTHKEY: " user_authkey
-    while [[ -z "$user_authkey" ]]; do
-        echo -e "${RED}Auth key tidak boleh kosong!${NC}"
-        read -rp "   AUTHKEY: " user_authkey
-    done
-    env_path="${INSTALL_DIR}/.env"
-    mkdir -p "$INSTALL_DIR"
-    echo "AUTHKEY=$user_authkey" > "$env_path"
-    chmod 600 "$env_path"
-    echo -e "${GREEN}File .env berhasil dibuat di ${env_path}${NC}\n"
-    log "File .env created with user input AUTHKEY"
-}
-
 # Fungsi utama
 main() {
+    # Inisialisasi log file
     touch "${LOG_FILE}"
     log "VPN API Installation Started"
     
+    # Tampilkan banner
     print_banner
-    create_env_file
-
+    
+    # Input AUTHKEY di awal
+    get_authkey_input
+    
+    # Proses instalasi
     check_prerequisites
     check_existing_installation
     install_dependencies
     create_directories
     download_files
     install_node_modules
+    
+    # Buat file .env setelah direktori dan file sudah siap
+    create_env_file
+    
+    # Lanjutkan dengan service
     create_service
     start_service
     show_summary
