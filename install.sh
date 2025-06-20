@@ -173,7 +173,7 @@ check_prerequisites() {
     
     # Internet check dengan animasi
     echo -e "${CYAN}Memeriksa koneksi internet...${NC}"
-    local ping_dots=""
+    ping_dots=""
     for i in {1..10}; do
         ping_dots+="."
         printf "\r${YELLOW}${BOLD}Ping ke server${PINK}${ping_dots}${NC}"
@@ -251,9 +251,9 @@ install_dependencies() {
     run "apt-get update -y"
     
     # Install packages
-    local packages=("curl" "wget" "nodejs" "npm" "git")
-    local total=${#packages[@]}
-    local current=0
+    packages=("curl" "wget" "nodejs" "npm" "git")
+    total=${#packages[@]}
+    current=0
     
     for package in "${packages[@]}"; do
         current=$((current + 1))
@@ -290,13 +290,12 @@ download_files() {
     cd "${INSTALL_DIR}"
     
     # Main files
-    local main_files=("vpn-api.js" "package.json")
-    local total_files=0
-    local current_file=0
+    main_files=("vpn-api.js" "package.json")
+    total_files=0
+    current_file=0
     
     # Count total files
     total_files=${#main_files[@]}
-    local sh_files
     sh_files=$(curl -s "https://api.github.com/repos/$REPO/contents?ref=$BRANCH" | grep 'name.*\.sh' | cut -d '"' -f4 | grep -v 'install.sh' | wc -l)
     total_files=$((total_files + sh_files))
     
@@ -314,7 +313,6 @@ download_files() {
     done
     
     # Download shell scripts
-    local sh_file_list
     sh_file_list=$(curl -s "https://api.github.com/repos/$REPO/contents?ref=$BRANCH" | grep 'name.*\.sh' | cut -d '"' -f4 | grep -v 'install.sh')
     
     for file in $sh_file_list; do
@@ -434,7 +432,7 @@ show_summary() {
     echo -e "${PURPLE}${BOLD}══════════════════════════════════════════════════════════════════════════════${NC}\n"
     
     # Animasi penutup yang lebih menarik
-    local success_msg="🎊 INSTALASI SELESAI! 🎊"
+    success_msg="🎊 INSTALASI SELESAI! 🎊"
     echo -e "${GREEN}${BOLD}${BLINK}"
     for ((i=0; i<${#success_msg}; i++)); do
         printf "%s" "${success_msg:$i:1}"
