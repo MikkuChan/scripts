@@ -421,7 +421,7 @@ Jika menemukan bug atau masalah:
 
 - 📧 **Email**: support@fadzdigital.com
 - 💬 **Telegram**: [@FadzDigital](https://t.me/fadzdigital)
-- 🌐 **Website**: [fadzdigital.com](https://vpntech.my.id)
+- 🌐 **Website**: [vpntech.my.id](https://vpntech.my.id)
 
 ---
 
