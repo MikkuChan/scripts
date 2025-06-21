@@ -1,7 +1,7 @@
 #!/bin/bash
 # =============================================================================
 # VPN API Installation Script - FadzDigital
-# Version: 2.0 ( MikkuChan)
+# Version: 2.0 (MikkuChan)
 # =============================================================================
 
 set -e
@@ -21,6 +21,7 @@ declare -r DIM='\033[2m'
 declare -r BLINK='\033[5m'
 declare -r NC='\033[0m'
 
+# Gradient color array untuk animasi
 declare -a GRADIENT=(
     '\033[1;34m'  # Blue
     '\033[1;35m'  # Purple
@@ -39,8 +40,10 @@ declare -r SCRIPT_DIR="$INSTALL_DIR/scripts"
 declare -r SERVICE_NAME="vpn-api"
 declare -r LOG_FILE="/var/log/vpn-api-install.log"
 
+# Variable global untuk menyimpan AUTHKEY
 declare USER_AUTHKEY=""
 
+# Banner
 print_banner() {
     clear
     echo -e "${CYAN}${BOLD}"
@@ -72,10 +75,12 @@ print_banner() {
     sleep 1
 }
 
+# Fungsi logging
 log() {
     echo "[$(date '+%Y-%m-%d %H:%M:%S')] $1" >> "$LOG_FILE"
 }
 
+# Animasi spinner
 spinner() {
     local pid=$1
     local message="$2"
@@ -100,6 +105,7 @@ spinner() {
     fi
 }
 
+# Fungsi eksekusi
 run() {
     local cmd="$1"
     local retries=3
@@ -124,6 +130,7 @@ run() {
     exit 1
 }
 
+# Progress bar dengan animasi
 progress_bar() {
     local current=$1
     local total=$2
@@ -138,6 +145,7 @@ progress_bar() {
     sleep 0.03
 }
 
+# Fungsi untuk input AUTHKEY
 get_authkey_input() {
     echo -e "${CYAN}${BOLD}🔐 Masukkan Authentication Key (AUTHKEY) untuk API:${NC}"
     while true; do
@@ -152,6 +160,7 @@ get_authkey_input() {
     done
 }
 
+# Cek prasyarat
 check_prerequisites() {
     echo -e "${YELLOW}${BOLD}🔍 Memeriksa prasyarat sistem...${NC}\n"
     if [[ $EUID -ne 0 ]]; then
@@ -175,6 +184,7 @@ check_prerequisites() {
     sleep 1
 }
 
+# Cek instalasi yang sudah ada
 check_existing_installation() {
     if [ -d "${INSTALL_DIR}" ] || systemctl is-active --quiet "${SERVICE_NAME}" 2>/dev/null; then
         echo -e "${YELLOW}${BOLD}⚠️  Instalasi sebelumnya ditemukan${NC}"
@@ -201,6 +211,7 @@ check_existing_installation() {
     fi
 }
 
+# Hapus instalasi lama
 remove_existing_installation() {
     echo -e "${YELLOW}${BOLD}🗑️  Menghapus instalasi sebelumnya...${NC}\n"
     if systemctl is-active --quiet "${SERVICE_NAME}" 2>/dev/null; then
@@ -218,6 +229,7 @@ remove_existing_installation() {
     sleep 1
 }
 
+# Install dependencies
 install_dependencies() {
     echo -e "${YELLOW}${BOLD}📦 Menginstall paket yang diperlukan...${NC}\n"
     run "apt-get update -y"
@@ -239,6 +251,7 @@ install_dependencies() {
     sleep 1
 }
 
+# Buat struktur direktori
 create_directories() {
     echo -e "${YELLOW}${BOLD}📁 Membuat struktur direktori...${NC}\n"
     run "mkdir -p $INSTALL_DIR"
@@ -249,6 +262,7 @@ create_directories() {
     sleep 1
 }
 
+# Download file dari GitHub
 download_files() {
     echo -e "${YELLOW}${BOLD}🔄 Memproses file instalasi...${NC}\n"
     cd "${SCRIPT_DIR}"
@@ -286,6 +300,7 @@ download_files() {
     sleep 1
 }
 
+# Install Node.js dependencies
 install_node_modules() {
     echo -e "${YELLOW}${BOLD}📦 Menginstall dependencies Node.js...${NC}\n"
     cd "${SCRIPT_DIR}"
@@ -298,9 +313,10 @@ install_node_modules() {
     sleep 1
 }
 
+# Buat file .env DI SCRIPT_DIR
 create_env_file() {
     echo -e "${YELLOW}${BOLD}🔐 Membuat file konfigurasi .env...${NC}\n"
-    local env_path="${SCRIPT_DIR}/.env"      # <-- Ganti dari INSTALL_DIR ke SCRIPT_DIR
+    local env_path="${SCRIPT_DIR}/.env"
     if [ ! -d "${SCRIPT_DIR}" ]; then
         echo -e "${RED}${BOLD}❌ Direktori script tidak ditemukan!${NC}"
         exit 1
@@ -326,7 +342,7 @@ create_env_file() {
     sleep 1
 }
 
-
+# Buat systemd service
 create_service() {
     echo -e "${YELLOW}${BOLD}⚙️  Membuat systemd service...${NC}\n"
     cat > "/etc/systemd/system/${SERVICE_NAME}.service" << EOF
@@ -365,6 +381,7 @@ EOF
     sleep 1
 }
 
+# Jalankan service
 start_service() {
     echo -e "${YELLOW}${BOLD}🚀 Memulai VPN API service...${NC}\n"
     run "systemctl start $SERVICE_NAME"
@@ -379,6 +396,7 @@ start_service() {
     sleep 1
 }
 
+# Tampilkan ringkasan
 show_summary() {
     echo -e "${PURPLE}${BOLD}════════════════════════════════════════════════════════════════════${NC}"
     echo -e "${GREEN}${BOLD}               🎉 INSTALASI BERHASIL DISELESAIKAN! 🎉${NC}"
@@ -390,20 +408,19 @@ show_summary() {
     echo -e "${WHITE}   • Status Service: ${GREEN}$(systemctl is-active ${SERVICE_NAME})${NC}"
     echo -e "${WHITE}   • File Log: ${GREEN}${LOG_FILE}${NC}"
     echo -e "${WHITE}   • File .env: ${GREEN}${SCRIPT_DIR}/.env${NC}"
-if [ -f "${SCRIPT_DIR}/.env" ]; then
-    echo -e "${WHITE}   • Status .env: ${GREEN}✅ Berhasil dibuat${NC}"
-    echo -e "${WHITE}   • AUTHKEY: ${GREEN}${USER_AUTHKEY}${NC}"
-else
-    echo -e "${WHITE}   • Status .env: ${RED}❌ Tidak ditemukan${NC}"
-fi
-
+    if [ -f "${SCRIPT_DIR}/.env" ]; then
+        echo -e "${WHITE}   • Status .env: ${GREEN}✅ Berhasil dibuat${NC}"
+        echo -e "${WHITE}   • AUTHKEY: ${GREEN}${USER_AUTHKEY}${NC}"
+    else
+        echo -e "${WHITE}   • Status .env: ${RED}❌ Tidak ditemukan${NC}"
+    fi
     echo
     echo -e "${CYAN}${BOLD}🔧 Perintah Berguna:${NC}"
     echo -e "${WHITE}   • Cek status service: ${YELLOW}systemctl status ${SERVICE_NAME}${NC}"
     echo -e "${WHITE}   • Lihat log service: ${YELLOW}journalctl -u ${SERVICE_NAME} -f${NC}"
     echo -e "${WHITE}   • Restart service: ${YELLOW}systemctl restart ${SERVICE_NAME}${NC}"
     echo -e "${WHITE}   • Stop service: ${YELLOW}systemctl stop ${SERVICE_NAME}${NC}"
-    echo -e "${WHITE}   • Edit .env: ${YELLOW}nano ${INSTALL_DIR}/.env${NC}\n"
+    echo -e "${WHITE}   • Edit .env: ${YELLOW}nano ${SCRIPT_DIR}/.env${NC}\n"
     echo -e "${PINK}${BOLD}✨ Powered by FadzDigital ✨${NC}"
     echo -e "${ORANGE}${BOLD}🚀 Premium VPN Management System 🚀${NC}"
     echo -e "${PURPLE}${BOLD}════════════════════════════════════════════════════════════════════${NC}\n"
