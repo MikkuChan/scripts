@@ -186,10 +186,10 @@ check_prerequisites() {
 
 # Cek instalasi yang sudah ada
 check_existing_installation() {
-    if [ -d "${INSTALL_DIR}" ] || systemctl is-active --quiet "${SERVICE_NAME}" 2>/dev/null; then
+    if [ -d "${INSTALL_DIR}" ] || pm2 show "${SERVICE_NAME}" &>/dev/null; then
         echo -e "${YELLOW}${BOLD}⚠️  Instalasi sebelumnya ditemukan${NC}"
         echo -e "${BLUE}   • Direktori instalasi: ${WHITE}${INSTALL_DIR}${NC}"
-        echo -e "${BLUE}   • Status service: ${WHITE}$(systemctl is-active $SERVICE_NAME 2>/dev/null || echo 'tidak aktif')${NC}"
+        echo -e "${BLUE}   • Status PM2: ${WHITE}$(pm2 show $SERVICE_NAME 2>/dev/null | grep -o 'status.*online\|status.*stopped' | head -1 || echo 'tidak ditemukan')${NC}"
         echo
         while true; do
             echo -e "${CYAN}${BOLD}Apakah Anda ingin menghapus instalasi lama dan install ulang? [Y/n]: ${NC}"
@@ -214,13 +214,9 @@ check_existing_installation() {
 # Hapus instalasi lama
 remove_existing_installation() {
     echo -e "${YELLOW}${BOLD}🗑️  Menghapus instalasi sebelumnya...${NC}\n"
-    if systemctl is-active --quiet "${SERVICE_NAME}" 2>/dev/null; then
-        run "systemctl stop $SERVICE_NAME"
-        run "systemctl disable $SERVICE_NAME"
-    fi
-    if [ -f "/etc/systemd/system/${SERVICE_NAME}.service" ]; then
-        run "rm -f /etc/systemd/system/$SERVICE_NAME.service"
-        run "systemctl daemon-reload"
+    if pm2 show "${SERVICE_NAME}" &>/dev/null; then
+        run "pm2 stop $SERVICE_NAME"
+        run "pm2 delete $SERVICE_NAME"
     fi
     if [ -d "${INSTALL_DIR}" ]; then
         run "rm -rf ${INSTALL_DIR}"
@@ -248,6 +244,15 @@ install_dependencies() {
         fi
     done
     echo -e "\n${GREEN}${BOLD}✅ Semua paket berhasil diinstall ✅${NC}\n"
+    
+    # Install PM2 globally
+    echo -e "${YELLOW}${BOLD}📦 Menginstall PM2...${NC}\n"
+    if ! command -v pm2 >/dev/null 2>&1; then
+        run "npm install -g pm2"
+        echo -e "${GREEN}${BOLD}✅ PM2 berhasil diinstall ✅${NC}\n"
+    else
+        echo -e "${GREEN}${BOLD}✅ PM2 sudah terinstall ✅${NC}\n"
+    fi
     sleep 1
 }
 
@@ -342,55 +347,26 @@ create_env_file() {
     sleep 1
 }
 
-# Buat systemd service
-create_service() {
-    echo -e "${YELLOW}${BOLD}⚙️  Membuat systemd service...${NC}\n"
-    cat > "/etc/systemd/system/${SERVICE_NAME}.service" << EOF
-[Unit]
-Description=VPN API Service - FadzDigital
-Documentation=https://github.com/$REPO
-After=network.target network-online.target
-Wants=network-online.target
-
-[Service]
-Type=simple
-WorkingDirectory=$SCRIPT_DIR
-ExecStart=/usr/bin/node $SCRIPT_DIR/vpn-api.js
-ExecReload=/bin/kill -HUP \$MAINPID
-Restart=always
-RestartSec=5
-User=root
-Group=root
-Environment=NODE_ENV=production
-Environment=PATH=/usr/bin:/usr/local/bin
-StandardOutput=journal
-StandardError=journal
-SyslogIdentifier=vpn-api
-
-NoNewPrivileges=true
-ProtectSystem=strict
-ProtectHome=true
-ReadWritePaths=$INSTALL_DIR $SCRIPT_DIR /var/log/vpn-api /tmp
-
-[Install]
-WantedBy=multi-user.target
-EOF
-    run "systemctl daemon-reload"
-    run "systemctl enable $SERVICE_NAME"
-    echo -e "${GREEN}${BOLD}✅ Systemd service berhasil dibuat dan diaktifkan ✅${NC}\n"
-    sleep 1
-}
-
-# Jalankan service
+# Jalankan service dengan PM2
 start_service() {
-    echo -e "${YELLOW}${BOLD}🚀 Memulai VPN API service...${NC}\n"
-    run "systemctl start $SERVICE_NAME"
+    echo -e "${YELLOW}${BOLD}🚀 Memulai VPN API service dengan PM2...${NC}\n"
+    cd "${SCRIPT_DIR}"
+    
+    # Start aplikasi dengan PM2
+    run "pm2 start vpn-api.js --name $SERVICE_NAME"
+    
+    # Save PM2 process list
+    run "pm2 save"
+    
+    # Setup PM2 startup
+    run "pm2 startup systemd -u root --hp /root"
+    
     sleep 2
-    if systemctl is-active --quiet "${SERVICE_NAME}"; then
-        echo -e "${GREEN}${BOLD}✅ VPN API service berhasil dimulai ✅${NC}\n"
+    if pm2 show "${SERVICE_NAME}" | grep -q "online"; then
+        echo -e "${GREEN}${BOLD}✅ VPN API service berhasil dimulai dengan PM2 ✅${NC}\n"
     else
         echo -e "${RED}${BOLD}❌ Gagal memulai VPN API service${NC}"
-        echo -e "${YELLOW}   Periksa log dengan: ${CYAN}journalctl -u ${SERVICE_NAME} -f${NC}\n"
+        echo -e "${YELLOW}   Periksa log dengan: ${CYAN}pm2 logs ${SERVICE_NAME}${NC}\n"
         exit 1
     fi
     sleep 1
@@ -405,7 +381,7 @@ show_summary() {
     echo -e "${WHITE}   • Direktori Instalasi: ${GREEN}${INSTALL_DIR}${NC}"
     echo -e "${WHITE}   • Direktori Script: ${GREEN}${SCRIPT_DIR}${NC}"
     echo -e "${WHITE}   • Nama Service: ${GREEN}${SERVICE_NAME}${NC}"
-    echo -e "${WHITE}   • Status Service: ${GREEN}$(systemctl is-active ${SERVICE_NAME})${NC}"
+    echo -e "${WHITE}   • Status PM2: ${GREEN}$(pm2 show ${SERVICE_NAME} 2>/dev/null | grep -o 'status.*online\|status.*stopped' | head -1 || echo 'tidak aktif')${NC}"
     echo -e "${WHITE}   • File Log: ${GREEN}${LOG_FILE}${NC}"
     echo -e "${WHITE}   • File .env: ${GREEN}${SCRIPT_DIR}/.env${NC}"
     if [ -f "${SCRIPT_DIR}/.env" ]; then
@@ -415,11 +391,12 @@ show_summary() {
         echo -e "${WHITE}   • Status .env: ${RED}❌ Tidak ditemukan${NC}"
     fi
     echo
-    echo -e "${CYAN}${BOLD}🔧 Perintah Berguna:${NC}"
-    echo -e "${WHITE}   • Cek status service: ${YELLOW}systemctl status ${SERVICE_NAME}${NC}"
-    echo -e "${WHITE}   • Lihat log service: ${YELLOW}journalctl -u ${SERVICE_NAME} -f${NC}"
-    echo -e "${WHITE}   • Restart service: ${YELLOW}systemctl restart ${SERVICE_NAME}${NC}"
-    echo -e "${WHITE}   • Stop service: ${YELLOW}systemctl stop ${SERVICE_NAME}${NC}"
+    echo -e "${CYAN}${BOLD}🔧 Perintah PM2 Berguna:${NC}"
+    echo -e "${WHITE}   • Cek status service: ${YELLOW}pm2 status ${SERVICE_NAME}${NC}"
+    echo -e "${WHITE}   • Lihat log service: ${YELLOW}pm2 logs ${SERVICE_NAME}${NC}"
+    echo -e "${WHITE}   • Restart service: ${YELLOW}pm2 restart ${SERVICE_NAME}${NC}"
+    echo -e "${WHITE}   • Stop service: ${YELLOW}pm2 stop ${SERVICE_NAME}${NC}"
+    echo -e "${WHITE}   • Monitor semua process: ${YELLOW}pm2 monit${NC}"
     echo -e "${WHITE}   • Edit .env: ${YELLOW}nano ${SCRIPT_DIR}/.env${NC}\n"
     echo -e "${PINK}${BOLD}✨ Powered by FadzDigital ✨${NC}"
     echo -e "${ORANGE}${BOLD}🚀 Premium VPN Management System 🚀${NC}"
@@ -447,7 +424,6 @@ main() {
     download_files
     install_node_modules
     create_env_file
-    create_service
     start_service
     show_summary
     log "VPN API Installation Completed Successfully"
