@@ -7,9 +7,6 @@
 # KONFIGURASI AWAL
 # ================================================
 
-# Validasi auth key
-valid_auth="fadznewbie_do"
-
 # Format output selalu JSON
 response_json() {
     echo "$1"
@@ -21,7 +18,6 @@ response_json() {
 # ================================================
 
 # Ambil parameter dari query string
-auth=$(echo "$QUERY_STRING" | grep -oE 'auth=[^&]+' | cut -d= -f2)
 user=$(echo "$QUERY_STRING" | grep -oE 'user=[^&]+' | cut -d= -f2)
 
 # Validasi parameter wajib
