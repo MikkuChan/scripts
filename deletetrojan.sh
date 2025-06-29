@@ -1,12 +1,15 @@
 #!/bin/bash
 # Script untuk menghapus user Trojan via API HTTP GET
-# By FadzDigital (modif by ChatGPT)
+# By FadzDigital
 # ==================================================
 
-# Fungsi utama
+export PATH=$PATH:/usr/sbin:/sbin
+valid_auth="${AUTHKEY:-default_fallback}"
+
 if [ "$REQUEST_METHOD" = "GET" ]; then
     # Ambil parameter user dan auth dari QUERY_STRING
     user=$(echo "$QUERY_STRING" | sed -n 's/^.*user=\([^&]*\).*$/\1/p')
+    auth=$(echo "$QUERY_STRING" | sed -n 's/^.*auth=\([^&]*\).*$/\1/p')
 
     # Cek parameter wajib
     if [ -z "$user" ] || [ -z "$auth" ]; then
@@ -14,7 +17,7 @@ if [ "$REQUEST_METHOD" = "GET" ]; then
         exit 1
     fi
 
-    # Validasi auth key
+    # Validasi auth key dari ENV
     if [ "$auth" != "$valid_auth" ]; then
         echo '{"status": "error", "message": "Invalid authentication key"}'
         exit 1
