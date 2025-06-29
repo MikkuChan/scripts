@@ -1,12 +1,8 @@
 #!/bin/bash
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 # Script untuk menghapus user Trojan via API
-# Support pemanggilan HTTP GET dengan parameter:
-# Contoh: ./deletetrojan.sh?user=namauser&auth=fadznewbie_do
+# FadzDigital
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-# Konfigurasi autentikasi
-valid_auth="fadznewbie_do"
 
 # Fungsi untuk validasi autentikasi
 validasi_auth() {
