@@ -1,16 +1,12 @@
 #!/bin/bash
 # Script untuk menghapus user VLess via HTTP GET
-# Cara pakai: http://server/deletevless?user=USERNAME&auth=API_KEY
-# ==================================================
-# KONFIGURASI
-valid_auth="fadznewbie_do"  # Ganti dengan auth key Anda
+# FadzDigital
 # ==================================================
 # FUNGSI UTAMA
 # Cek jika dipanggil via HTTP GET
 if [ "$REQUEST_METHOD" = "GET" ]; then
   # Ambil parameter dari query string
   user=$(echo "$QUERY_STRING" | sed -n 's/^.*user=\([^&]*\).*$/\1/p')
-  auth=$(echo "$QUERY_STRING" | sed -n 's/^.*auth=\([^&]*\).*$/\1/p')
   # Validasi auth key
   if [ "$auth" != "$valid_auth" ]; then
     echo '{"status": "error", "message": "Invalid authentication key"}'
